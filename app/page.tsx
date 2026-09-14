@@ -1,69 +1,129 @@
-import Image from "next/image";
+const presets = [
+  {
+    title: "Video → MP3",
+    description: "Extract audio from a video file.",
+  },
+  {
+    title: "Compress Video",
+    description: "Reduce video size while keeping quality.",
+  },
+  {
+    title: "Resize Video",
+    description: "Scale a video to a different resolution.",
+  },
+  {
+    title: "Convert Audio",
+    description: "Convert audio between common formats.",
+  },
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
+    <main className="min-h-screen bg-white text-zinc-950">
+      <div className="mx-auto flex min-h-screen max-w-6xl flex-col px-6 sm:px-8">
+        {/* Header */}
+        <header className="flex h-20 items-center justify-between">
+          <a href="/" className="text-lg font-semibold tracking-tight">
+            320kbps
+          </a>
+
+          <nav className="flex items-center gap-6 text-sm text-zinc-500">
             <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              href="#presets"
+              className="transition-colors hover:text-zinc-950"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
+              Presets
+            </a>
             <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              href="#about"
+              className="transition-colors hover:text-zinc-950"
             >
-              Learning
-            </a>{" "}
-            center.
+              About
+            </a>
+          </nav>
+        </header>
+
+        {/* Hero */}
+        <section className="flex flex-1 flex-col justify-center py-24">
+          <div className="max-w-3xl">
+            <p className="mb-6 text-sm font-medium tracking-wide text-zinc-500">
+              FFmpeg presets for humans.
+            </p>
+
+            <h1 className="text-5xl font-semibold tracking-tight sm:text-7xl">
+              Build FFmpeg commands
+              <br />
+              without memorizing FFmpeg.
+            </h1>
+
+            <p className="mt-8 max-w-2xl text-lg leading-8 text-zinc-500 sm:text-xl">
+              Simple presets for common media tasks. Choose what you want to
+              do, configure a few options, and get the FFmpeg command.
+            </p>
+
+            <div className="mt-10">
+              <a
+                href="#presets"
+                className="inline-flex h-11 items-center rounded-full bg-zinc-950 px-6 text-sm font-medium text-white transition-colors hover:bg-zinc-800"
+              >
+                Explore presets
+              </a>
+            </div>
+          </div>
+        </section>
+
+        {/* Presets */}
+        <section id="presets" className="pb-32">
+          <div className="mb-8">
+            <h2 className="text-2xl font-semibold tracking-tight">
+              Popular presets
+            </h2>
+            <p className="mt-2 text-sm text-zinc-500">
+              Start with a common FFmpeg task.
+            </p>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-2">
+            {presets.map((preset) => (
+              <a
+                key={preset.title}
+                href={preset.title === "Video → MP3" ? "/presets/video-to-mp3" : "#"}
+                className="group rounded-2xl border border-zinc-200 p-6 transition-all hover:border-zinc-300 hover:shadow-sm"
+              >
+                <h3 className="text-lg font-medium tracking-tight">
+                  {preset.title}
+                </h3>
+
+                <p className="mt-2 text-sm leading-6 text-zinc-500">
+                  {preset.description}
+                </p>
+
+                <div className="mt-6 text-sm font-medium text-zinc-400 transition-colors group-hover:text-zinc-950">
+                  Configure →
+                </div>
+              </a>
+            ))}
+          </div>
+        </section>
+
+        {/* About */}
+        <section
+          id="about"
+          className="border-t border-zinc-200 py-16"
+        >
+          <p className="max-w-xl text-sm leading-7 text-zinc-500">
+            320kbps is a collection of human-friendly FFmpeg presets and tools.
+            No complicated command lines. Just choose what you want to do and
+            build the command.
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+        </section>
+
+        {/* Footer */}
+        <footer className="flex h-20 items-center justify-between border-t border-zinc-200 text-xs text-zinc-400">
+          <span>© 2026 320kbps</span>
+          <span>Powered by FFmpeg</span>
+        </footer>
+      </div>
+    </main>
   );
 }
