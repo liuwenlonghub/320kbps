@@ -1,21 +1,4 @@
-const presets = [
-  {
-    title: "Video → MP3",
-    description: "Extract audio from a video file.",
-  },
-  {
-    title: "Compress Video",
-    description: "Reduce video size while keeping quality.",
-  },
-  {
-    title: "Resize Video",
-    description: "Scale a video to a different resolution.",
-  },
-  {
-    title: "Convert Audio",
-    description: "Convert audio between common formats.",
-  },
-];
+import { presets } from "@/lib/ffmpeg/presets";
 
 export default function Home() {
   return (
@@ -86,8 +69,8 @@ export default function Home() {
           <div className="grid gap-4 sm:grid-cols-2">
             {presets.map((preset) => (
               <a
-                key={preset.title}
-                href={preset.title === "Video → MP3" ? "/presets/video-to-mp3" : "#"}
+                key={preset.id}
+                href={`/presets/${preset.id}`}
                 className="group rounded-2xl border border-zinc-200 p-6 transition-all hover:border-zinc-300 hover:shadow-sm"
               >
                 <h3 className="text-lg font-medium tracking-tight">

@@ -1,8 +1,10 @@
 "use client";
 
 import { useMemo, useState } from "react";
-
-const bitrates = [128, 192, 256, 320];
+import {
+  buildVideoToMp3Command,
+  videoToMp3Preset,
+} from "@/lib/ffmpeg/presets/video-to-mp3";
 
 export default function VideoToMp3Page() {
   const [input, setInput] = useState("input.mp4");
@@ -11,11 +13,16 @@ export default function VideoToMp3Page() {
   const [copied, setCopied] = useState(false);
 
   const command = useMemo(() => {
-    return `ffmpeg -i ${input} -codec:a libmp3lame -b:a ${bitrate}k ${output}`;
+    return buildVideoToMp3Command({
+      input,
+      bitrate,
+      output,
+    });
   }, [input, bitrate, output]);
 
   async function copyCommand() {
     await navigator.clipboard.writeText(command);
+
     setCopied(true);
 
     setTimeout(() => {
@@ -26,7 +33,6 @@ export default function VideoToMp3Page() {
   return (
     <main className="min-h-screen bg-white text-zinc-950">
       <div className="mx-auto max-w-4xl px-6 sm:px-8">
-        {/* Header */}
         <header className="flex h-20 items-center justify-between">
           <a href="/" className="text-lg font-semibold tracking-tight">
             320kbps
@@ -40,21 +46,21 @@ export default function VideoToMp3Page() {
           </a>
         </header>
 
-        {/* Main */}
         <section className="py-16">
           <p className="text-sm font-medium text-zinc-500">
-            Audio preset
+            {videoToMp3Preset.category === "audio"
+              ? "Audio preset"
+              : "Media preset"}
           </p>
 
           <h1 className="mt-3 text-4xl font-semibold tracking-tight sm:text-5xl">
-            Video → MP3
+            {videoToMp3Preset.title}
           </h1>
 
           <p className="mt-5 max-w-2xl text-lg leading-8 text-zinc-500">
-            Extract audio from a video and convert it to MP3.
+            {videoToMp3Preset.description}
           </p>
 
-          {/* Options */}
           <div className="mt-12 space-y-8">
             <div>
               <label
@@ -88,7 +94,7 @@ export default function VideoToMp3Page() {
                 }
                 className="mt-2 h-11 w-full rounded-xl border border-zinc-200 bg-white px-4 text-sm outline-none transition focus:border-zinc-400"
               >
-                {bitrates.map((value) => (
+                {videoToMp3Preset.options.bitrate.map((value) => (
                   <option key={value} value={value}>
                     {value} kbps
                   </option>
@@ -113,7 +119,6 @@ export default function VideoToMp3Page() {
             </div>
           </div>
 
-          {/* Command */}
           <section className="mt-12">
             <div className="mb-3 flex items-center justify-between">
               <h2 className="text-sm font-medium">
@@ -135,7 +140,6 @@ export default function VideoToMp3Page() {
             </div>
           </section>
 
-          {/* Explanation */}
           <section className="mt-12 border-t border-zinc-200 pt-10">
             <h2 className="text-lg font-semibold tracking-tight">
               What does this command do?
