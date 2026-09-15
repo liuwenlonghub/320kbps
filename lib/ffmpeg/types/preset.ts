@@ -42,7 +42,21 @@ export type PresetField =
   | SelectField<string>
   | SelectField<number>;
 
-export type Preset<TOptions = Record<string, unknown>> = {
+export type PresetExplanation = {
+  title: string;
+  description: string;
+  parameters: readonly {
+    flag: string;
+    description: string;
+  }[];
+};
+
+export type Preset<
+  TOptions extends Record<string, string | number> = Record<
+    string,
+    string | number
+  >,
+> = {
   id: string;
   title: string;
   description: string;
@@ -50,4 +64,5 @@ export type Preset<TOptions = Record<string, unknown>> = {
   input: PresetInput;
   options: TOptions;
   fields: readonly PresetField[];
+  explanation: PresetExplanation;
 };

@@ -50,4 +50,23 @@ export const videoToMp3Preset: Preset<VideoToMp3Options> = {
       defaultValue: "output.mp3",
     },
   ],
+  explanation: {
+    title: "About this command",
+    description:
+      "Extracts the audio track from a video and encodes it as an MP3 file.",
+    parameters: [
+      {
+        flag: "-i",
+        description: "Specifies the input video file.",
+      },
+      {
+        flag: "-codec:a libmp3lame",
+        description: "Uses the LAME MP3 encoder for the audio stream.",
+      },
+      {
+        flag: "-b:a 320k",
+        description: "Sets the audio bitrate to 320 kbps.",
+      },
+    ],
+  },
 };
