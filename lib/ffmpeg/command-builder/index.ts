@@ -1,5 +1,4 @@
 import { quoteShellArgument } from "./utils";
-
 import type { VideoToMp3Options } from "@/lib/ffmpeg/presets/video-to-mp3";
 
 export type CommandBuilder<TOptions> = (

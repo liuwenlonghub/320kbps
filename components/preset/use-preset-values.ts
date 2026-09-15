@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-
 import { buildOutputFilename } from "@/lib/ffmpeg/output/build-output-filename";
 import type { Preset } from "@/lib/ffmpeg/types/preset";
 

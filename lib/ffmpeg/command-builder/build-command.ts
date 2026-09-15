@@ -1,5 +1,4 @@
 import { commandBuilders } from "./registry";
-
 import type { Preset } from "../types/preset";
 
 export function buildCommand(
