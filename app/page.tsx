@@ -1,4 +1,6 @@
 import { presets } from "@/lib/ffmpeg/presets";
+import { PresetCard } from "@/components/preset-card";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -6,23 +8,23 @@ export default function Home() {
       <div className="mx-auto flex min-h-screen max-w-6xl flex-col px-6 sm:px-8">
         {/* Header */}
         <header className="flex h-20 items-center justify-between">
-          <a href="/" className="text-lg font-semibold tracking-tight">
+          <Link href="/" className="text-lg font-semibold tracking-tight">
             320kbps
-          </a>
+          </Link>
 
           <nav className="flex items-center gap-6 text-sm text-zinc-500">
-            <a
+            <Link
               href="#presets"
               className="transition-colors hover:text-zinc-950"
             >
               Presets
-            </a>
-            <a
+            </Link>
+            <Link
               href="#about"
               className="transition-colors hover:text-zinc-950"
             >
               About
-            </a>
+            </Link>
           </nav>
         </header>
 
@@ -45,12 +47,12 @@ export default function Home() {
             </p>
 
             <div className="mt-10">
-              <a
+              <Link
                 href="#presets"
                 className="inline-flex h-11 items-center rounded-full bg-zinc-950 px-6 text-sm font-medium text-white transition-colors hover:bg-zinc-800"
               >
                 Explore presets
-              </a>
+              </Link>
             </div>
           </div>
         </section>
@@ -68,23 +70,12 @@ export default function Home() {
 
           <div className="grid gap-4 sm:grid-cols-2">
             {presets.map((preset) => (
-              <a
+              <PresetCard
                 key={preset.id}
-                href={`/presets/${preset.id}`}
-                className="group rounded-2xl border border-zinc-200 p-6 transition-all hover:border-zinc-300 hover:shadow-sm"
-              >
-                <h3 className="text-lg font-medium tracking-tight">
-                  {preset.title}
-                </h3>
-
-                <p className="mt-2 text-sm leading-6 text-zinc-500">
-                  {preset.description}
-                </p>
-
-                <div className="mt-6 text-sm font-medium text-zinc-400 transition-colors group-hover:text-zinc-950">
-                  Configure →
-                </div>
-              </a>
+                id={preset.id}
+                title={preset.title}
+                description={preset.description}
+              />
             ))}
           </div>
         </section>

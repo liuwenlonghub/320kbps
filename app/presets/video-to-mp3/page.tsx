@@ -3,12 +3,13 @@
 import { useMemo, useState } from "react";
 import { videoToMp3Preset } from "@/lib/ffmpeg/presets/video-to-mp3";
 import { buildVideoToMp3Command } from "@/lib/ffmpeg/command-builder";
+import { CommandPreview } from "@/components/command-preview";
+import Link from "next/link";
 
 export default function VideoToMp3Page() {
   const [input, setInput] = useState("input.mp4");
   const [bitrate, setBitrate] = useState(320);
   const [output, setOutput] = useState("output.mp3");
-  const [copied, setCopied] = useState(false);
 
   const command = useMemo(() => {
     return buildVideoToMp3Command({
@@ -18,30 +19,20 @@ export default function VideoToMp3Page() {
     });
   }, [input, bitrate, output]);
 
-  async function copyCommand() {
-    await navigator.clipboard.writeText(command);
-
-    setCopied(true);
-
-    setTimeout(() => {
-      setCopied(false);
-    }, 2000);
-  }
-
   return (
     <main className="min-h-screen bg-white text-zinc-950">
       <div className="mx-auto max-w-4xl px-6 sm:px-8">
         <header className="flex h-20 items-center justify-between">
-          <a href="/" className="text-lg font-semibold tracking-tight">
+          <Link href="/" className="text-lg font-semibold tracking-tight">
             320kbps
-          </a>
+          </Link>
 
-          <a
+          <Link
             href="/"
             className="text-sm text-zinc-500 transition-colors hover:text-zinc-950"
           >
             Back
-          </a>
+          </Link>
         </header>
 
         <section className="py-16">
@@ -117,26 +108,7 @@ export default function VideoToMp3Page() {
             </div>
           </div>
 
-          <section className="mt-12">
-            <div className="mb-3 flex items-center justify-between">
-              <h2 className="text-sm font-medium">
-                FFmpeg command
-              </h2>
-
-              <button
-                onClick={copyCommand}
-                className="text-sm font-medium text-zinc-500 transition-colors hover:text-zinc-950"
-              >
-                {copied ? "Copied!" : "Copy command"}
-              </button>
-            </div>
-
-            <div className="overflow-x-auto rounded-2xl bg-zinc-950 p-6">
-              <code className="whitespace-pre font-mono text-sm leading-7 text-zinc-100">
-                {command}
-              </code>
-            </div>
-          </section>
+          <CommandPreview command={command} />
 
           <section className="mt-12 border-t border-zinc-200 pt-10">
             <h2 className="text-lg font-semibold tracking-tight">
