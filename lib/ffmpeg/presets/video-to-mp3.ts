@@ -25,11 +25,10 @@ export const videoToMp3Preset: Preset<VideoToMp3Options> = {
 
   fields: [
     {
-      type: "text",
+      type: "file",
       id: "input",
       label: "Input file",
-      placeholder: "input.mp4",
-      defaultValue: "input.mp4",
+      accept: "video/*",
     },
     {
       type: "select",

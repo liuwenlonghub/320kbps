@@ -16,6 +16,13 @@ export type TextField = {
   defaultValue: string;
 };
 
+export type FileField = {
+  type: "file";
+  id: string;
+  label: string;
+  accept?: string;
+};
+
 export type SelectOption<T extends string | number> = {
   label: string;
   value: T;
@@ -31,6 +38,7 @@ export type SelectField<T extends string | number> = {
 
 export type PresetField =
   | TextField
+  | FileField
   | SelectField<string>
   | SelectField<number>;
 

@@ -16,6 +16,38 @@ export function PresetForm({
   return (
     <div className="space-y-6">
       {fields.map((field) => {
+        if (field.type === "file") {
+          return (
+            <div key={field.id}>
+              <label
+                htmlFor={field.id}
+                className="text-sm font-medium"
+              >
+                {field.label}
+              </label>
+
+              <input
+                id={field.id}
+                type="file"
+                accept={field.accept}
+                onChange={(event) => {
+                  const file = event.target.files?.[0];
+
+                  if (file) {
+                    onChange(field.id, file.name);
+                  }
+                }}
+                className="mt-2 block w-full text-sm text-zinc-500 file:mr-4 file:rounded-lg file:border-0 file:bg-zinc-100 file:px-4 file:py-2 file:text-sm file:font-medium file:text-zinc-700 hover:file:bg-zinc-200"
+              />
+
+              {values[field.id] && (
+                <p className="mt-2 text-sm text-zinc-500">
+                  {values[field.id]}
+                </p>
+              )}
+            </div>
+          );
+        }
         if (field.type === "text") {
           return (
             <div key={field.id}>
