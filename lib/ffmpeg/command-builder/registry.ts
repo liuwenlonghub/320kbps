@@ -1,22 +1,31 @@
 import {
   buildCompressVideoCommand,
-  type CompressVideoOptions,
 } from "./compress-video";
+import type {
+  CompressVideoOptions,
+} from "@/lib/ffmpeg/presets/compress-video";
+
 import {
   buildResizeVideoCommand,
-  type ResizeVideoOptions,
 } from "./resize-video";
-import {
-  buildVideoToMp3Command,
-} from "./index";
+import type {
+  ResizeVideoOptions,
+} from "@/lib/ffmpeg/presets/resize-video";
+
 import {
   buildWebmToMp4Command,
-  type WebmToMp4Options,
 } from "./webm-to-mp4";
+import type {
+  WebmToMp4Options,
+} from "@/lib/ffmpeg/presets/webm-to-mp4";
 
-import type { VideoToMp3Options } from "@/lib/ffmpeg/presets/video-to-mp3";
+import { buildVideoToMp3Command } from "./index";
+import type {
+  VideoToMp3Options,
+} from "@/lib/ffmpeg/presets/video-to-mp3";
 
-type CommandValues = Record<string, string | number>;
+type CommandValues =
+  Record<string, string | number>;
 
 type CommandBuilder = (
   values: CommandValues,
@@ -44,9 +53,11 @@ export const commandBuilders: Record<
     buildCompressVideoCommand({
       input: String(values.input),
       quality:
-        String(values.quality) as CompressVideoOptions["quality"],
+        String(
+          values.quality,
+        ) as CompressVideoOptions["quality"],
       output: String(values.output),
-    }),
+    } satisfies CompressVideoOptions),
 
   "webm-to-mp4": (values) =>
     buildWebmToMp4Command({

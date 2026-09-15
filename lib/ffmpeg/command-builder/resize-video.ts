@@ -1,10 +1,5 @@
 import { quoteShellArgument } from "./utils";
-
-export type ResizeVideoOptions = {
-  input: string;
-  width: number;
-  output: string;
-};
+import type { ResizeVideoOptions } from "@/lib/ffmpeg/presets/resize-video";
 
 export function buildResizeVideoCommand({
   input,

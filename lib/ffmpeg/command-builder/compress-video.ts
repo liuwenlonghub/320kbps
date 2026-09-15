@@ -1,10 +1,5 @@
 import { quoteShellArgument } from "./utils";
-
-export type CompressVideoOptions = {
-  input: string;
-  quality: "high" | "balanced" | "small";
-  output: string;
-};
+import type { CompressVideoOptions } from "@/lib/ffmpeg/presets/compress-video";
 
 const qualitySettings = {
   high: {

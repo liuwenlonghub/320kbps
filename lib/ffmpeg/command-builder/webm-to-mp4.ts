@@ -1,9 +1,5 @@
 import { quoteShellArgument } from "./utils";
-
-export type WebmToMp4Options = {
-  input: string;
-  output: string;
-};
+import type { WebmToMp4Options } from "@/lib/ffmpeg/presets/webm-to-mp4";
 
 export function buildWebmToMp4Command({
   input,
