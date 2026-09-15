@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { videoToMp3Preset } from "@/lib/ffmpeg/presets/video-to-mp3";
 import { buildVideoToMp3Command } from "@/lib/ffmpeg/command-builder";
 import { CommandPreview } from "@/components/command-preview";
@@ -11,14 +11,17 @@ export default function VideoToMp3Page() {
   const [bitrate, setBitrate] = useState(320);
   const [output, setOutput] = useState("output.mp3");
 
-  const command = useMemo(() => {
-    return buildVideoToMp3Command({
-      input,
-      bitrate,
-      output,
-    });
-  }, [input, bitrate, output]);
+  const bitrateField = videoToMp3Preset.fields.find(
+    (field) => field.id === "bitrate",
+  );
 
+const command = buildVideoToMp3Command({
+  input,
+  bitrate,
+  output,
+});
+
+  
   return (
     <main className="min-h-screen bg-white text-zinc-950">
       <div className="mx-auto max-w-4xl px-6 sm:px-8">
@@ -70,9 +73,9 @@ export default function VideoToMp3Page() {
             <div>
               <label
                 htmlFor="bitrate"
-                className="block text-sm font-medium"
+                className="text-sm font-medium"
               >
-                MP3 bitrate
+                Bitrate
               </label>
 
               <select
@@ -81,13 +84,17 @@ export default function VideoToMp3Page() {
                 onChange={(event) =>
                   setBitrate(Number(event.target.value))
                 }
-                className="mt-2 h-11 w-full rounded-xl border border-zinc-200 bg-white px-4 text-sm outline-none transition focus:border-zinc-400"
+                className="mt-2 w-full rounded-xl border border-zinc-200 bg-white px-4 py-3 text-sm outline-none transition-colors focus:border-zinc-400"
               >
-                {videoToMp3Preset.options.bitrate.map((value) => (
-                  <option key={value} value={value}>
-                    {value} kbps
-                  </option>
-                ))}
+                {bitrateField?.type === "select" &&
+                  bitrateField.options.map((option) => (
+                    <option
+                      key={option.value}
+                      value={option.value}
+                    >
+                      {option.label}
+                    </option>
+                  ))}
               </select>
             </div>
 
