@@ -23,6 +23,10 @@ export const videoToMp3Preset: Preset<VideoToMp3Options> = {
     output: "output.mp3",
   },
 
+  output: {
+    extension: "mp3",
+  },
+
   fields: [
     {
       type: "file",

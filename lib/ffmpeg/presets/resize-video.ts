@@ -23,6 +23,11 @@ export const resizeVideoPreset: Preset<ResizeVideoOptions> = {
     output: "output.mp4",
   },
 
+  output: {
+    extension: "mp4",
+    suffix: "width",
+  },
+
   fields: [
     {
       type: "file",

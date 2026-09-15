@@ -6,12 +6,14 @@ type PresetFormProps = {
   fields: readonly PresetField[];
   values: Record<string, string | number>;
   onChange: (id: string, value: string | number) => void;
+  onFileChange?: (id: string, file: File) => void;
 };
 
 export function PresetForm({
   fields,
   values,
   onChange,
+  onFileChange,
 }: PresetFormProps) {
   return (
     <div className="space-y-6">
@@ -35,6 +37,7 @@ export function PresetForm({
 
                   if (file) {
                     onChange(field.id, file.name);
+                    onFileChange?.(field.id, file);
                   }
                 }}
                 className="mt-2 block w-full text-sm text-zinc-500 file:mr-4 file:rounded-lg file:border-0 file:bg-zinc-100 file:px-4 file:py-2 file:text-sm file:font-medium file:text-zinc-700 hover:file:bg-zinc-200"

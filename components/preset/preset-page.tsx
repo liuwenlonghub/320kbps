@@ -7,6 +7,7 @@ import { CommandPreview } from "@/components/command-preview";
 import { PresetForm } from "@/components/preset/preset-form";
 import type { Preset } from "@/lib/ffmpeg/types/preset";
 import { buildCommand } from "@/lib/ffmpeg/command-builder/build-command";
+import { buildOutputFilename } from "@/lib/ffmpeg/output/build-output-filename";
 
 type PresetPageProps<
   TOptions extends Record<string, string | number>,
@@ -25,10 +26,90 @@ export function PresetPage<
     id: string,
     value: string | number,
   ) {
-    setValues((current) => ({
-      ...current,
-      [id]: value,
-    }));
+    setValues((current) => {
+      const currentOutput = String(
+        current.output ?? "",
+      );
+
+      const previousDefaultOutput =
+        buildOutputFilename(
+          preset,
+          current,
+        );
+
+      const initialOutput = String(
+        preset.options.output ?? "",
+      );
+
+      const nextValues = {
+        ...current,
+        [id]: value,
+      };
+
+      const shouldUpdateOutput =
+        id !== "output" &&
+        (
+          currentOutput === initialOutput ||
+          currentOutput === previousDefaultOutput
+        );
+
+      return shouldUpdateOutput
+        ? {
+            ...nextValues,
+            output: buildOutputFilename(
+              preset,
+              nextValues,
+            ),
+          }
+        : nextValues;
+    });
+  }
+
+  function handleFileChange(
+    id: string,
+    file: File,
+  ) {
+    if (id !== "input") {
+      return;
+    }
+
+    const filename = file.name;
+
+    setValues((current) => {
+      const currentOutput = String(
+        current.output ?? "",
+      );
+
+      const previousDefaultOutput =
+        buildOutputFilename(
+          preset,
+          current,
+        );
+
+      const initialOutput = String(
+        preset.options.output ?? "",
+      );
+
+      const nextValues = {
+        ...current,
+        input: filename,
+      };
+
+      const shouldUpdateOutput =
+        !currentOutput ||
+        currentOutput === initialOutput ||
+        currentOutput === previousDefaultOutput;
+
+      return shouldUpdateOutput
+        ? {
+            ...nextValues,
+            output: buildOutputFilename(
+              preset,
+              nextValues,
+            ),
+          }
+        : nextValues;
+    });
   }
 
   const command = buildCommand(
@@ -60,73 +141,74 @@ export function PresetPage<
           fields={preset.fields}
           values={values}
           onChange={handleOptionChange}
+          onFileChange={handleFileChange}
         />
       </section>
 
       <CommandPreview command={command} />
-<section className="mt-12 border-t border-zinc-200 pt-8">
-  <h2 className="text-sm font-medium">
-    {preset.explanation.title}
-  </h2>
+      <section className="mt-12 border-t border-zinc-200 pt-8">
+        <h2 className="text-sm font-medium">
+          {preset.explanation.title}
+        </h2>
 
-  <p className="mt-3 text-sm leading-6 text-zinc-500">
-    {preset.explanation.description}
-  </p>
+        <p className="mt-3 text-sm leading-6 text-zinc-500">
+          {preset.explanation.description}
+        </p>
 
-  {preset.explanation.dynamic && (
-    <div className="mt-6 rounded-2xl bg-zinc-50 p-5">
-      <p className="text-xs font-medium uppercase tracking-wide text-zinc-400">
-        {preset.explanation.dynamic.title}
-      </p>
-
-      {(() => {
-        const dynamic =
-          preset.explanation.dynamic;
-
-        const currentValue =
-          String(values[dynamic.field]);
-
-        const explanation =
-          dynamic.values[currentValue];
-
-        if (!explanation) {
-          return null;
-        }
-
-        return (
-          <div className="mt-3">
-            <p className="font-medium tracking-tight">
-              {explanation.label}
+        {preset.explanation.dynamic && (
+          <div className="mt-6 rounded-2xl bg-zinc-50 p-5">
+            <p className="text-xs font-medium uppercase tracking-wide text-zinc-400">
+              {preset.explanation.dynamic.title}
             </p>
 
-            <p className="mt-1 text-sm leading-6 text-zinc-500">
-              {explanation.description}
-            </p>
+            {(() => {
+              const dynamic =
+                preset.explanation.dynamic;
+
+              const currentValue =
+                String(values[dynamic.field]);
+
+              const explanation =
+                dynamic.values[currentValue];
+
+              if (!explanation) {
+                return null;
+              }
+
+              return (
+                <div className="mt-3">
+                  <p className="font-medium tracking-tight">
+                    {explanation.label}
+                  </p>
+
+                  <p className="mt-1 text-sm leading-6 text-zinc-500">
+                    {explanation.description}
+                  </p>
+                </div>
+              );
+            })()}
           </div>
-        );
-      })()}
-    </div>
-  )}
+        )}
 
-  <div className="mt-6 space-y-4">
-    {preset.explanation.parameters.map(
-      (parameter) => (
-        <div
-          key={parameter.flag}
-          className="flex gap-4"
-        >
-          <code className="shrink-0 rounded-md bg-zinc-100 px-2 py-1 font-mono text-xs text-zinc-700">
-            {parameter.flag}
-          </code>
+        <div className="mt-6 space-y-4">
+          {preset.explanation.parameters.map(
+            (parameter) => (
+              <div
+                key={parameter.flag}
+                className="flex gap-4"
+              >
+                <code className="shrink-0 rounded-md bg-zinc-100 px-2 py-1 font-mono text-xs text-zinc-700">
+                  {parameter.flag}
+                </code>
 
-          <p className="text-sm leading-6 text-zinc-500">
-            {parameter.description}
-          </p>
+                <p className="text-sm leading-6 text-zinc-500">
+                  {parameter.description}
+                </p>
+              </div>
+            ),
+          )}
         </div>
-      ),
-    )}
-  </div>
-</section>
+      </section>
     </main>
   );
 }

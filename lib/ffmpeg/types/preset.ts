@@ -75,6 +75,12 @@ export type Preset<
   category: PresetCategory;
   input: PresetInput;
   options: TOptions;
+
+  output?: {
+    extension: string;
+    suffix?: string;
+  };
+
   fields: readonly PresetField[];
   explanation: PresetExplanation;
 };

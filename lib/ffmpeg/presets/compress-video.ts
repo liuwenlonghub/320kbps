@@ -26,6 +26,11 @@ export const compressVideoPreset: Preset<
     output: "output.mp4",
   },
 
+  output: {
+    extension: "mp4",
+    suffix: "compressed",
+  },
+
   fields: [
     {
       type: "file",
