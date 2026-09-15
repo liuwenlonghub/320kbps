@@ -11,8 +11,7 @@ export const compressVideoPreset: Preset<
 > = {
   id: "compress-video",
   title: "Compress Video",
-  description:
-    "Reduce video file size while keeping good visual quality.",
+  description: "Reduce video file size while keeping good quality.",
   category: "video",
   featured: true,
 
