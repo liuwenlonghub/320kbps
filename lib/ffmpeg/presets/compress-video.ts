@@ -65,22 +65,27 @@ export const compressVideoPreset: Preset<
   explanation: {
     title: "About this command",
     description:
-      "Compresses the video using H.264 and adjusts the CRF value to balance image quality and file size.",
+      "This command re-encodes the video with H.264 and AAC. The CRF value controls the balance between visual quality and file size.",
     parameters: [
+      {
+        flag: "-i",
+        description:
+          "Specifies the input video file.",
+      },
       {
         flag: "-c:v libx264",
         description:
-          "Encodes the video using the widely supported H.264 codec.",
+          "Encodes the video using H.264, a widely supported video codec with good compression efficiency.",
       },
       {
         flag: "-crf",
         description:
-          "Controls the video quality. Lower values produce higher quality and larger files.",
+          "Controls video quality. Lower values produce better quality and larger files, while higher values produce smaller files with lower quality. This preset uses 20, 23, or 28 depending on the selected compression level.",
       },
       {
         flag: "-preset medium",
         description:
-          "Controls the encoding speed and compression efficiency.",
+          "Controls the encoding speed and compression efficiency. Slower presets generally produce smaller files at the same quality, but take longer to encode.",
       },
       {
         flag: "-c:a aac",
@@ -90,7 +95,7 @@ export const compressVideoPreset: Preset<
       {
         flag: "-b:a",
         description:
-          "Sets the audio bitrate for the compressed output.",
+          "Sets the audio bitrate. Higher bitrates generally preserve more audio quality but produce larger files.",
       },
     ],
   },
