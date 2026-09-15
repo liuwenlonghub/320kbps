@@ -4,6 +4,7 @@ import { useState } from "react";
 import { videoToMp3Preset } from "@/lib/ffmpeg/presets/video-to-mp3";
 import { buildVideoToMp3Command } from "@/lib/ffmpeg/command-builder";
 import { CommandPreview } from "@/components/command-preview";
+import { PresetForm } from "@/components/preset/preset-form";
 import Link from "next/link";
 
 export default function VideoToMp3Page() {
@@ -11,9 +12,18 @@ export default function VideoToMp3Page() {
   const [bitrate, setBitrate] = useState(320);
   const [output, setOutput] = useState("output.mp3");
 
-  const bitrateField = videoToMp3Preset.fields.find(
-    (field) => field.id === "bitrate",
-  );
+const values = {
+  bitrate,
+};
+
+function handleOptionChange(
+  id: string,
+  value: string | number,
+) {
+  if (id === "bitrate") {
+    setBitrate(Number(value));
+  }
+}
 
 const command = buildVideoToMp3Command({
   input,
@@ -71,31 +81,11 @@ const command = buildVideoToMp3Command({
             </div>
 
             <div>
-              <label
-                htmlFor="bitrate"
-                className="text-sm font-medium"
-              >
-                Bitrate
-              </label>
-
-              <select
-                id="bitrate"
-                value={bitrate}
-                onChange={(event) =>
-                  setBitrate(Number(event.target.value))
-                }
-                className="mt-2 w-full rounded-xl border border-zinc-200 bg-white px-4 py-3 text-sm outline-none transition-colors focus:border-zinc-400"
-              >
-                {bitrateField?.type === "select" &&
-                  bitrateField.options.map((option) => (
-                    <option
-                      key={option.value}
-                      value={option.value}
-                    >
-                      {option.label}
-                    </option>
-                  ))}
-              </select>
+              <PresetForm
+                fields={videoToMp3Preset.fields}
+                values={values}
+                onChange={handleOptionChange}
+              />
             </div>
 
             <div>
