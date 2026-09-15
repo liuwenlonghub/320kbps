@@ -20,3 +20,7 @@ export const buildVideoToMp3Command: CommandBuilder<
     quoteShellArgument(output),
   ].join(" ");
 };
+
+export {
+  buildResizeVideoCommand,
+} from "./resize-video";
