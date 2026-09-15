@@ -1,8 +1,11 @@
-type PresetCardProps = {
-  id: string;
-  title: string;
-  description: string;
-};
+import Link from "next/link";
+
+import type { Preset } from "@/lib/ffmpeg/types/preset";
+
+type PresetCardProps = Pick<
+  Preset,
+  "id" | "title" | "description"
+>;
 
 export function PresetCard({
   id,
@@ -10,7 +13,7 @@ export function PresetCard({
   description,
 }: PresetCardProps) {
   return (
-    <a
+    <Link
       href={`/presets/${id}`}
       className="group rounded-2xl border border-zinc-200 p-6 transition-all hover:border-zinc-300 hover:shadow-sm"
     >
@@ -25,6 +28,6 @@ export function PresetCard({
       <div className="mt-6 text-sm font-medium text-zinc-400 transition-colors group-hover:text-zinc-950">
         Configure →
       </div>
-    </a>
+    </Link>
   );
 }
