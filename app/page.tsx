@@ -1,8 +1,15 @@
 import { presets } from "@/lib/ffmpeg/presets";
+import type { PresetCategory } from "@/lib/ffmpeg/types/preset";
+import { PresetCategory as PresetCategoryLabel } from "@/components/preset-category";
 import { PresetCard } from "@/components/preset-card";
 import Link from "next/link";
 
 export default function Home() {
+  const categories: PresetCategory[] = [
+    "audio",
+    "video",
+    "image",
+  ];
   return (
     <main className="min-h-screen bg-white text-zinc-950">
       <div className="mx-auto flex min-h-screen max-w-6xl flex-col px-6 sm:px-8">
@@ -63,20 +70,41 @@ export default function Home() {
             <h2 className="text-2xl font-semibold tracking-tight">
               Popular presets
             </h2>
+
             <p className="mt-2 text-sm text-zinc-500">
               Start with a common FFmpeg task.
             </p>
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-2">
-            {presets.map((preset) => (
-              <PresetCard
-                key={preset.id}
-                id={preset.id}
-                title={preset.title}
-                description={preset.description}
-              />
-            ))}
+          <div className="space-y-12">
+            {categories.map((category) => {
+              const categoryPresets = presets.filter(
+                (preset) => preset.category === category,
+              );
+
+              if (categoryPresets.length === 0) {
+                return null;
+              }
+
+              return (
+                <div key={category}>
+                  <PresetCategoryLabel
+                    category={category}
+                  />
+
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    {categoryPresets.map((preset) => (
+                      <PresetCard
+                        key={preset.id}
+                        id={preset.id}
+                        title={preset.title}
+                        description={preset.description}
+                      />
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </section>
 
