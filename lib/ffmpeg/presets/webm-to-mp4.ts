@@ -10,6 +10,7 @@ export const webmToMp4Preset: Preset<WebmToMp4Options> = {
   title: "WebM → MP4",
   description: "Convert a WebM video to MP4.",
   category: "video",
+  featured: true,
 
   input: {
     type: "media",

@@ -73,6 +73,7 @@ export type Preset<
   title: string;
   description: string;
   category: PresetCategory;
+  featured: boolean;
   input: PresetInput;
   options: TOptions;
 

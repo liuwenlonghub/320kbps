@@ -11,6 +11,7 @@ export const videoToMp3Preset: Preset<VideoToMp3Options> = {
   title: "Video → MP3",
   description: "Extract audio from a video file.",
   category: "audio",
+  featured: true,
 
   input: {
     type: "media",

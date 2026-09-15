@@ -68,7 +68,7 @@ export default function Home() {
         <section id="presets" className="pb-32">
           <div className="mb-8">
             <h2 className="text-2xl font-semibold tracking-tight">
-              Popular presets
+              Featured presets
             </h2>
 
             <p className="mt-2 text-sm text-zinc-500">
@@ -79,7 +79,9 @@ export default function Home() {
           <div className="space-y-12">
             {categories.map((category) => {
               const categoryPresets = presets.filter(
-                (preset) => preset.category === category,
+                (preset) =>
+                  preset.category === category &&
+                  preset.featured,
               );
 
               if (categoryPresets.length === 0) {

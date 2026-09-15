@@ -11,6 +11,7 @@ export const resizeVideoPreset: Preset<ResizeVideoOptions> = {
   title: "Resize Video",
   description: "Resize a video while keeping its aspect ratio.",
   category: "video",
+  featured: true,
 
   input: {
     type: "media",

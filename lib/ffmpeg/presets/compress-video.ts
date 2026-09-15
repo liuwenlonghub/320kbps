@@ -14,6 +14,7 @@ export const compressVideoPreset: Preset<
   description:
     "Reduce video file size while keeping good visual quality.",
   category: "video",
+  featured: true,
 
   input: {
     type: "media",
