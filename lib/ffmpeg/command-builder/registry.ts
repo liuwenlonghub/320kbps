@@ -9,6 +9,10 @@ import {
 import {
   buildVideoToMp3Command,
 } from "./index";
+import {
+  buildWebmToMp4Command,
+  type WebmToMp4Options,
+} from "./webm-to-mp4";
 
 import type { VideoToMp3Options } from "@/lib/ffmpeg/presets/video-to-mp3";
 
@@ -43,4 +47,10 @@ export const commandBuilders: Record<
         String(values.quality) as CompressVideoOptions["quality"],
       output: String(values.output),
     }),
+
+  "webm-to-mp4": (values) =>
+    buildWebmToMp4Command({
+      input: String(values.input),
+      output: String(values.output),
+    } satisfies WebmToMp4Options),
 };

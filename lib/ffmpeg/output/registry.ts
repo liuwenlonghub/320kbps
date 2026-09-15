@@ -7,6 +7,9 @@ import type { ResizeVideoOptions } from "@/lib/ffmpeg/presets/resize-video";
 import { buildVideoToMp3OutputFilename } from "./video-to-mp3";
 import type { VideoToMp3Options } from "@/lib/ffmpeg/presets/video-to-mp3";
 
+import { buildWebmToMp4OutputFilename } from "./webm-to-mp4";
+import type { WebmToMp4Options } from "@/lib/ffmpeg/presets/webm-to-mp4";
+
 type OutputValues = Record<string, string | number>;
 
 type OutputBuilder = (
@@ -40,4 +43,11 @@ export const outputBuilders: Record<
         ) as CompressVideoOptions["quality"],
       output: String(values.output),
     } satisfies CompressVideoOptions),
+
+  "webm-to-mp4": (values) =>
+    buildWebmToMp4OutputFilename({
+      input: String(values.input),
+      output: String(values.output),
+    } satisfies WebmToMp4Options),
+
 };
