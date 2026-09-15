@@ -6,6 +6,8 @@ import { buildVideoToMp3OutputFilename } from "./video-to-mp3";
 import type { VideoToMp3Options } from "@/lib/ffmpeg/presets/video-to-mp3";
 import { buildWebmToMp4OutputFilename } from "./webm-to-mp4";
 import type { WebmToMp4Options } from "@/lib/ffmpeg/presets/webm-to-mp4";
+import { buildImageToWebpOutputFilename } from "./image-to-webp";
+import type { ImageToWebpOptions } from "@/lib/ffmpeg/presets/image-to-webp";
 
 type OutputValues = Record<string, string | number>;
 
@@ -46,5 +48,11 @@ export const outputBuilders: Record<
       input: String(values.input),
       output: String(values.output),
     } satisfies WebmToMp4Options),
-
+    
+  "image-to-webp": (values) =>
+    buildImageToWebpOutputFilename({
+      input: String(values.input),
+      quality: Number(values.quality),
+      output: String(values.output),
+    } satisfies ImageToWebpOptions),
 };

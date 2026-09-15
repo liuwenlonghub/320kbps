@@ -109,6 +109,50 @@ export default function Home() {
             })}
           </div>
         </section>
+        
+        {/* All presets */}
+        <section className="pb-32">
+          <div className="mb-8">
+            <h2 className="text-2xl font-semibold tracking-tight">
+              Browse all presets
+            </h2>
+
+            <p className="mt-2 text-sm text-zinc-500">
+              Explore all available FFmpeg presets.
+            </p>
+          </div>
+
+          <div className="space-y-12">
+            {categories.map((category) => {
+              const categoryPresets = presets.filter(
+                (preset) => preset.category === category,
+              );
+
+              if (categoryPresets.length === 0) {
+                return null;
+              }
+
+              return (
+                <div key={category}>
+                  <PresetCategoryLabel
+                    category={category}
+                  />
+
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    {categoryPresets.map((preset) => (
+                      <PresetCard
+                        key={preset.id}
+                        id={preset.id}
+                        title={preset.title}
+                        description={preset.description}
+                      />
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </section>
 
         {/* About */}
         <section

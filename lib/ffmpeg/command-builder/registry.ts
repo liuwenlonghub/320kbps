@@ -6,6 +6,8 @@ import { buildWebmToMp4Command } from "./webm-to-mp4";
 import type { WebmToMp4Options } from "@/lib/ffmpeg/presets/webm-to-mp4";
 import { buildVideoToMp3Command } from "./index";
 import type { VideoToMp3Options } from "@/lib/ffmpeg/presets/video-to-mp3";
+import { buildImageToWebpCommand } from "./image-to-webp";
+import type { ImageToWebpOptions } from "@/lib/ffmpeg/presets/image-to-webp";
 
 type CommandValues =
   Record<string, string | number>;
@@ -47,4 +49,11 @@ export const commandBuilders: Record<
       input: String(values.input),
       output: String(values.output),
     } satisfies WebmToMp4Options),
+
+  "image-to-webp": (values) =>
+    buildImageToWebpCommand({
+      input: String(values.input),
+      quality: Number(values.quality),
+      output: String(values.output),
+    } satisfies ImageToWebpOptions),
 };
