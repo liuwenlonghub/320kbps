@@ -1,16 +1,26 @@
 import {
+  buildCompressVideoCommand,
+  type CompressVideoOptions,
+} from "./compress-video";
+import {
   buildResizeVideoCommand,
+  type ResizeVideoOptions,
+} from "./resize-video";
+import {
   buildVideoToMp3Command,
 } from "./index";
 
-import type { ResizeVideoOptions } from "@/lib/ffmpeg/command-builder/resize-video";
 import type { VideoToMp3Options } from "@/lib/ffmpeg/presets/video-to-mp3";
 
 type CommandValues = Record<string, string | number>;
 
+type CommandBuilder = (
+  values: CommandValues,
+) => string;
+
 export const commandBuilders: Record<
   string,
-  (values: CommandValues) => string
+  CommandBuilder
 > = {
   "video-to-mp3": (values) =>
     buildVideoToMp3Command({
@@ -25,4 +35,12 @@ export const commandBuilders: Record<
       width: Number(values.width),
       output: String(values.output),
     } satisfies ResizeVideoOptions),
+
+  "compress-video": (values) =>
+    buildCompressVideoCommand({
+      input: String(values.input),
+      quality:
+        String(values.quality) as CompressVideoOptions["quality"],
+      output: String(values.output),
+    }),
 };
