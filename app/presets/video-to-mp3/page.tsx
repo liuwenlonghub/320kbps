@@ -8,29 +8,27 @@ import { PresetForm } from "@/components/preset/preset-form";
 import Link from "next/link";
 
 export default function VideoToMp3Page() {
-  const [input, setInput] = useState("input.mp4");
-  const [bitrate, setBitrate] = useState(320);
-  const [output, setOutput] = useState("output.mp3");
-
-const values = {
-  bitrate,
-};
+const [values, setValues] = useState({
+  input: videoToMp3Preset.options.input,
+  bitrate: videoToMp3Preset.options.bitrate,
+  output: videoToMp3Preset.options.output,
+});
 
 function handleOptionChange(
   id: string,
   value: string | number,
 ) {
-  if (id === "bitrate") {
-    setBitrate(Number(value));
-  }
+  setValues((current) => ({
+    ...current,
+    [id]: value,
+  }));
 }
 
 const command = buildVideoToMp3Command({
-  input,
-  bitrate,
-  output,
+  input: String(values.input),
+  bitrate: Number(values.bitrate),
+  output: String(values.output),
 });
-
   
   return (
     <main className="min-h-screen bg-white text-zinc-950">
@@ -72,12 +70,6 @@ const command = buildVideoToMp3Command({
                 Input file
               </label>
 
-              <input
-                id="input"
-                value={input}
-                onChange={(event) => setInput(event.target.value)}
-                className="mt-2 h-11 w-full rounded-xl border border-zinc-200 px-4 text-sm outline-none transition focus:border-zinc-400"
-              />
             </div>
 
             <div>
@@ -95,13 +87,6 @@ const command = buildVideoToMp3Command({
               >
                 Output file
               </label>
-
-              <input
-                id="output"
-                value={output}
-                onChange={(event) => setOutput(event.target.value)}
-                className="mt-2 h-11 w-full rounded-xl border border-zinc-200 px-4 text-sm outline-none transition focus:border-zinc-400"
-              />
             </div>
           </div>
 

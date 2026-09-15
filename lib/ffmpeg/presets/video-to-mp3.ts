@@ -1,7 +1,9 @@
 import type { Preset } from "../types/preset";
 
 export type VideoToMp3Options = {
+  input: string;
   bitrate: number;
+  output: string;
 };
 
 export const videoToMp3Preset: Preset<VideoToMp3Options> = {
@@ -16,10 +18,19 @@ export const videoToMp3Preset: Preset<VideoToMp3Options> = {
   },
 
   options: {
+    input: "input.mp4",
     bitrate: 320,
+    output: "output.mp3",
   },
 
   fields: [
+    {
+      type: "text",
+      id: "input",
+      label: "Input file",
+      placeholder: "input.mp4",
+      defaultValue: "input.mp4",
+    },
     {
       type: "select",
       id: "bitrate",
@@ -31,6 +42,13 @@ export const videoToMp3Preset: Preset<VideoToMp3Options> = {
         { label: "320 kbps", value: 320 },
       ],
       defaultValue: 320,
+    },
+    {
+      type: "text",
+      id: "output",
+      label: "Output file",
+      placeholder: "output.mp3",
+      defaultValue: "output.mp3",
     },
   ],
 };

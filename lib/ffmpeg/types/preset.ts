@@ -8,6 +8,14 @@ export type PresetInput = {
   extensions: readonly string[];
 };
 
+export type TextField = {
+  type: "text";
+  id: string;
+  label: string;
+  placeholder?: string;
+  defaultValue: string;
+};
+
 export type SelectOption<T extends string | number> = {
   label: string;
   value: T;
@@ -22,6 +30,7 @@ export type SelectField<T extends string | number> = {
 };
 
 export type PresetField =
+  | TextField
   | SelectField<string>
   | SelectField<number>;
 

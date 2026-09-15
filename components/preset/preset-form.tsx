@@ -16,6 +16,30 @@ export function PresetForm({
   return (
     <div className="space-y-6">
       {fields.map((field) => {
+        if (field.type === "text") {
+          return (
+            <div key={field.id}>
+              <label
+                htmlFor={field.id}
+                className="text-sm font-medium"
+              >
+                {field.label}
+              </label>
+
+              <input
+                id={field.id}
+                type="text"
+                value={values[field.id] ?? ""}
+                placeholder={field.placeholder}
+                onChange={(event) =>
+                  onChange(field.id, event.target.value)
+                }
+                className="mt-2 w-full rounded-xl border border-zinc-200 bg-white px-4 py-3 text-sm outline-none transition-colors placeholder:text-zinc-400 focus:border-zinc-400"
+              />
+            </div>
+          );
+        }
+
         if (field.type === "select") {
           return (
             <div key={field.id}>
