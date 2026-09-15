@@ -1,14 +1,10 @@
 import { quoteShellArgument } from "./utils";
 
+import type { VideoToMp3Options } from "@/lib/ffmpeg/presets/video-to-mp3";
+
 export type CommandBuilder<TOptions> = (
   options: TOptions,
 ) => string;
-
-export type VideoToMp3Options = {
-  input: string;
-  bitrate: number;
-  output: string;
-};
 
 export const buildVideoToMp3Command: CommandBuilder<
   VideoToMp3Options

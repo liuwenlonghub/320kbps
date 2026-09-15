@@ -5,8 +5,8 @@ import { useState } from "react";
 
 import { CommandPreview } from "@/components/command-preview";
 import { PresetForm } from "@/components/preset/preset-form";
-import { buildVideoToMp3Command } from "@/lib/ffmpeg/command-builder";
 import type { Preset } from "@/lib/ffmpeg/types/preset";
+import { buildCommand } from "@/lib/ffmpeg/command-builder/build-command";
 
 type PresetPageProps<
   TOptions extends Record<string, string | number>,
@@ -31,14 +31,10 @@ export function PresetPage<
     }));
   }
 
-  const command =
-    preset.id === "video-to-mp3"
-      ? buildVideoToMp3Command({
-          input: String(values.input),
-          bitrate: Number(values.bitrate),
-          output: String(values.output),
-        })
-      : "";
+  const command = buildCommand(
+    preset,
+    values,
+  );
 
   return (
     <main className="mx-auto max-w-3xl px-6 py-16">
