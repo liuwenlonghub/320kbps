@@ -49,6 +49,18 @@ export type PresetExplanation = {
     flag: string;
     description: string;
   }[];
+
+  dynamic?: {
+    field: string;
+    title: string;
+    values: Record<
+      string,
+      {
+        label: string;
+        description: string;
+      }
+    >;
+  };
 };
 
 export type Preset<

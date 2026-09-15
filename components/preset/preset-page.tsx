@@ -73,6 +73,41 @@ export function PresetPage<
     {preset.explanation.description}
   </p>
 
+  {preset.explanation.dynamic && (
+    <div className="mt-6 rounded-2xl bg-zinc-50 p-5">
+      <p className="text-xs font-medium uppercase tracking-wide text-zinc-400">
+        {preset.explanation.dynamic.title}
+      </p>
+
+      {(() => {
+        const dynamic =
+          preset.explanation.dynamic;
+
+        const currentValue =
+          String(values[dynamic.field]);
+
+        const explanation =
+          dynamic.values[currentValue];
+
+        if (!explanation) {
+          return null;
+        }
+
+        return (
+          <div className="mt-3">
+            <p className="font-medium tracking-tight">
+              {explanation.label}
+            </p>
+
+            <p className="mt-1 text-sm leading-6 text-zinc-500">
+              {explanation.description}
+            </p>
+          </div>
+        );
+      })()}
+    </div>
+  )}
+
   <div className="mt-6 space-y-4">
     {preset.explanation.parameters.map(
       (parameter) => (
