@@ -1,8 +1,7 @@
 import { presets } from "@/lib/ffmpeg/presets";
 import type { PresetCategory } from "@/lib/ffmpeg/types/preset";
-import { PresetCategory as PresetCategoryLabel } from "@/components/preset-category";
-import { PresetCard } from "@/components/preset-card";
 import Link from "next/link";
+import { PresetGrid } from "@/components/preset-grid";
 
 export default function Home() {
   const categories: PresetCategory[] = [
@@ -76,38 +75,10 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="space-y-12">
-            {categories.map((category) => {
-              const categoryPresets = presets.filter(
-                (preset) =>
-                  preset.category === category &&
-                  preset.featured,
-              );
-
-              if (categoryPresets.length === 0) {
-                return null;
-              }
-
-              return (
-                <div key={category}>
-                  <PresetCategoryLabel
-                    category={category}
-                  />
-
-                  <div className="grid gap-4 sm:grid-cols-2">
-                    {categoryPresets.map((preset) => (
-                      <PresetCard
-                        key={preset.id}
-                        id={preset.id}
-                        title={preset.title}
-                        description={preset.description}
-                      />
-                    ))}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+          <PresetGrid
+            presets={presets.filter((preset) => preset.featured)}
+            categories={categories}
+          />
         </section>
         
         {/* All presets */}
@@ -122,36 +93,10 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="space-y-12">
-            {categories.map((category) => {
-              const categoryPresets = presets.filter(
-                (preset) => preset.category === category,
-              );
-
-              if (categoryPresets.length === 0) {
-                return null;
-              }
-
-              return (
-                <div key={category}>
-                  <PresetCategoryLabel
-                    category={category}
-                  />
-
-                  <div className="grid gap-4 sm:grid-cols-2">
-                    {categoryPresets.map((preset) => (
-                      <PresetCard
-                        key={preset.id}
-                        id={preset.id}
-                        title={preset.title}
-                        description={preset.description}
-                      />
-                    ))}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+          <PresetGrid
+            presets={presets}
+            categories={categories}
+          />
         </section>
 
         {/* About */}
