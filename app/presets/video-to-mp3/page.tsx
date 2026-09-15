@@ -1,10 +1,8 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import {
-  buildVideoToMp3Command,
-  videoToMp3Preset,
-} from "@/lib/ffmpeg/presets/video-to-mp3";
+import { videoToMp3Preset } from "@/lib/ffmpeg/presets/video-to-mp3";
+import { buildVideoToMp3Command } from "@/lib/ffmpeg/command-builder";
 
 export default function VideoToMp3Page() {
   const [input, setInput] = useState("input.mp4");

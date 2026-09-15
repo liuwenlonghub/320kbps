@@ -11,15 +11,3 @@ export const videoToMp3Preset = {
     bitrate: [128, 192, 256, 320],
   },
 } as const;
-
-export function buildVideoToMp3Command({
-  input,
-  bitrate,
-  output,
-}: {
-  input: string;
-  bitrate: number;
-  output: string;
-}) {
-  return `ffmpeg -i ${input} -codec:a libmp3lame -b:a ${bitrate}k ${output}`;
-}
