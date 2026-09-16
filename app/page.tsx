@@ -31,6 +31,11 @@ export default function Home() {
             locally.
           </p>
 
+          <div className="mt-6 flex items-center gap-2 text-sm text-zinc-500">
+            <span aria-hidden="true">✓</span>
+            <span>No uploads. Process your files locally in your browser.</span>
+          </div>
+
           <div className="mt-10">
             <Link
               href="#presets"
@@ -68,7 +73,8 @@ export default function Home() {
         <p className="max-w-xl text-sm leading-7 text-zinc-500">
           320kbps is a collection of simple media tools powered by FFmpeg.
           Configure a few options, convert files directly in your browser, or
-          get the FFmpeg command to run locally.
+          get the FFmpeg command to run locally. Browser-based conversions run
+          locally, so your files don&apos;t need to be uploaded.
         </p>
       </section>
     </div>
