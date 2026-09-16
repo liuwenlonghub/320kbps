@@ -1,8 +1,10 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { CommandPreview } from "@/components/command-preview";
 import { PresetForm } from "@/components/preset/preset-form";
+import { ResizeVideoBrowser } from "@/components/preset/resize-video-browser";
 import type { Preset } from "@/lib/ffmpeg/types/preset";
 import { buildCommand } from "@/lib/ffmpeg/command-builder/build-command";
 import { usePresetValues } from "./use-preset-values";
@@ -18,17 +20,30 @@ export function PresetPage<
 >({
   preset,
 }: PresetPageProps<TOptions>) {
-
   const {
     values,
     handleOptionChange,
     handleFileChange,
   } = usePresetValues(preset);
 
+  const [selectedFile, setSelectedFile] =
+    useState<File | null>(null);
+
   const command = buildCommand(
     preset,
     values,
   );
+
+  function handleBrowserFileChange(
+    id: string,
+    file: File,
+  ) {
+    handleFileChange(id, file);
+
+    if (id === "input") {
+      setSelectedFile(file);
+    }
+  }
 
   return (
     <main className="mx-auto max-w-3xl px-6 py-16">
@@ -54,11 +69,20 @@ export function PresetPage<
           fields={preset.fields}
           values={values}
           onChange={handleOptionChange}
-          onFileChange={handleFileChange}
+          onFileChange={handleBrowserFileChange}
         />
       </section>
 
+      {preset.id === "resize-video" && (
+        <ResizeVideoBrowser
+          file={selectedFile}
+          width={Number(values.width)}
+          outputFilename={String(values.output)}
+        />
+      )}
+
       <CommandPreview command={command} />
+
       <section className="mt-12 border-t border-zinc-200 pt-8">
         <h2 className="text-sm font-medium">
           {preset.explanation.title}
