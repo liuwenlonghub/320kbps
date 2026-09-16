@@ -10,6 +10,8 @@ import { buildImageToWebpOutputFilename } from "./image-to-webp";
 import type { ImageToWebpOptions } from "@/lib/ffmpeg/presets/image-to-webp";
 import { buildWavToMp3OutputFilename } from "./wav-to-mp3";
 import type { WavToMp3Options } from "@/lib/ffmpeg/presets/wav-to-mp3";
+import { buildFlacToMp3OutputFilename } from "./flac-to-mp3";
+import type { FlacToMp3Options } from "../presets/flac-to-mp3";
 
 type OutputValues = Record<string, string | number>;
 
@@ -65,4 +67,11 @@ export const outputBuilders: Record<
       output: String(values.output),
     } satisfies WavToMp3Options),
 
+  "flac-to-mp3": (values) =>
+    buildFlacToMp3OutputFilename({
+      input: String(values.input),
+      bitrate: Number(values.bitrate),
+      output: String(values.output),
+    } satisfies FlacToMp3Options),
+    
 };

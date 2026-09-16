@@ -67,6 +67,14 @@ const WavToMp3Browser = dynamic(
   { ssr: false },
 );
 
+const FlacToMp3Browser = dynamic(
+  () =>
+    import("./flac-to-mp3-browser").then(
+      (mod) => mod.FlacToMp3Browser,
+    ),
+  { ssr: false },
+);
+
 type PresetPageProps<
   TOptions extends Record<string, string | number>,
 > = {
@@ -177,6 +185,14 @@ export function PresetPage<
 
       {preset.id === "wav-to-mp3" && (
         <WavToMp3Browser
+          file={selectedFile}
+          bitrate={Number(values.bitrate)}
+          outputFilename={String(values.output)}
+        />
+      )}
+
+      {preset.id === "flac-to-mp3" && (
+        <FlacToMp3Browser
           file={selectedFile}
           bitrate={Number(values.bitrate)}
           outputFilename={String(values.output)}
