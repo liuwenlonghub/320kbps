@@ -4,10 +4,20 @@ import { useState } from "react";
 import Link from "next/link";
 import { CommandPreview } from "@/components/command-preview";
 import { PresetForm } from "@/components/preset/preset-form";
-import { ResizeVideoBrowser } from "@/components/preset/resize-video-browser";
 import type { Preset } from "@/lib/ffmpeg/types/preset";
 import { buildCommand } from "@/lib/ffmpeg/command-builder/build-command";
 import { usePresetValues } from "./use-preset-values";
+import dynamic from "next/dynamic";
+
+const ResizeVideoBrowser = dynamic(
+  () =>
+    import("./resize-video-browser").then(
+      (module) => module.ResizeVideoBrowser,
+    ),
+  {
+    ssr: false,
+  },
+);
 
 type PresetPageProps<
   TOptions extends Record<string, string | number>,
