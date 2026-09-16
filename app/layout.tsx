@@ -15,8 +15,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "320kbps",
-  description: "Build FFmpeg commands without memorizing FFmpeg.",
+  title: {
+    default: "320kbps — FFmpeg presets and tools for humans",
+    template: "%s — 320kbps",
+  },
+  description:
+    "Simple media tools powered by FFmpeg. Convert files in your browser or build FFmpeg commands without memorizing FFmpeg.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
