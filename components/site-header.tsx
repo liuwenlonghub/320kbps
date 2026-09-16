@@ -2,18 +2,18 @@ import Link from "next/link";
 
 export function SiteHeader() {
   return (
-    <header className="flex h-20 items-center justify-between">
+    <header className="flex h-[80px] w-full items-center justify-between border-b border-zinc-200 px-[6vw]">
       <Link
         href="/"
-        className="text-lg font-semibold tracking-tight"
+        className="text-[14px] font-semibold tracking-[0.08em] text-zinc-950 "
       >
         320kbps
       </Link>
 
-      <nav className="flex items-center gap-6 text-sm text-zinc-500">
+      <nav className="flex items-center gap-[28px] text-[14px] text-zinc-500">
         <Link
           href="/#about"
-          className="transition-colors hover:text-zinc-950"
+          className="transition-opacity hover:opacity-50"
         >
           About
         </Link>
@@ -22,7 +22,7 @@ export function SiteHeader() {
           href="https://x.com/liuwenlong"
           target="_blank"
           rel="noopener noreferrer"
-          className="transition-colors hover:text-zinc-950"
+          className="transition-opacity hover:opacity-50"
         >
           Twitter/X
         </a>
@@ -31,7 +31,7 @@ export function SiteHeader() {
           href="https://github.com/liuwenlonghub/320kbps"
           target="_blank"
           rel="noopener noreferrer"
-          className="transition-colors hover:text-zinc-950"
+          className="transition-opacity hover:opacity-50"
         >
           GitHub
         </a>

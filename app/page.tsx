@@ -11,9 +11,9 @@ export default function Home() {
   ];
 
   return (
-    <div className="bg-white text-zinc-950">
+    <div className="mx-auto max-w-[1100px] bg-white px-[6vw] text-zinc-950">
       {/* Hero */}
-      <section className="flex min-h-[calc(100vh-5rem)] flex-col justify-center py-24">
+      <section className="flex min-h-[680px] flex-col justify-center py-24">
         <div className="max-w-3xl">
           <p className="mb-6 text-sm font-medium tracking-wide text-zinc-500">
             FFmpeg presets and tools for humans.
@@ -70,7 +70,10 @@ export default function Home() {
         id="about"
         className="border-t border-zinc-200 py-16"
       >
-        <p className="max-w-xl text-sm leading-7 text-zinc-500">
+        <h2 className="text-2xl font-semibold tracking-tight">
+            About
+        </h2>
+        <p className="mt-2 max-w-2xl text-sm leading-7 text-zinc-500">
           320kbps is a collection of simple media tools powered by FFmpeg.
           Configure a few options, convert files directly in your browser, or
           get the FFmpeg command to run locally. Browser-based conversions run
