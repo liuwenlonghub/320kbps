@@ -19,18 +19,19 @@ export default function Home() {
           </Link>
 
           <nav className="flex items-center gap-6 text-sm text-zinc-500">
-            <Link
+            {/* <Link
               href="#presets"
               className="transition-colors hover:text-zinc-950"
             >
               Presets
-            </Link>
+            </Link> */}
             <Link
               href="#about"
               className="transition-colors hover:text-zinc-950"
             >
               About
             </Link>
+            <a href="https://x.com/liuwenlong" target="_blank" rel="noopener noreferrer">Twitter/X</a>
             <a href="https://github.com/liuwenlonghub/320kbps" target="_blank" rel="noopener noreferrer">GitHub</a>
           </nav>
         </header>
@@ -114,7 +115,7 @@ export default function Home() {
 
         {/* Footer */}
         <footer className="flex h-20 items-center justify-between border-t border-zinc-200 text-xs text-zinc-400">
-          <span>© 2026 320kbps by <a href="https://github.com/liuwenlonghub" target="_blank">Evan Liu</a></span>
+          <span>© 2026 320kbps by <a href="https://x.com/liuwenlong" target="_blank">Evan Liu</a></span>
           <span>Powered by FFmpeg</span>
         </footer>
       </div>
