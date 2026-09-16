@@ -16,18 +16,19 @@ export default function Home() {
       <section className="flex min-h-[calc(100vh-5rem)] flex-col justify-center py-24">
         <div className="max-w-3xl">
           <p className="mb-6 text-sm font-medium tracking-wide text-zinc-500">
-            FFmpeg presets for humans.
+            FFmpeg presets and tools for humans.
           </p>
 
           <h1 className="text-5xl font-semibold tracking-tight sm:text-7xl">
-            Build FFmpeg commands
+            Simple media tools,
             <br />
-            without memorizing FFmpeg.
+            powered by FFmpeg.
           </h1>
 
           <p className="mt-8 max-w-2xl text-lg leading-8 text-zinc-500 sm:text-xl">
-            Simple presets for common media tasks. Choose what you want to
-            do, configure a few options, and get the FFmpeg command.
+            Choose a common media task, configure a few options, and convert
+            files directly in your browser or get the FFmpeg command to run
+            locally.
           </p>
 
           <div className="mt-10">
@@ -42,32 +43,14 @@ export default function Home() {
       </section>
 
       {/* Presets */}
-      {/* <section id="presets" className="pb-32">
-        <div className="mb-8">
-          <h2 className="text-2xl font-semibold tracking-tight">
-            Featured presets
-          </h2>
-
-          <p className="mt-2 text-sm text-zinc-500">
-            Start with a common FFmpeg task.
-          </p>
-        </div>
-
-        <PresetGrid
-          presets={presets.filter((preset) => preset.featured)}
-          categories={categories}
-        />
-      </section> */}
-
-      {/* All presets */}
-      <section className="pb-32">
+      <section id="presets" className="pb-32">
         <div className="mb-8">
           <h2 className="text-2xl font-semibold tracking-tight">
             Browse all presets
           </h2>
 
           <p className="mt-2 text-sm text-zinc-500">
-            Explore all available FFmpeg presets.
+            Simple tools for common audio, video, and image tasks.
           </p>
         </div>
 
@@ -83,9 +66,9 @@ export default function Home() {
         className="border-t border-zinc-200 py-16"
       >
         <p className="max-w-xl text-sm leading-7 text-zinc-500">
-          320kbps is a collection of human-friendly FFmpeg presets and tools.
-          No complicated command lines. Just choose what you want to do and
-          build the command.
+          320kbps is a collection of simple media tools powered by FFmpeg.
+          Configure a few options, convert files directly in your browser, or
+          get the FFmpeg command to run locally.
         </p>
       </section>
     </div>
