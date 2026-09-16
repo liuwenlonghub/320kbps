@@ -166,8 +166,15 @@ export function VideoToMp3Browser({
         )}
 
         {status === "loading" && (
-          <div className="text-sm text-zinc-500">
-            Loading FFmpeg…
+          <div>
+            <p className="text-sm text-zinc-500">
+              Loading FFmpeg…
+            </p>
+
+            <p className="mt-2 text-xs leading-5 text-zinc-400">
+              Loading FFmpeg.wasm for the first time
+              may take a moment.
+            </p>
           </div>
         )}
 
