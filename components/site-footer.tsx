@@ -2,7 +2,7 @@ export function SiteFooter() {
   return (
     <footer className="flex h-20 items-center justify-between border-t border-zinc-200 text-xs text-zinc-400">
       <span>
-        © 2026 320kbps by{" "}
+        © 2026 by{" "}
         <a
           href="https://x.com/liuwenlong"
           target="_blank"
