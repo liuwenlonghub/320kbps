@@ -1,36 +1,92 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 320kbps
+
+[English](README.md) · [中文](README.zh-CN.md)
+
+320kbps is a collection of lightweight media tools powered by FFmpeg. Choose a preset, configure a few options, and process files directly in your browser or copy the generated FFmpeg command to run locally.
+
+## Features
+
+- **Video to MP3**: Extract audio from a video and choose a bitrate of 128, 192, 256, or 320 kbps.
+- **Resize video**: Scale a video to a chosen width.
+- **Compress video**: Choose between high quality, balanced compression, and a smaller file.
+- **WebM to MP4**: Convert WebM videos to MP4.
+- **Image to WebP**: Convert JPG, PNG, GIF, BMP, or TIFF images to WebP and adjust the quality.
+
+Each preset page shows the FFmpeg command for the current configuration and explains its main parameters. Browser-capable presets show conversion progress and provide a download for the result.
+
+## Privacy and Runtime
+
+Browser conversions use [FFmpeg.wasm](https://github.com/ffmpegwasm/ffmpeg.wasm). Files are processed in the current browser and are not uploaded to the application server. The FFmpeg WebAssembly core is loaded from jsDelivr on the first conversion, so the initial run may take longer and requires a network connection.
+
+Browser processing uses local CPU and memory. Large files or more complex encoding tasks may take longer. For cases that are not supported or practical in the browser, copy the command from the page and run it after installing FFmpeg locally.
 
 ## Getting Started
 
-First, run the development server:
+Requires Node.js and npm.
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open <http://localhost:3000> to view the application.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Common Commands
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Command | Description |
+| --- | --- |
+| `npm run dev` | Start the development server |
+| `npm run build` | Build the static production output |
+| `npm run start` | Start the Next.js production server |
+| `npm run lint` | Run ESLint checks |
+| `npm test` | Run Vitest tests |
+| `npm run test:watch` | Run tests in watch mode |
 
-## Learn More
+## Production Build and Deployment
 
-To learn more about Next.js, take a look at the following resources:
+The project uses Next.js static export (`output: "export"`). Run:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run build
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The build output is written to `out/` and can be deployed to any static hosting service, such as GitHub Pages, Netlify, or static website hosting on object storage.
 
-## Deploy on Vercel
+When deploying under a subdirectory, configure `basePath` in `next.config.ts` and rebuild:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```ts
+const nextConfig: NextConfig = {
+	output: "export",
+	basePath: "/your-subdirectory",
+};
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Project Structure
+
+```text
+app/                         Routes, layout, and global styles
+components/                 Page components and browser conversion components
+lib/ffmpeg/
+	command-builder/           Build FFmpeg commands from preset options
+	output/                    Generate default output filenames
+	presets/                   Preset definitions and related types
+	types/                     Preset data structures
+```
+
+When adding a new media tool, you will typically need to:
+
+1. Add a preset definition in `lib/ffmpeg/presets/`.
+2. Add a command builder in `lib/ffmpeg/command-builder/` and register it in `registry.ts`.
+3. Add output filename logic in `lib/ffmpeg/output/` and register it in the corresponding `registry.ts`.
+4. Add a browser conversion component as needed and connect it in `components/preset/preset-page.tsx`.
+5. Add a route page and metadata in `app/presets/`.
+6. Add Vitest tests for the command builder and output filename logic.
+
+## Tech Stack
+
+- Next.js 16 App Router
+- React 19
+- TypeScript
+- Tailwind CSS 4
+- FFmpeg.wasm
+- Vitest
