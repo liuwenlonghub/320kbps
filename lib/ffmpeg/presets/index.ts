@@ -3,6 +3,7 @@ import { resizeVideoPreset } from "./resize-video";
 import { videoToMp3Preset } from "./video-to-mp3";
 import { webmToMp4Preset } from "./webm-to-mp4";
 import { imageToWebpPreset } from "./image-to-webp";
+import { wavToMp3Preset } from "./wav-to-mp3";
 
 export const presets = [
   videoToMp3Preset,
@@ -10,6 +11,7 @@ export const presets = [
   compressVideoPreset,
   webmToMp4Preset,
   imageToWebpPreset,
+  wavToMp3Preset,
 ] as const;
 
 export {
@@ -18,4 +20,5 @@ export {
   videoToMp3Preset,
   webmToMp4Preset,
   imageToWebpPreset,
+  wavToMp3Preset,
 };

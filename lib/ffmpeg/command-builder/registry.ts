@@ -8,6 +8,8 @@ import { buildVideoToMp3Command } from "./video-to-mp3";
 import type { VideoToMp3Options } from "@/lib/ffmpeg/presets/video-to-mp3";
 import { buildImageToWebpCommand } from "./image-to-webp";
 import type { ImageToWebpOptions } from "@/lib/ffmpeg/presets/image-to-webp";
+import { buildWavToMp3Command } from "./wav-to-mp3";
+import type { WavToMp3Options } from "@/lib/ffmpeg/presets/wav-to-mp3";
 
 type CommandValues =
   Record<string, string | number>;
@@ -26,6 +28,13 @@ export const commandBuilders: Record<
       bitrate: Number(values.bitrate),
       output: String(values.output),
     } satisfies VideoToMp3Options),
+  
+  "wav-to-mp3": (values) =>
+    buildWavToMp3Command({
+      input: String(values.input),
+      bitrate: Number(values.bitrate),
+      output: String(values.output),
+    } satisfies WavToMp3Options),
 
   "resize-video": (values) =>
     buildResizeVideoCommand({
@@ -56,4 +65,5 @@ export const commandBuilders: Record<
       quality: Number(values.quality),
       output: String(values.output),
     } satisfies ImageToWebpOptions),
+
 };

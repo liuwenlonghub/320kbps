@@ -8,6 +8,8 @@ import { buildWebmToMp4OutputFilename } from "./webm-to-mp4";
 import type { WebmToMp4Options } from "@/lib/ffmpeg/presets/webm-to-mp4";
 import { buildImageToWebpOutputFilename } from "./image-to-webp";
 import type { ImageToWebpOptions } from "@/lib/ffmpeg/presets/image-to-webp";
+import { buildWavToMp3OutputFilename } from "./wav-to-mp3";
+import type { WavToMp3Options } from "@/lib/ffmpeg/presets/wav-to-mp3";
 
 type OutputValues = Record<string, string | number>;
 
@@ -55,4 +57,12 @@ export const outputBuilders: Record<
       quality: Number(values.quality),
       output: String(values.output),
     } satisfies ImageToWebpOptions),
+
+  "wav-to-mp3": (values) =>
+    buildWavToMp3OutputFilename({
+      input: String(values.input),
+      bitrate: Number(values.bitrate),
+      output: String(values.output),
+    } satisfies WavToMp3Options),
+
 };
