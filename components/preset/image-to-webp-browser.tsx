@@ -19,6 +19,7 @@ export function ImageToWebpBrowser({
   >("idle");
 
   const [progress, setProgress] = useState(0);
+
   const [downloadUrl, setDownloadUrl] =
     useState<string | null>(null);
 
@@ -69,58 +70,100 @@ export function ImageToWebpBrowser({
     status === "converting";
 
   return (
-    <section className="mt-8">
-      <button
-        type="button"
-        onClick={handleConvert}
-        disabled={!file || isWorking}
-        className="rounded-xl bg-zinc-950 px-5 py-3 text-sm font-medium text-white transition-opacity disabled:cursor-not-allowed disabled:opacity-40"
-      >
-        {status === "loading"
-          ? "Loading FFmpeg…"
-          : status === "converting"
-            ? `Converting… ${progress}%`
-            : "Convert in browser"}
-      </button>
+    <section className="mt-10 rounded-2xl bg-zinc-50 p-6">
+      <div>
+        <h2 className="text-sm font-medium">
+          Convert in your browser
+        </h2>
 
-      {status === "loading" && (
-        <p className="mt-3 text-sm text-zinc-500">
-          Loading FFmpeg.wasm for the first time may take a moment.
+        <p className="mt-2 text-sm leading-6 text-zinc-500">
+          Runs locally in your browser. Your file
+          is not uploaded.
         </p>
-      )}
+      </div>
 
-      {status === "converting" && (
-        <div className="mt-4">
-          <div className="h-2 overflow-hidden rounded-full bg-zinc-100">
-            <div
-              className="h-full rounded-full bg-zinc-950 transition-all"
-              style={{ width: `${progress}%` }}
-            />
-          </div>
-
-          <p className="mt-2 text-sm text-zinc-500">
-            {progress}% complete
-          </p>
-        </div>
-      )}
-
-      {status === "error" && (
-        <p className="mt-3 text-sm text-red-600">
-          Conversion failed. Please try another image.
-        </p>
-      )}
-
-      {status === "done" && downloadUrl && (
-        <div className="mt-4">
-          <a
-            href={downloadUrl}
-            download={outputFilename}
-            className="text-sm font-medium underline underline-offset-4"
+      <div className="mt-6">
+        {status === "idle" && (
+          <button
+            type="button"
+            onClick={handleConvert}
+            disabled={!file}
+            className="inline-flex h-10 items-center rounded-full bg-zinc-950 px-5 text-sm font-medium text-white transition-colors hover:bg-zinc-800 disabled:cursor-not-allowed disabled:bg-zinc-300"
           >
-            Download {outputFilename}
-          </a>
-        </div>
-      )}
+            Convert in browser
+          </button>
+        )}
+
+        {status === "loading" && (
+          <div>
+            <p className="text-sm text-zinc-500">
+              Loading FFmpeg…
+            </p>
+
+            <p className="mt-2 text-xs leading-5 text-zinc-400">
+              Loading FFmpeg.wasm for the first time
+              may take a moment.
+            </p>
+          </div>
+        )}
+
+        {status === "converting" && (
+          <div>
+            <div className="flex items-center justify-between text-sm">
+              <span className="text-zinc-500">
+                Converting…
+              </span>
+
+              <span className="font-medium text-zinc-950">
+                {progress}%
+              </span>
+            </div>
+
+            <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-zinc-200">
+              <div
+                className="h-full rounded-full bg-zinc-950 transition-all"
+                style={{
+                  width: `${progress}%`,
+                }}
+              />
+            </div>
+          </div>
+        )}
+
+        {status === "error" && (
+          <div>
+            <p className="text-sm text-red-600">
+              Conversion failed. Please try another
+              image.
+            </p>
+
+            <button
+              type="button"
+              onClick={handleConvert}
+              disabled={isWorking || !file}
+              className="mt-4 text-sm font-medium text-zinc-950 underline underline-offset-4 disabled:cursor-not-allowed disabled:opacity-40"
+            >
+              Try again
+            </button>
+          </div>
+        )}
+
+        {status === "done" && downloadUrl && (
+          <div>
+            <p className="text-sm font-medium">
+              Conversion complete
+            </p>
+
+            <a
+              href={downloadUrl}
+              download={outputFilename}
+              className="mt-4 inline-flex h-10 items-center rounded-full bg-zinc-950 px-5 text-sm font-medium text-white transition-colors hover:bg-zinc-800"
+            >
+              Download {outputFilename}
+            </a>
+          </div>
+        )}
+      </div>
     </section>
   );
 }
