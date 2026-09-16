@@ -59,6 +59,14 @@ const VideoToMp3Browser = dynamic(
   },
 );
 
+const WavToMp3Browser = dynamic(
+  () =>
+    import("./wav-to-mp3-browser").then(
+      (mod) => mod.WavToMp3Browser,
+    ),
+  { ssr: false },
+);
+
 type PresetPageProps<
   TOptions extends Record<string, string | number>,
 > = {
@@ -161,6 +169,14 @@ export function PresetPage<
 
       {preset.id === "video-to-mp3" && (
         <VideoToMp3Browser
+          file={selectedFile}
+          bitrate={Number(values.bitrate)}
+          outputFilename={String(values.output)}
+        />
+      )}
+
+      {preset.id === "wav-to-mp3" && (
+        <WavToMp3Browser
           file={selectedFile}
           bitrate={Number(values.bitrate)}
           outputFilename={String(values.output)}
