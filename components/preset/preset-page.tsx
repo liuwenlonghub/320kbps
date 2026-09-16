@@ -1,5 +1,6 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useState } from "react";
 import Link from "next/link";
 import { CommandPreview } from "@/components/command-preview";
@@ -7,12 +8,51 @@ import { PresetForm } from "@/components/preset/preset-form";
 import type { Preset } from "@/lib/ffmpeg/types/preset";
 import { buildCommand } from "@/lib/ffmpeg/command-builder/build-command";
 import { usePresetValues } from "./use-preset-values";
-import dynamic from "next/dynamic";
 
 const ResizeVideoBrowser = dynamic(
   () =>
     import("./resize-video-browser").then(
       (module) => module.ResizeVideoBrowser,
+    ),
+  {
+    ssr: false,
+  },
+);
+
+const CompressVideoBrowser = dynamic(
+  () =>
+    import("./compress-video-browser").then(
+      (module) => module.CompressVideoBrowser,
+    ),
+  {
+    ssr: false,
+  },
+);
+
+const WebmToMp4Browser = dynamic(
+  () =>
+    import("./webm-to-mp4-browser").then(
+      (module) => module.WebmToMp4Browser,
+    ),
+  {
+    ssr: false,
+  },
+);
+
+const ImageToWebpBrowser = dynamic(
+  () =>
+    import("./image-to-webp-browser").then(
+      (module) => module.ImageToWebpBrowser,
+    ),
+  {
+    ssr: false,
+  },
+);
+
+const VideoToMp3Browser = dynamic(
+  () =>
+    import("./video-to-mp3-browser").then(
+      (module) => module.VideoToMp3Browser,
     ),
   {
     ssr: false,
@@ -87,6 +127,42 @@ export function PresetPage<
         <ResizeVideoBrowser
           file={selectedFile}
           width={Number(values.width)}
+          outputFilename={String(values.output)}
+        />
+      )}
+
+      {preset.id === "compress-video" && (
+        <CompressVideoBrowser
+          file={selectedFile}
+          quality={
+            values.quality as
+              | "high"
+              | "balanced"
+              | "small"
+          }
+          outputFilename={String(values.output)}
+        />
+      )}
+
+      {preset.id === "webm-to-mp4" && (
+        <WebmToMp4Browser
+          file={selectedFile}
+          outputFilename={String(values.output)}
+        />
+      )}
+
+      {preset.id === "image-to-webp" && (
+        <ImageToWebpBrowser
+          file={selectedFile}
+          quality={Number(values.quality)}
+          outputFilename={String(values.output)}
+        />
+      )}
+
+      {preset.id === "video-to-mp3" && (
+        <VideoToMp3Browser
+          file={selectedFile}
+          bitrate={Number(values.bitrate)}
           outputFilename={String(values.output)}
         />
       )}
