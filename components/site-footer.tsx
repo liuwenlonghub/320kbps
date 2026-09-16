@@ -4,7 +4,7 @@ export function SiteFooter() {
       <span>
         © 2026{" "}
         <a
-          href="https://x.com/liuwenlong"
+          href="https://i.limeai.net/"
           target="_blank"
           rel="noopener noreferrer"
           className="transition-colors hover:text-zinc-600"
