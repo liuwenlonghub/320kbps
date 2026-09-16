@@ -9,6 +9,7 @@ Demo: [https://www.320kbps.com](https://www.320kbps.com)
 ## Features
 
 - **Video to MP3**: Extract audio from a video and choose a bitrate of 128, 192, 256, or 320 kbps.
+- **WAV to MP3**: Convert uncompressed WAV audio to MP3 with a selectable bitrate.
 - **Resize video**: Scale a video to a chosen width.
 - **Compress video**: Choose between high quality, balanced compression, and a smaller file.
 - **WebM to MP4**: Convert WebM videos to MP4.
@@ -71,7 +72,7 @@ components/                 Page components and browser conversion components
 lib/ffmpeg/
 	command-builder/           Build FFmpeg commands from preset options
 	output/                    Generate default output filenames
-	presets/                   Preset definitions and related types
+	presets/                   Preset definitions and browser conversion logic
 	types/                     Preset data structures
 ```
 
@@ -92,3 +93,9 @@ When adding a new media tool, you will typically need to:
 - Tailwind CSS 4
 - FFmpeg.wasm
 - Vitest
+
+## License
+
+The 320kbps source code is licensed under the MIT License. See [LICENSE](LICENSE).
+
+320kbps uses third-party software including FFmpeg and FFmpeg.wasm, which are distributed under their respective licenses. Their licenses and terms remain applicable to those components.

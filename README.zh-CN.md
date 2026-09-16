@@ -9,6 +9,7 @@
 ## 功能
 
 - **视频转 MP3**：从视频中提取音频，并选择 128、192、256 或 320 kbps 的码率。
+- **WAV 转 MP3**：将无压缩 WAV 音频转换为 MP3，并选择输出码率。
 - **调整视频尺寸**：按目标宽度缩放视频。
 - **压缩视频**：在高质量、平衡和更小文件之间选择压缩级别。
 - **WebM 转 MP4**：将 WebM 视频转换为 MP4。
@@ -71,7 +72,7 @@ components/                 页面组件和浏览器端转换组件
 lib/ffmpeg/
 	command-builder/           根据预设选项生成 FFmpeg 命令
 	output/                    生成默认输出文件名
-	presets/                   预设定义和预设相关类型
+	presets/                   预设定义和浏览器转换逻辑
 	types/                     预设数据结构
 ```
 
@@ -92,3 +93,9 @@ lib/ffmpeg/
 - Tailwind CSS 4
 - FFmpeg.wasm
 - Vitest
+
+## 许可证
+
+320kbps 源代码采用 MIT 许可证，详见 [LICENSE](LICENSE)。
+
+320kbps 使用了包括 FFmpeg 和 FFmpeg.wasm 在内的第三方软件，它们分别遵循各自的许可证。这些组件仍适用其对应的许可证和条款。

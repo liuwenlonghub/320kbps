@@ -1,10 +1,11 @@
 import { FFmpeg } from "@ffmpeg/ffmpeg";
-import {
-  fetchFile,
-  toBlobURL,
-} from "@ffmpeg/util";
+import { fetchFile, toBlobURL } from "@ffmpeg/util";
 
 let ffmpeg: FFmpeg | null = null;
+
+let progressHandler:
+  | ((event: { progress: number }) => void)
+  | null = null;
 
 async function getFFmpeg() {
   if (ffmpeg) {
@@ -39,17 +40,16 @@ export async function wavToMp3InBrowser(
 ): Promise<Blob> {
   const instance = await getFFmpeg();
 
-  instance.on(
-    "progress",
-    ({ progress }) => {
-      onProgress?.(
+  if (onProgress) {
+    instance.on("progress", ({ progress }) => {
+      onProgress(
         Math.min(
           100,
           Math.round(progress * 100),
         ),
       );
-    },
-  );
+    });
+  }
 
   const inputName = "input.wav";
   const outputName = "output.mp3";
