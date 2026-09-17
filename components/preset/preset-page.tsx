@@ -75,6 +75,14 @@ const FlacToMp3Browser = dynamic(
   { ssr: false },
 );
 
+const Mp4ToWebmBrowser = dynamic(
+  () =>
+    import("./mp4-to-webm-browser").then(
+      (mod) => mod.Mp4ToWebmBrowser,
+    ),
+  { ssr: false },
+);
+
 type PresetPageProps<
   TOptions extends Record<string, string | number>,
 > = {
@@ -195,6 +203,13 @@ export function PresetPage<
         <FlacToMp3Browser
           file={selectedFile}
           bitrate={Number(values.bitrate)}
+          outputFilename={String(values.output)}
+        />
+      )}
+
+      {preset.id === "mp4-to-webm" && (
+        <Mp4ToWebmBrowser
+          file={selectedFile}
           outputFilename={String(values.output)}
         />
       )}

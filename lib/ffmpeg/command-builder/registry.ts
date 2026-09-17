@@ -12,6 +12,8 @@ import { buildWavToMp3Command } from "./wav-to-mp3";
 import type { WavToMp3Options } from "@/lib/ffmpeg/presets/wav-to-mp3";
 import { buildFlacToMp3Command } from "./flac-to-mp3";
 import type { FlacToMp3Options } from "@/lib/ffmpeg/presets/flac-to-mp3";
+import { buildMp4ToWebmCommand } from "./mp4-to-webm";
+import type { Mp4ToWebmOptions } from "@/lib/ffmpeg/presets/mp4-to-webm";
 
 type CommandValues =
   Record<string, string | number>;
@@ -75,4 +77,10 @@ export const commandBuilders: Record<
       output: String(values.output),
     } satisfies FlacToMp3Options),
 
+  "mp4-to-webm": (values) =>
+    buildMp4ToWebmCommand({
+      input: String(values.input),
+      output: String(values.output),
+    } satisfies Mp4ToWebmOptions),
+    
 };

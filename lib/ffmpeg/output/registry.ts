@@ -12,6 +12,8 @@ import { buildWavToMp3OutputFilename } from "./wav-to-mp3";
 import type { WavToMp3Options } from "@/lib/ffmpeg/presets/wav-to-mp3";
 import { buildFlacToMp3OutputFilename } from "./flac-to-mp3";
 import type { FlacToMp3Options } from "../presets/flac-to-mp3";
+import { buildMp4ToWebmOutputFilename } from "./mp4-to-webm";
+import type { Mp4ToWebmOptions } from "../presets/mp4-to-webm";
 
 type OutputValues = Record<string, string | number>;
 
@@ -73,5 +75,11 @@ export const outputBuilders: Record<
       bitrate: Number(values.bitrate),
       output: String(values.output),
     } satisfies FlacToMp3Options),
+    
+  "mp4-to-webm": (values) =>
+    buildMp4ToWebmOutputFilename({
+      input: String(values.input),
+      output: String(values.output),
+    } satisfies Mp4ToWebmOptions),
     
 };
