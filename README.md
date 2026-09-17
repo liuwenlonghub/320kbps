@@ -13,6 +13,7 @@ Demo: [https://www.320kbps.com](https://www.320kbps.com)
 - **FLAC to MP3**: Convert lossless FLAC audio to MP3 with a selectable bitrate.
 - **Resize video**: Scale a video to a chosen width.
 - **Compress video**: Choose between high quality, balanced compression, and a smaller file.
+- **MP4 to WebM**: Convert MP4 videos to WebM with adjustable quality.
 - **WebM to MP4**: Convert WebM videos to MP4.
 - **Image to WebP**: Convert JPG, PNG, GIF, BMP, or TIFF images to WebP and adjust the quality.
 
