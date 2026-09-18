@@ -14,6 +14,8 @@ import { buildFlacToMp3OutputFilename } from "./flac-to-mp3";
 import type { FlacToMp3Options } from "../presets/flac-to-mp3";
 import { buildMp4ToWebmOutputFilename } from "./mp4-to-webm";
 import type { Mp4ToWebmOptions } from "../presets/mp4-to-webm";
+import { buildTrimVideoOutputFilename } from "./trim-video";
+import type { TrimVideoOptions } from "../presets/trim-video";
 
 type OutputValues = Record<string, string | number>;
 
@@ -81,5 +83,12 @@ export const outputBuilders: Record<
       input: String(values.input),
       output: String(values.output),
     } satisfies Mp4ToWebmOptions),
-    
+
+  "trim-video": (values) =>
+    buildTrimVideoOutputFilename({
+      input: String(values.input),
+      start: String(values.start),
+      duration: String(values.duration),
+      output: String(values.output),
+    } satisfies TrimVideoOptions),
 };

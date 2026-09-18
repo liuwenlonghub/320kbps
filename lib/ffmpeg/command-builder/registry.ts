@@ -14,6 +14,8 @@ import { buildFlacToMp3Command } from "./flac-to-mp3";
 import type { FlacToMp3Options } from "@/lib/ffmpeg/presets/flac-to-mp3";
 import { buildMp4ToWebmCommand } from "./mp4-to-webm";
 import type { Mp4ToWebmOptions } from "@/lib/ffmpeg/presets/mp4-to-webm";
+import { buildTrimVideoCommand } from "./trim-video";
+import type { TrimVideoOptions } from "@/lib/ffmpeg/presets/trim-video";
 
 type CommandValues =
   Record<string, string | number>;
@@ -83,4 +85,11 @@ export const commandBuilders: Record<
       output: String(values.output),
     } satisfies Mp4ToWebmOptions),
     
+  "trim-video": (values) =>
+    buildTrimVideoCommand({
+      input: String(values.input),
+      start: String(values.start),
+      duration: String(values.duration),
+      output: String(values.output),
+    } satisfies TrimVideoOptions),
 };

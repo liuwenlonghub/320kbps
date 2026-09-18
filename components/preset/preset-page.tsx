@@ -83,6 +83,14 @@ const Mp4ToWebmBrowser = dynamic(
   { ssr: false },
 );
 
+const TrimVideoBrowser = dynamic(
+  () =>
+    import("./trim-video-browser").then(
+      (mod) => mod.TrimVideoBrowser,
+    ),
+  { ssr: false },
+);
+
 type PresetPageProps<
   TOptions extends Record<string, string | number>,
 > = {
@@ -210,6 +218,15 @@ export function PresetPage<
       {preset.id === "mp4-to-webm" && (
         <Mp4ToWebmBrowser
           file={selectedFile}
+          outputFilename={String(values.output)}
+        />
+      )}
+
+      {preset.id === "trim-video" && (
+        <TrimVideoBrowser
+          file={selectedFile}
+          start={String(values.start)}
+          duration={String(values.duration)}
           outputFilename={String(values.output)}
         />
       )}
