@@ -7,6 +7,7 @@ import { wavToMp3Preset } from "./wav-to-mp3";
 import { flacToMp3Preset } from "./flac-to-mp3";
 import { mp4ToWebmPreset } from "./mp4-to-webm";
 import { trimVideoPreset } from "./trim-video";
+import { videoToImagePreset } from "./video-to-image";
 
 export const presets = [
   videoToMp3Preset,
@@ -14,6 +15,7 @@ export const presets = [
   flacToMp3Preset,
   mp4ToWebmPreset,
   trimVideoPreset,
+  videoToImagePreset,
   resizeVideoPreset,
   compressVideoPreset,
   webmToMp4Preset,
@@ -27,6 +29,7 @@ export {
   mp4ToWebmPreset,
   resizeVideoPreset,
   trimVideoPreset,
+  videoToImagePreset,
   videoToMp3Preset,
   wavToMp3Preset,
   webmToMp4Preset,

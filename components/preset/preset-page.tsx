@@ -91,6 +91,14 @@ const TrimVideoBrowser = dynamic(
   { ssr: false },
 );
 
+const VideoToImageBrowser = dynamic(
+  () =>
+    import("./video-to-image-browser").then(
+      (mod) => mod.VideoToImageBrowser,
+    ),
+  { ssr: false },
+);
+
 type PresetPageProps<
   TOptions extends Record<string, string | number>,
 > = {
@@ -227,6 +235,14 @@ export function PresetPage<
           file={selectedFile}
           start={String(values.start)}
           duration={String(values.duration)}
+          outputFilename={String(values.output)}
+        />
+      )}
+
+      {preset.id === "video-to-image" && (
+        <VideoToImageBrowser
+          file={selectedFile}
+          time={String(values.time)}
           outputFilename={String(values.output)}
         />
       )}

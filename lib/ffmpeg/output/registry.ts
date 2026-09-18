@@ -16,6 +16,8 @@ import { buildMp4ToWebmOutputFilename } from "./mp4-to-webm";
 import type { Mp4ToWebmOptions } from "../presets/mp4-to-webm";
 import { buildTrimVideoOutputFilename } from "./trim-video";
 import type { TrimVideoOptions } from "../presets/trim-video";
+import { buildVideoToImageOutputFilename } from "./video-to-image";
+import type { VideoToImageOptions } from "../presets/video-to-image";
 
 type OutputValues = Record<string, string | number>;
 
@@ -91,4 +93,13 @@ export const outputBuilders: Record<
       duration: String(values.duration),
       output: String(values.output),
     } satisfies TrimVideoOptions),
+
+  "video-to-image": (values) =>
+    buildVideoToImageOutputFilename({
+      input: String(values.input),
+      time: String(values.time),
+      output: String(values.output),
+    } satisfies VideoToImageOptions),
+
+
 };

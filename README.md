@@ -14,6 +14,7 @@ Demo: [https://www.320kbps.com](https://www.320kbps.com)
 - **Resize video**: Scale a video to a chosen width.
 - **Compress video**: Choose between high quality, balanced compression, and a smaller file.
 - **Trim video**: Cut a video by specifying a start time and duration.
+- **Video → Image**: Extract a single frame from a video at a chosen timestamp and save it as an image.
 - **MP4 to WebM**: Convert MP4 videos to WebM with adjustable quality.
 - **WebM to MP4**: Convert WebM videos to MP4.
 - **Image to WebP**: Convert JPG, PNG, GIF, BMP, or TIFF images to WebP and adjust the quality.

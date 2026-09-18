@@ -16,6 +16,8 @@ import { buildMp4ToWebmCommand } from "./mp4-to-webm";
 import type { Mp4ToWebmOptions } from "@/lib/ffmpeg/presets/mp4-to-webm";
 import { buildTrimVideoCommand } from "./trim-video";
 import type { TrimVideoOptions } from "@/lib/ffmpeg/presets/trim-video";
+import { buildVideoToImageCommand } from "./video-to-image";
+import type { VideoToImageOptions } from "@/lib/ffmpeg/presets/video-to-image";
 
 type CommandValues =
   Record<string, string | number>;
@@ -92,4 +94,12 @@ export const commandBuilders: Record<
       duration: String(values.duration),
       output: String(values.output),
     } satisfies TrimVideoOptions),
+
+  "video-to-image": (values) =>
+    buildVideoToImageCommand({
+      input: String(values.input),
+      time: String(values.time),
+      output: String(values.output),
+    } satisfies VideoToImageOptions),
+    
 };
