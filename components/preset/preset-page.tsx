@@ -99,6 +99,14 @@ const VideoToImageBrowser = dynamic(
   { ssr: false },
 );
 
+const VideoToGifBrowser = dynamic(
+  () =>
+    import("./video-to-gif-browser").then(
+      (mod) => mod.VideoToGifBrowser,
+    ),
+  { ssr: false },
+);
+
 type PresetPageProps<
   TOptions extends Record<string, string | number>,
 > = {
@@ -243,6 +251,17 @@ export function PresetPage<
         <VideoToImageBrowser
           file={selectedFile}
           time={String(values.time)}
+          outputFilename={String(values.output)}
+        />
+      )}
+
+      {preset.id === "video-to-gif" && (
+        <VideoToGifBrowser
+          file={selectedFile}
+          start={String(values.start)}
+          duration={String(values.duration)}
+          fps={Number(values.fps)}
+          width={Number(values.width)}
           outputFilename={String(values.output)}
         />
       )}

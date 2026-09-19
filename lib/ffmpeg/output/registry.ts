@@ -18,6 +18,8 @@ import { buildTrimVideoOutputFilename } from "./trim-video";
 import type { TrimVideoOptions } from "../presets/trim-video";
 import { buildVideoToImageOutputFilename } from "./video-to-image";
 import type { VideoToImageOptions } from "../presets/video-to-image";
+import { buildVideoToGifOutputFilename } from "./video-to-gif";
+import type { VideoToGifOptions } from "../presets/video-to-gif";
 
 type OutputValues = Record<string, string | number>;
 
@@ -101,5 +103,14 @@ export const outputBuilders: Record<
       output: String(values.output),
     } satisfies VideoToImageOptions),
 
+  "video-to-gif": (values) =>
+    buildVideoToGifOutputFilename({
+      input: String(values.input),
+      start: String(values.start),
+      duration: String(values.duration),
+      fps: Number(values.fps),
+      width: Number(values.width),
+      output: String(values.output),
+    } satisfies VideoToGifOptions),
 
 };

@@ -18,6 +18,8 @@ import { buildTrimVideoCommand } from "./trim-video";
 import type { TrimVideoOptions } from "@/lib/ffmpeg/presets/trim-video";
 import { buildVideoToImageCommand } from "./video-to-image";
 import type { VideoToImageOptions } from "@/lib/ffmpeg/presets/video-to-image";
+import { buildVideoToGifCommand } from "./video-to-gif";
+import type { VideoToGifOptions } from "@/lib/ffmpeg/presets/video-to-gif";
 
 type CommandValues =
   Record<string, string | number>;
@@ -101,5 +103,15 @@ export const commandBuilders: Record<
       time: String(values.time),
       output: String(values.output),
     } satisfies VideoToImageOptions),
+  
+  "video-to-gif": (values) =>
+    buildVideoToGifCommand({
+      input: String(values.input),
+      start: String(values.start),
+      duration: String(values.duration),
+      fps: Number(values.fps),
+      width: Number(values.width),
+      output: String(values.output),
+    } satisfies VideoToGifOptions),
     
 };

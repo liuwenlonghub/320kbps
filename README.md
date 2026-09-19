@@ -9,6 +9,7 @@ Demo: [https://www.320kbps.com](https://www.320kbps.com)
 ## Features
 
 - **Video to MP3**: Extract audio from a video and choose a bitrate of 128, 192, 256, or 320 kbps.
+- **Video → GIF**: Convert a short video segment into an animated GIF with a selected frame rate and width.
 - **WAV to MP3**: Convert uncompressed WAV audio to MP3 with a selectable bitrate.
 - **FLAC to MP3**: Convert lossless FLAC audio to MP3 with a selectable bitrate.
 - **Resize video**: Scale a video to a chosen width.
