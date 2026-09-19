@@ -20,6 +20,8 @@ import { buildVideoToImageCommand } from "./video-to-image";
 import type { VideoToImageOptions } from "@/lib/ffmpeg/presets/video-to-image";
 import { buildVideoToGifCommand } from "./video-to-gif";
 import type { VideoToGifOptions } from "@/lib/ffmpeg/presets/video-to-gif";
+import { buildMkvToMp4Command } from "./mkv-to-mp4";
+import type { MkvToMp4Options } from "@/lib/ffmpeg/presets/mkv-to-mp4";
 
 type CommandValues =
   Record<string, string | number>;
@@ -113,5 +115,11 @@ export const commandBuilders: Record<
       width: Number(values.width),
       output: String(values.output),
     } satisfies VideoToGifOptions),
-    
+  
+  "mkv-to-mp4": (values) =>
+    buildMkvToMp4Command({
+      input: String(values.input),
+      output: String(values.output),
+    } satisfies MkvToMp4Options),
+
 };

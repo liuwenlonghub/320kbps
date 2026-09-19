@@ -107,6 +107,14 @@ const VideoToGifBrowser = dynamic(
   { ssr: false },
 );
 
+const MkvToMp4Browser = dynamic(
+  () =>
+    import("./mkv-to-mp4-browser").then(
+      (mod) => mod.MkvToMp4Browser,
+    ),
+  { ssr: false },
+);
+
 type PresetPageProps<
   TOptions extends Record<string, string | number>,
 > = {
@@ -262,6 +270,13 @@ export function PresetPage<
           duration={String(values.duration)}
           fps={Number(values.fps)}
           width={Number(values.width)}
+          outputFilename={String(values.output)}
+        />
+      )}
+
+      {preset.id === "mkv-to-mp4" && (
+        <MkvToMp4Browser
+          file={selectedFile}
           outputFilename={String(values.output)}
         />
       )}
