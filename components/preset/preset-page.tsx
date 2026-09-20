@@ -115,6 +115,14 @@ const MkvToMp4Browser = dynamic(
   { ssr: false },
 );
 
+const MovToMp4Browser = dynamic(
+  () =>
+    import("./mov-to-mp4-browser").then(
+      (mod) => mod.MovToMp4Browser,
+    ),
+  { ssr: false },
+);
+
 type PresetPageProps<
   TOptions extends Record<string, string | number>,
 > = {
@@ -276,6 +284,13 @@ export function PresetPage<
 
       {preset.id === "mkv-to-mp4" && (
         <MkvToMp4Browser
+          file={selectedFile}
+          outputFilename={String(values.output)}
+        />
+      )}
+
+      {preset.id === "mov-to-mp4" && (
+        <MovToMp4Browser
           file={selectedFile}
           outputFilename={String(values.output)}
         />

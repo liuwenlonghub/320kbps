@@ -22,6 +22,8 @@ import { buildVideoToGifOutputFilename } from "./video-to-gif";
 import type { VideoToGifOptions } from "../presets/video-to-gif";
 import { buildMkvToMp4OutputFilename } from "./mkv-to-mp4";
 import type { MkvToMp4Options } from "../presets/mkv-to-mp4";
+import { buildMovToMp4OutputFilename } from "./mov-to-mp4";
+import type { MovToMp4Options } from "../presets/mov-to-mp4";
 
 type OutputValues = Record<string, string | number>;
 
@@ -120,5 +122,11 @@ export const outputBuilders: Record<
       input: String(values.input),
       output: String(values.output),
     } satisfies MkvToMp4Options),
+
+  "mov-to-mp4": (values) =>
+    buildMovToMp4OutputFilename({
+      input: String(values.input),
+      output: String(values.output),
+    } satisfies MovToMp4Options),
 
 };

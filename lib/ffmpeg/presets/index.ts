@@ -10,6 +10,7 @@ import { trimVideoPreset } from "./trim-video";
 import { videoToImagePreset } from "./video-to-image";
 import { videoToGifPreset } from "./video-to-gif";
 import { mkvToMp4Preset } from "./mkv-to-mp4";
+import { movToMp4Preset } from "./mov-to-mp4";
 
 export const presets = [
   videoToMp3Preset,
@@ -24,6 +25,7 @@ export const presets = [
   imageToWebpPreset,
   videoToGifPreset,
   mkvToMp4Preset,
+  movToMp4Preset,
 ] as const;
 
 export {
@@ -39,4 +41,5 @@ export {
   webmToMp4Preset,
   videoToGifPreset,
   mkvToMp4Preset,
+  movToMp4Preset,
 };
