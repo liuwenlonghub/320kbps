@@ -135,7 +135,6 @@ export const commandBuilders: Record<
   "video-to-mp4": (values) =>
     buildVideoToMp4Command({
       input: String(values.input),
-      quality: Number(values.quality),
       output: String(values.output),
     } satisfies VideoToMp4Options),
     

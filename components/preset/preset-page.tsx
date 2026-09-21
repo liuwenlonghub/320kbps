@@ -307,7 +307,6 @@ export function PresetPage<
       {preset.id === "video-to-mp4" && (
         <VideoToMp4Browser
           file={selectedFile}
-          quality={Number(values.quality)}
           outputFilename={String(values.output)}
         />
       )}

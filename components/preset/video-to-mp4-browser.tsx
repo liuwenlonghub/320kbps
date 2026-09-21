@@ -5,13 +5,11 @@ import { convertVideoToMp4InBrowser } from "@/lib/ffmpeg/presets/video-to-mp4-br
 
 type VideoToMp4BrowserProps = {
   file: File | null;
-  quality: number;
   outputFilename: string;
 };
 
 export function VideoToMp4Browser({
   file,
-  quality,
   outputFilename,
 }: VideoToMp4BrowserProps) {
   const [status, setStatus] = useState<
@@ -58,8 +56,7 @@ export function VideoToMp4Browser({
       const blob =
         await convertVideoToMp4InBrowser(
           file,
-          quality,
-          (value) => {
+          (value: number) => {
             setStatus("converting");
             setProgress(value);
           },

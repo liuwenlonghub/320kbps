@@ -34,7 +34,6 @@ async function getFFmpeg() {
 
 export async function convertVideoToMp4InBrowser(
   file: File,
-  quality: number,
   onProgress?: (progress: number) => void,
 ): Promise<Blob> {
   const instance = await getFFmpeg();
@@ -56,16 +55,8 @@ export async function convertVideoToMp4InBrowser(
   await instance.exec([
     "-i",
     inputName,
-    "-c:v",
-    "libx264",
-    "-crf",
-    String(quality),
-    "-preset",
-    "medium",
-    "-c:a",
-    "aac",
-    "-b:a",
-    "128k",
+    "-c",
+    "copy",
     "-movflags",
     "+faststart",
     outputName,

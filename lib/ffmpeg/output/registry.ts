@@ -134,8 +134,7 @@ export const outputBuilders: Record<
   "video-to-mp4": (values) =>
     buildVideoToMp4OutputFilename({
       input: String(values.input),
-      quality: Number(values.quality),
       output: String(values.output),
     } satisfies VideoToMp4Options),
-
+  
 };
