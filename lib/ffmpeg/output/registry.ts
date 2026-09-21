@@ -24,6 +24,8 @@ import { buildMkvToMp4OutputFilename } from "./mkv-to-mp4";
 import type { MkvToMp4Options } from "../presets/mkv-to-mp4";
 import { buildMovToMp4OutputFilename } from "./mov-to-mp4";
 import type { MovToMp4Options } from "../presets/mov-to-mp4";
+import { buildVideoToMp4OutputFilename } from "./video-to-mp4";
+import type { VideoToMp4Options } from "../presets/video-to-mp4";
 
 type OutputValues = Record<string, string | number>;
 
@@ -128,5 +130,12 @@ export const outputBuilders: Record<
       input: String(values.input),
       output: String(values.output),
     } satisfies MovToMp4Options),
+
+  "video-to-mp4": (values) =>
+    buildVideoToMp4OutputFilename({
+      input: String(values.input),
+      quality: Number(values.quality),
+      output: String(values.output),
+    } satisfies VideoToMp4Options),
 
 };

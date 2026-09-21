@@ -24,6 +24,8 @@ import { buildMkvToMp4Command } from "./mkv-to-mp4";
 import type { MkvToMp4Options } from "@/lib/ffmpeg/presets/mkv-to-mp4";
 import { buildMovToMp4Command } from "./mov-to-mp4";
 import type { MovToMp4Options } from "@/lib/ffmpeg/presets/mov-to-mp4";
+import { buildVideoToMp4Command } from "./video-to-mp4";
+import type { VideoToMp4Options } from "@/lib/ffmpeg/presets/video-to-mp4";
 
 type CommandValues =
   Record<string, string | number>;
@@ -130,4 +132,11 @@ export const commandBuilders: Record<
       output: String(values.output),
     } satisfies MovToMp4Options),
 
+  "video-to-mp4": (values) =>
+    buildVideoToMp4Command({
+      input: String(values.input),
+      quality: Number(values.quality),
+      output: String(values.output),
+    } satisfies VideoToMp4Options),
+    
 };

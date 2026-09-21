@@ -123,6 +123,14 @@ const MovToMp4Browser = dynamic(
   { ssr: false },
 );
 
+const VideoToMp4Browser = dynamic(
+  () =>
+    import("./video-to-mp4-browser").then(
+      (mod) => mod.VideoToMp4Browser,
+    ),
+  { ssr: false },
+);
+
 type PresetPageProps<
   TOptions extends Record<string, string | number>,
 > = {
@@ -292,6 +300,14 @@ export function PresetPage<
       {preset.id === "mov-to-mp4" && (
         <MovToMp4Browser
           file={selectedFile}
+          outputFilename={String(values.output)}
+        />
+      )}
+
+      {preset.id === "video-to-mp4" && (
+        <VideoToMp4Browser
+          file={selectedFile}
+          quality={Number(values.quality)}
           outputFilename={String(values.output)}
         />
       )}

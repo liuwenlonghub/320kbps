@@ -12,6 +12,7 @@ Demo: [https://www.320kbps.com](https://www.320kbps.com)
 - **Video → GIF**: Convert a short video segment into an animated GIF with a selected frame rate and width.
 - **MKV → MP4**: Convert MKV videos to MP4 for broader compatibility and faster web playback.
 - **MOV → MP4**: Convert MOV videos to MP4 for broader compatibility and faster web playback.
+- **Video → MP4**: Convert videos to MP4 for broader compatibility and faster web playback.
 - **WAV to MP3**: Convert uncompressed WAV audio to MP3 with a selectable bitrate.
 - **FLAC to MP3**: Convert lossless FLAC audio to MP3 with a selectable bitrate.
 - **Resize video**: Scale a video to a chosen width.
