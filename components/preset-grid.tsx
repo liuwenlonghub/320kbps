@@ -1,16 +1,21 @@
 import { PresetCard } from "@/components/preset-card";
 import { PresetCategory as PresetCategoryLabel } from "@/components/preset-category";
 import type { Preset, PresetCategory } from "@/lib/ffmpeg/types/preset";
+import type { Locale } from "@/lib/i18n";
+import { getDictionary } from "@/lib/i18n";
 
 type PresetGridProps = {
   presets: readonly Preset[];
-  categories: readonly PresetCategory[];
+  categories: PresetCategory[];
+  locale?: Locale;
 };
 
 export function PresetGrid({
   presets,
   categories,
+  locale = "en",
 }: PresetGridProps) {
+  const t = getDictionary(locale);
   return (
     <div className="space-y-12">
       {categories.map((category) => {
@@ -31,8 +36,25 @@ export function PresetGrid({
                 <PresetCard
                   key={preset.id}
                   id={preset.id}
-                  title={preset.title}
-                  description={preset.description}
+                  title={
+                    preset.id === "video-to-mp4"
+                      ? t.presets.videoToMp4.title
+                      : preset.id === "mkv-to-mp4"
+                        ? t.presets.mkvToMp4.title
+                        : preset.id === "video-to-mp3"
+                          ? t.presets.videoToMp3.title
+                          : preset.title
+                  }
+                  description={
+                    preset.id === "video-to-mp4"
+                      ? t.presets.videoToMp4.description
+                      : preset.id === "mkv-to-mp4"
+                        ? t.presets.mkvToMp4.description
+                        : preset.id === "video-to-mp3"
+                          ? t.presets.videoToMp3.description
+                          : preset.description
+                  }
+                  locale={locale}
                 />
               ))}
             </div>

@@ -6,6 +6,8 @@ import Link from "next/link";
 import { CommandPreview } from "@/components/command-preview";
 import { PresetForm } from "@/components/preset/preset-form";
 import type { Preset } from "@/lib/ffmpeg/types/preset";
+import type { Locale } from "@/lib/i18n";
+import { getDictionary } from "@/lib/i18n";
 import { buildCommand } from "@/lib/ffmpeg/command-builder/build-command";
 import { usePresetValues } from "./use-preset-values";
 
@@ -135,13 +137,16 @@ type PresetPageProps<
   TOptions extends Record<string, string | number>,
 > = {
   preset: Preset<TOptions>;
+  locale?: Locale;
 };
 
 export function PresetPage<
   TOptions extends Record<string, string | number>,
 >({
   preset,
+  locale = "en",
 }: PresetPageProps<TOptions>) {
+  const t = getDictionary(locale);
   const {
     values,
     handleOptionChange,
@@ -171,24 +176,108 @@ export function PresetPage<
     <main className="mx-auto max-w-3xl px-6 py-16">
       <div>
         <Link
-          href="/"
+          href={`/${locale}`}
           className="text-sm text-zinc-500 transition-colors hover:text-zinc-950"
         >
-          ← Back to presets
+          ←{" "}
+          {t.home.backToPresets}
         </Link>
 
         <h1 className="mt-8 text-3xl font-semibold tracking-tight">
-          {preset.title}
+          {preset.id === "video-to-mp4"
+            ? t.presets.videoToMp4.title
+            : preset.id === "mkv-to-mp4"
+              ? t.presets.mkvToMp4.title
+              : preset.id === "video-to-mp3"
+                ? t.presets.videoToMp3.title
+                : preset.title
+          }
         </h1>
 
         <p className="mt-3 text-zinc-500">
-          {preset.description}
+          {preset.id === "video-to-mp4"
+            ? t.presets.videoToMp4.description
+            : preset.id === "mkv-to-mp4"
+              ? t.presets.mkvToMp4.description
+              : preset.id === "video-to-mp3"
+                ? t.presets.videoToMp3.description
+                : preset.description}
         </p>
       </div>
 
       <section className="mt-10">
         <PresetForm
-          fields={preset.fields}
+          fields={
+            preset.id === "video-to-mp4"
+              ? preset.fields.map((field) => {
+                  if (field.id === "input") {
+                    return {
+                      ...field,
+                      label: t.presets.videoToMp4.inputLabel,
+                    };
+                  }
+
+                  if (field.id === "output") {
+                    return {
+                      ...field,
+                      label: t.presets.videoToMp4.outputLabel,
+                      placeholder:
+                        t.presets.videoToMp4.outputPlaceholder,
+                    };
+                  }
+
+                  return field;
+                })
+              : preset.id === "mkv-to-mp4"
+                ? preset.fields.map((field) => {
+                    if (field.id === "input") {
+                      return {
+                        ...field,
+                        label: t.presets.mkvToMp4.inputLabel,
+                      };
+                    }
+
+                    if (field.id === "output") {
+                      return {
+                        ...field,
+                        label: t.presets.mkvToMp4.outputLabel,
+                        placeholder:
+                          t.presets.mkvToMp4.outputPlaceholder,
+                      };
+                    }
+
+                    return field;
+                  })
+                : preset.id === "video-to-mp3"
+                  ? preset.fields.map((field) => {
+                      if (field.id === "input") {
+                        return {
+                          ...field,
+                          label: t.presets.videoToMp3.inputLabel,
+                        };
+                      }
+
+                      if (field.id === "output") {
+                        return {
+                          ...field,
+                          label: t.presets.videoToMp3.outputLabel,
+                          placeholder:
+                            t.presets.videoToMp3.outputPlaceholder,
+                        };
+                      }
+
+                      if (field.id === "bitrate") {
+                        return {
+                          ...field,
+                          label: t.presets.videoToMp3.bitrateLabel,
+                        };
+                      }
+
+                      return field;
+                    })
+
+                : preset.fields
+          }
           values={values}
           onChange={handleOptionChange}
           onFileChange={handleBrowserFileChange}
@@ -315,11 +404,23 @@ export function PresetPage<
 
       <section className="mt-12 border-t border-zinc-200 pt-8">
         <h2 className="text-sm font-medium">
-          {preset.explanation.title}
+          {preset.id === "video-to-mp4"
+            ? t.presets.videoToMp4.explanation.title
+            : preset.id === "mkv-to-mp4"
+              ? t.presets.mkvToMp4.explanation.title
+              : preset.id === "video-to-mp3"
+                ? t.presets.videoToMp3.explanation.title
+                : preset.explanation.title}
         </h2>
 
         <p className="mt-3 text-sm leading-6 text-zinc-500">
-          {preset.explanation.description}
+          {preset.id === "video-to-mp4"
+            ? t.presets.videoToMp4.explanation.description
+            : preset.id === "mkv-to-mp4"
+              ? t.presets.mkvToMp4.explanation.description
+              : preset.id === "video-to-mp3"
+                ? t.presets.videoToMp3.explanation.description
+                : preset.explanation.description}
         </p>
 
         {preset.explanation.dynamic && (
@@ -358,22 +459,27 @@ export function PresetPage<
         )}
 
         <div className="mt-6 space-y-4">
-          {preset.explanation.parameters.map(
-            (parameter) => (
-              <div
-                key={parameter.flag}
-                className="flex gap-4"
-              >
-                <code className="shrink-0 rounded-md bg-zinc-100 px-2 py-1 font-mono text-xs text-zinc-700">
-                  {parameter.flag}
-                </code>
+          {(preset.id === "video-to-mp4"
+            ? t.presets.videoToMp4.explanation.parameters
+            : preset.id === "mkv-to-mp4"
+              ? t.presets.mkvToMp4.explanation.parameters
+              : preset.id === "video-to-mp3"
+                ? t.presets.videoToMp3.explanation.parameters
+                : preset.explanation.parameters
+          ).map((parameter) => (
+            <div
+              key={parameter.flag}
+              className="flex gap-4"
+            >
+              <code className="shrink-0 rounded-md bg-zinc-100 px-2 py-1 font-mono text-xs text-zinc-700">
+                {parameter.flag}
+              </code>
 
-                <p className="text-sm leading-6 text-zinc-500">
-                  {parameter.description}
-                </p>
-              </div>
-            ),
-          )}
+              <p className="text-sm leading-6 text-zinc-500">
+                {parameter.description}
+              </p>
+            </div>
+          ))}
         </div>
       </section>
     </main>

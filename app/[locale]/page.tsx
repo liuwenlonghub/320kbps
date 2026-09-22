@@ -1,17 +1,65 @@
+import { notFound } from "next/navigation";
+import Link from "next/link";
+
 import { presets } from "@/lib/ffmpeg/presets";
 import type { PresetCategory } from "@/lib/ffmpeg/types/preset";
 import { en } from "@/lib/i18n/en";
-import Link from "next/link";
+import { zhCN } from "@/lib/i18n/zh-cn";
+import { ja } from "@/lib/i18n/ja";
 import { PresetGrid } from "@/components/preset-grid";
+import type { Metadata } from "next";
 
-export default function Home() {
+const languages = {
+  en,
+  "zh-cn": zhCN,
+  ja,
+} as const;
+
+type Locale = keyof typeof languages;
+
+export function generateStaticParams() {
+  return Object.keys(languages).map((locale) => ({
+    locale,
+  }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+
+  if (!(locale in languages)) {
+    return {};
+  }
+
+  const t = languages[locale as Locale];
+
+  return {
+    title: t.home.title,
+    description: t.home.description,
+  };
+}
+
+export default async function LocaleHome({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+
+  if (!(locale in languages)) {
+    notFound();
+  }
+
+  const t = languages[locale as Locale];
+
   const categories: PresetCategory[] = [
     "audio",
     "video",
     "image",
   ];
-
-  const t = en;
 
   return (
     <div className="mx-auto max-w-[1100px] bg-white px-[6vw] text-zinc-950">
@@ -37,7 +85,7 @@ export default function Home() {
 
           <div className="mt-10">
             <Link
-              href="#presets"
+              href={`/${locale}#presets`}
               className="inline-flex h-11 items-center rounded-full bg-zinc-950 px-6 text-sm font-medium text-white transition-colors hover:bg-zinc-800"
             >
               {t.home.explorePresets}
@@ -61,6 +109,7 @@ export default function Home() {
         <PresetGrid
           presets={presets}
           categories={categories}
+          locale={locale as Locale}
         />
       </section>
 

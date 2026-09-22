@@ -1,19 +1,23 @@
 import Link from "next/link";
 import type { Preset } from "@/lib/ffmpeg/types/preset";
+import type { Locale } from "@/lib/i18n";
 
 type PresetCardProps = Pick<
   Preset,
   "id" | "title" | "description"
->;
+> & {
+  locale?: Locale;
+};
 
 export function PresetCard({
   id,
   title,
   description,
+  locale = "en",
 }: PresetCardProps) {
   return (
     <Link
-      href={`/presets/${id}`}
+      href={`/${locale}/presets/${id}`}
       className="group rounded-2xl border border-zinc-200 p-6 transition-all hover:border-zinc-300 hover:shadow-sm"
     >
       <h3 className="text-lg font-medium tracking-tight">
