@@ -100,6 +100,27 @@ export const zhCN = {
         ],
       },
     },
+    wavToMp3: {
+      title: "WAV → MP3",
+      description:
+        "将 WAV 音频文件转换为 MP3。",
+      inputLabel: "输入文件",
+      outputLabel: "输出文件名",
+      outputPlaceholder: "output.mp3",
+      bitrateLabel: "比特率",
+      explanation: {
+        title: "工作原理",
+        description:
+          "此预设会根据所选比特率将 WAV 音频转换为 MP3。",
+        parameters: [
+          {
+            flag: "-c:a libmp3lame",
+            description:
+              "使用 LAME MP3 编码器对音频进行编码。",
+          },
+        ],
+      },
+    },
   },
 
   about: {

@@ -100,6 +100,27 @@ export const en = {
         ],
       },
     },
+    wavToMp3: {
+      title: "WAV → MP3",
+      description:
+        "Convert WAV audio files to MP3.",
+      inputLabel: "Input file",
+      outputLabel: "Output filename",
+      outputPlaceholder: "output.mp3",
+      bitrateLabel: "Bitrate",
+      explanation: {
+        title: "How it works",
+        description:
+          "This preset converts WAV audio to MP3 using the selected bitrate.",
+        parameters: [
+          {
+            flag: "-c:a libmp3lame",
+            description:
+              "Encodes the audio using the LAME MP3 encoder.",
+          },
+        ],
+      },
+    },
   },
 
   about: {

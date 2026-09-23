@@ -69,6 +69,13 @@ export async function generateMetadata({
     };
   }
 
+  if (preset.id === "wav-to-mp3") {
+    return {
+      title: t.presets.wavToMp3.title,
+      description: t.presets.wavToMp3.description,
+    };
+  }
+
   return {
     title: preset.title,
     description: preset.description,

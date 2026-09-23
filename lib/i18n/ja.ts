@@ -100,6 +100,27 @@ export const ja = {
         ],
       },
     },
+    wavToMp3: {
+      title: "WAV → MP3",
+      description:
+        "WAV 音声ファイルを MP3 に変換します。",
+      inputLabel: "入力ファイル",
+      outputLabel: "出力ファイル名",
+      outputPlaceholder: "output.mp3",
+      bitrateLabel: "ビットレート",
+      explanation: {
+        title: "仕組み",
+        description:
+          "このプリセットは、選択したビットレートで WAV 音声を MP3 に変換します。",
+        parameters: [
+          {
+            flag: "-c:a libmp3lame",
+            description:
+              "LAME MP3 エンコーダーを使用して音声をエンコードします。",
+          },
+        ],
+      },
+    },
   },
 
   about: {
