@@ -121,6 +121,27 @@ export const en = {
         ],
       },
     },
+    flacToMp3: {
+      title: "FLAC → MP3",
+      description:
+        "Convert FLAC audio files to MP3.",
+      inputLabel: "Input file",
+      outputLabel: "Output filename",
+      outputPlaceholder: "output.mp3",
+      bitrateLabel: "Bitrate",
+      explanation: {
+        title: "How it works",
+        description:
+          "This preset converts FLAC audio to MP3 using the selected bitrate.",
+        parameters: [
+          {
+            flag: "-c:a libmp3lame",
+            description:
+              "Encodes the audio using the LAME MP3 encoder.",
+          },
+        ],
+      },
+    },
   },
 
   about: {

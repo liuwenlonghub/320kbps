@@ -45,14 +45,22 @@ export function PresetGrid({
                           ? t.presets.videoToMp3.title
                           : preset.id === "wav-to-mp3"
                             ? t.presets.wavToMp3.title
-                            : preset.title
+                            : preset.id === "flac-to-mp3"
+                              ? t.presets.flacToMp3.title
+                              : preset.title
                   }
                   description={
-                    preset.id === "video-to-mp3"
-                      ? t.presets.videoToMp3.description
-                      : preset.id === "wav-to-mp3"
-                        ? t.presets.wavToMp3.description
-                        : preset.description
+                    preset.id === "video-to-mp4"
+                      ? t.presets.videoToMp4.description
+                      : preset.id === "mkv-to-mp4"
+                        ? t.presets.mkvToMp4.description
+                        : preset.id === "video-to-mp3"
+                          ? t.presets.videoToMp3.description
+                          : preset.id === "wav-to-mp3"
+                            ? t.presets.wavToMp3.description
+                            : preset.id === "flac-to-mp3"
+                              ? t.presets.flacToMp3.description
+                              : preset.description
                   }
                   locale={locale}
                 />

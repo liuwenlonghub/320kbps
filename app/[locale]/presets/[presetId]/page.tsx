@@ -69,6 +69,13 @@ export async function generateMetadata({
     };
   }
 
+  if (preset.id === "flac-to-mp3") {
+    return {
+      title: t.presets.flacToMp3.title,
+      description: t.presets.flacToMp3.description,
+    };
+  }
+
   if (preset.id === "wav-to-mp3") {
     return {
       title: t.presets.wavToMp3.title,

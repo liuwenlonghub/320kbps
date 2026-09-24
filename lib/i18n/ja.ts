@@ -121,6 +121,27 @@ export const ja = {
         ],
       },
     },
+    flacToMp3: {
+      title: "FLAC → MP3",
+      description:
+        "FLAC 音声ファイルを MP3 に変換します。",
+      inputLabel: "入力ファイル",
+      outputLabel: "出力ファイル名",
+      outputPlaceholder: "output.mp3",
+      bitrateLabel: "ビットレート",
+      explanation: {
+        title: "仕組み",
+        description:
+          "このプリセットは、選択したビットレートで FLAC 音声を MP3 に変換します。",
+        parameters: [
+          {
+            flag: "-c:a libmp3lame",
+            description:
+              "LAME MP3 エンコーダーを使用して音声をエンコードします。",
+          },
+        ],
+      },
+    },
   },
 
   about: {

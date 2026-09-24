@@ -192,7 +192,9 @@ export function PresetPage<
                 ? t.presets.videoToMp3.title
                 : preset.id === "wav-to-mp3"
                   ? t.presets.wavToMp3.title
-                  : preset.title}
+                  : preset.id === "flac-to-mp3"
+                    ? t.presets.flacToMp3.title
+                    : preset.title}
         </h1>
 
         <p className="mt-3 text-zinc-500">
@@ -204,7 +206,9 @@ export function PresetPage<
                 ? t.presets.videoToMp3.description
                 : preset.id === "wav-to-mp3"
                   ? t.presets.wavToMp3.description
-                  : preset.description}
+                  : preset.id === "flac-to-mp3"
+                    ? t.presets.flacToMp3.description
+                    : preset.description}
         </p>
       </div>
 
@@ -301,6 +305,33 @@ export function PresetPage<
                         return {
                           ...field,
                           label: t.presets.wavToMp3.bitrateLabel,
+                        };
+                      }
+
+                      return field;
+                    })
+                : preset.id === "flac-to-mp3"
+                  ? preset.fields.map((field) => {
+                      if (field.id === "input") {
+                        return {
+                          ...field,
+                          label: t.presets.flacToMp3.inputLabel,
+                        };
+                      }
+
+                      if (field.id === "output") {
+                        return {
+                          ...field,
+                          label: t.presets.flacToMp3.outputLabel,
+                          placeholder:
+                            t.presets.flacToMp3.outputPlaceholder,
+                        };
+                      }
+
+                      if (field.id === "bitrate") {
+                        return {
+                          ...field,
+                          label: t.presets.flacToMp3.bitrateLabel,
                         };
                       }
 
@@ -438,17 +469,19 @@ export function PresetPage<
             ? t.presets.videoToMp3.title
             : preset.id === "wav-to-mp3"
               ? t.presets.wavToMp3.title
-              : preset.title}
+              : preset.id === "flac-to-mp3"
+                ? t.presets.flacToMp3.title
+                : preset.title}
         </h2>
-
         <p className="mt-3 text-sm leading-6 text-zinc-500">
           {preset.id === "video-to-mp3"
             ? t.presets.videoToMp3.description
             : preset.id === "wav-to-mp3"
               ? t.presets.wavToMp3.description
-              : preset.description}
+              : preset.id === "flac-to-mp3"
+                ? t.presets.flacToMp3.description
+                : preset.description}
         </p>
-
         {preset.explanation.dynamic && (
           <div className="mt-6 rounded-2xl bg-zinc-50 p-5">
             <p className="text-xs font-medium uppercase tracking-wide text-zinc-400">
@@ -493,7 +526,9 @@ export function PresetPage<
                 ? t.presets.videoToMp3.explanation.parameters
                 : preset.id === "wav-to-mp3"
                   ? t.presets.wavToMp3.explanation.parameters
-                  : preset.explanation.parameters
+                  : preset.id === "flac-to-mp3"
+                    ? t.presets.flacToMp3.explanation.parameters
+                    : preset.explanation.parameters
           ).map((parameter) => (
             <div
               key={parameter.flag}
