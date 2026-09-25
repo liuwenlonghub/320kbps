@@ -208,7 +208,9 @@ export function PresetPage<
                   ? t.presets.wavToMp3.description
                   : preset.id === "flac-to-mp3"
                     ? t.presets.flacToMp3.description
-                    : preset.description}
+                      : preset.id === "resize-video"
+                        ? t.presets.resizeVideo.description
+                        : preset.description}
         </p>
       </div>
 
@@ -235,6 +237,7 @@ export function PresetPage<
 
                   return field;
                 })
+
               : preset.id === "mkv-to-mp4"
                 ? preset.fields.map((field) => {
                     if (field.id === "input") {
@@ -255,6 +258,7 @@ export function PresetPage<
 
                     return field;
                   })
+
                 : preset.id === "video-to-mp3"
                   ? preset.fields.map((field) => {
                       if (field.id === "input") {
@@ -310,6 +314,7 @@ export function PresetPage<
 
                       return field;
                     })
+
                 : preset.id === "flac-to-mp3"
                   ? preset.fields.map((field) => {
                       if (field.id === "input") {
@@ -337,6 +342,35 @@ export function PresetPage<
 
                       return field;
                     })
+
+                : preset.id === "resize-video"
+                  ? preset.fields.map((field) => {
+                      if (field.id === "input") {
+                        return {
+                          ...field,
+                          label: t.presets.resizeVideo.inputLabel,
+                        };
+                      }
+
+                      if (field.id === "output") {
+                        return {
+                          ...field,
+                          label: t.presets.resizeVideo.outputLabel,
+                          placeholder:
+                            t.presets.resizeVideo.outputPlaceholder,
+                        };
+                      }
+
+                      if (field.id === "width") {
+                        return {
+                          ...field,
+                          label: t.presets.resizeVideo.widthLabel,
+                        };
+                      }
+
+                      return field;
+                    })
+
                 : preset.fields
           }
           values={values}
@@ -471,7 +505,9 @@ export function PresetPage<
               ? t.presets.wavToMp3.title
               : preset.id === "flac-to-mp3"
                 ? t.presets.flacToMp3.title
-                : preset.title}
+                  : preset.id === "resize-video"
+                    ? t.presets.resizeVideo.title
+                    : preset.title}
         </h2>
         <p className="mt-3 text-sm leading-6 text-zinc-500">
           {preset.id === "video-to-mp3"
@@ -480,7 +516,9 @@ export function PresetPage<
               ? t.presets.wavToMp3.description
               : preset.id === "flac-to-mp3"
                 ? t.presets.flacToMp3.description
-                : preset.description}
+                  : preset.id === "resize-video"
+                    ? t.presets.resizeVideo.description
+                    : preset.description}
         </p>
         {preset.explanation.dynamic && (
           <div className="mt-6 rounded-2xl bg-zinc-50 p-5">
@@ -528,7 +566,9 @@ export function PresetPage<
                   ? t.presets.wavToMp3.explanation.parameters
                   : preset.id === "flac-to-mp3"
                     ? t.presets.flacToMp3.explanation.parameters
-                    : preset.explanation.parameters
+                      : preset.id === "resize-video"
+                        ? t.presets.resizeVideo.explanation.parameters
+                        : preset.explanation.parameters
           ).map((parameter) => (
             <div
               key={parameter.flag}

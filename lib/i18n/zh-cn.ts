@@ -142,6 +142,27 @@ export const zhCN = {
         ],
       },
     },
+    resizeVideo: {
+      title: "调整视频尺寸",
+      description:
+        "将视频调整为指定宽度，同时保持原始宽高比。",
+      inputLabel: "输入文件",
+      outputLabel: "输出文件名",
+      outputPlaceholder: "output.mp4",
+      widthLabel: "宽度",
+      explanation: {
+        title: "工作原理",
+        description:
+          "此预设会将视频调整为所选宽度，并自动计算高度以保持原始宽高比。",
+        parameters: [
+          {
+            flag: "-vf scale",
+            description:
+              "将视频调整为所选宽度，并自动计算高度。",
+          },
+        ],
+      },
+    },
   },
 
   about: {

@@ -142,6 +142,27 @@ export const en = {
         ],
       },
     },
+    resizeVideo: {
+      title: "Resize Video",
+      description:
+        "Resize a video to a specific width without changing its aspect ratio.",
+      inputLabel: "Input file",
+      outputLabel: "Output filename",
+      outputPlaceholder: "output.mp4",
+      widthLabel: "Width",
+      explanation: {
+        title: "How it works",
+        description:
+          "This preset scales the video to the selected width while preserving its original aspect ratio.",
+        parameters: [
+          {
+            flag: "-vf scale",
+            description:
+              "Scales the video to the selected width while calculating the height automatically.",
+          },
+        ],
+      },
+    },
   },
 
   about: {

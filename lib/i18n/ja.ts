@@ -142,6 +142,27 @@ export const ja = {
         ],
       },
     },
+    resizeVideo: {
+      title: "動画のサイズ変更",
+      description:
+        "アスペクト比を維持したまま、動画を指定した幅に変更します。",
+      inputLabel: "入力ファイル",
+      outputLabel: "出力ファイル名",
+      outputPlaceholder: "output.mp4",
+      widthLabel: "幅",
+      explanation: {
+        title: "仕組み",
+        description:
+          "このプリセットは、元のアスペクト比を維持しながら、動画を選択した幅に変更します。",
+        parameters: [
+          {
+            flag: "-vf scale",
+            description:
+              "動画を選択した幅に変更し、高さを自動的に計算します。",
+          },
+        ],
+      },
+    },
   },
 
   about: {
