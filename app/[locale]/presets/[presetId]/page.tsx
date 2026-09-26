@@ -90,6 +90,13 @@ export async function generateMetadata({
     };
   }
 
+  if (preset.id === "compress-video") {
+    return {
+      title: t.presets.compressVideo.title,
+      description: t.presets.compressVideo.description,
+    };
+  }
+
   return {
     title: preset.title,
     description: preset.description,

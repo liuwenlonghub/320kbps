@@ -163,6 +163,61 @@ export const ja = {
         ],
       },
     },
+    compressVideo: {
+      title: "動画を圧縮",
+      description:
+        "画質とのバランスを保ちながら、動画ファイルのサイズを小さくします。",
+      inputLabel: "入力ファイル",
+      outputLabel: "出力ファイル名",
+      outputPlaceholder: "output.mp4",
+      modeLabel: "圧縮モード",
+      modeHigh: "高画質",
+      modeBalanced: "バランス",
+      modeSmall: "小さいファイル",
+      explanation: {
+        title: "仕組み",
+        description:
+          "このプリセットは、選択した CRF 値で動画を再エンコードし、ファイルサイズを小さくします。",
+        dynamic: {
+          field: "quality",
+          title: "圧縮レベル",
+          values: {
+            high: {
+              label: "高画質 · CRF 20",
+              description:
+                "画質は高くなりますが、出力ファイルのサイズは大きくなります。",
+            },
+            balanced: {
+              label: "バランス · CRF 23",
+              description:
+                "画質とファイルサイズのバランスを取ります。",
+            },
+            small: {
+              label: "小さいファイル · CRF 28",
+              description:
+                "ファイルサイズを小さくできますが、画質は多少低下します。",
+            },
+          },
+        },
+        parameters: [
+          {
+            flag: "-c:v libx264",
+            description:
+              "H.264 コーデックを使用して動画をエンコードします。",
+          },
+          {
+            flag: "-crf",
+            description:
+              "動画の画質とファイルサイズのバランスを調整します。",
+          },
+          {
+            flag: "-preset",
+            description:
+              "エンコード速度と圧縮効率を調整します。",
+          },
+        ],
+      },
+    },
   },
 
   about: {

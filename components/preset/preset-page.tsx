@@ -194,7 +194,11 @@ export function PresetPage<
                   ? t.presets.wavToMp3.title
                   : preset.id === "flac-to-mp3"
                     ? t.presets.flacToMp3.title
-                    : preset.title}
+                      : preset.id === "resize-video"
+                        ? t.presets.resizeVideo.title
+                          : preset.id === "compress-video"
+                              ? t.presets.compressVideo.title
+                              : preset.title}
         </h1>
 
         <p className="mt-3 text-zinc-500">
@@ -210,7 +214,9 @@ export function PresetPage<
                     ? t.presets.flacToMp3.description
                       : preset.id === "resize-video"
                         ? t.presets.resizeVideo.description
-                        : preset.description}
+                          : preset.id === "compress-video"
+                              ? t.presets.compressVideo.description
+                              : preset.description}
         </p>
       </div>
 
@@ -371,6 +377,44 @@ export function PresetPage<
                       return field;
                     })
 
+                : preset.id === "compress-video"
+                  ? preset.fields.map((field) => {
+                      if (field.id === "input") {
+                        return {
+                          ...field,
+                          label: t.presets.compressVideo.inputLabel,
+                        };
+                      }
+
+                      if (field.id === "output") {
+                        return {
+                          ...field,
+                          label: t.presets.compressVideo.outputLabel,
+                          placeholder:
+                            t.presets.compressVideo.outputPlaceholder,
+                        };
+                      }
+
+                      if (field.id === "quality" && field.type === "select") {
+                        return {
+                          ...field,
+                          label: t.presets.compressVideo.modeLabel,
+                          options: field.options.map((option) => ({
+                            ...option,
+                            label:
+                              option.value === "high"
+                                ? t.presets.compressVideo.modeHigh
+                                : option.value === "balanced"
+                                  ? t.presets.compressVideo.modeBalanced
+                                  : option.value === "small"
+                                    ? t.presets.compressVideo.modeSmall
+                                    : option.label,
+                          })),
+                        } as typeof field;
+                      }
+
+                      return field;
+                    })
                 : preset.fields
           }
           values={values}
@@ -507,7 +551,9 @@ export function PresetPage<
                 ? t.presets.flacToMp3.title
                   : preset.id === "resize-video"
                     ? t.presets.resizeVideo.title
-                    : preset.title}
+                      : preset.id === "compress-video"
+                        ? t.presets.compressVideo.title
+                        : preset.title}
         </h2>
         <p className="mt-3 text-sm leading-6 text-zinc-500">
           {preset.id === "video-to-mp3"
@@ -518,20 +564,26 @@ export function PresetPage<
                 ? t.presets.flacToMp3.description
                   : preset.id === "resize-video"
                     ? t.presets.resizeVideo.description
-                    : preset.description}
+                      : preset.id === "compress-video"
+                        ? t.presets.compressVideo.description
+                        : preset.description}
         </p>
         {preset.explanation.dynamic && (
           <div className="mt-6 rounded-2xl bg-zinc-50 p-5">
             <p className="text-xs font-medium uppercase tracking-wide text-zinc-400">
-              {preset.explanation.dynamic.title}
+              {preset.id === "compress-video"
+                ? t.presets.compressVideo.explanation.dynamic.title
+                : preset.explanation.dynamic.title}
             </p>
 
             {(() => {
               const dynamic =
-                preset.explanation.dynamic;
+                preset.id === "compress-video"
+                  ? t.presets.compressVideo.explanation.dynamic
+                  : preset.explanation.dynamic;
 
               const currentValue =
-                String(values[dynamic.field]);
+                String(values[dynamic.field]) as keyof typeof dynamic.values;
 
               const explanation =
                 dynamic.values[currentValue];
@@ -568,7 +620,9 @@ export function PresetPage<
                     ? t.presets.flacToMp3.explanation.parameters
                       : preset.id === "resize-video"
                         ? t.presets.resizeVideo.explanation.parameters
-                        : preset.explanation.parameters
+                          : preset.id === "compress-video"
+                            ? t.presets.compressVideo.explanation.parameters
+                            : preset.explanation.parameters
           ).map((parameter) => (
             <div
               key={parameter.flag}

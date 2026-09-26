@@ -163,6 +163,61 @@ export const en = {
         ],
       },
     },
+    compressVideo: {
+      title: "Compress Video",
+      description:
+        "Reduce video file size while balancing quality and compression.",
+      inputLabel: "Input file",
+      outputLabel: "Output filename",
+      outputPlaceholder: "output.mp4",
+      modeLabel: "Compression",
+      modeHigh: "High quality",
+      modeBalanced: "Balanced",
+      modeSmall: "Small file",
+      explanation: {
+        title: "How it works",
+        description:
+          "This preset compresses the video by re-encoding it with a selected CRF value.",
+        dynamic: {
+          field: "quality",
+          title: "Compression level",
+          values: {
+            high: {
+              label: "High quality · CRF 20",
+              description:
+                "Higher visual quality with a larger output file.",
+            },
+            balanced: {
+              label: "Balanced · CRF 23",
+              description:
+                "A good balance between visual quality and file size.",
+            },
+            small: {
+              label: "Smaller file · CRF 28",
+              description:
+                "Produces a smaller file size at the cost of some visual quality.",
+            },
+          },
+        },
+        parameters: [
+          {
+            flag: "-c:v libx264",
+            description:
+              "Encodes the video using the H.264 codec.",
+          },
+          {
+            flag: "-crf",
+            description:
+              "Controls the balance between video quality and file size.",
+          },
+          {
+            flag: "-preset",
+            description:
+              "Controls the encoding speed and compression efficiency.",
+          },
+        ],
+      },
+    },
   },
 
   about: {

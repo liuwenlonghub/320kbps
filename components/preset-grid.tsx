@@ -49,7 +49,9 @@ export function PresetGrid({
                               ? t.presets.flacToMp3.title
                                 : preset.id === "resize-video"
                                   ? t.presets.resizeVideo.title
-                                  : preset.title
+                                    : preset.id === "compress-video"
+                                      ? t.presets.compressVideo.title
+                                      : preset.title
                   }
                   description={
                     preset.id === "video-to-mp4"
@@ -64,7 +66,9 @@ export function PresetGrid({
                               ? t.presets.flacToMp3.description
                                 : preset.id === "resize-video"
                                   ? t.presets.resizeVideo.description
-                                  : preset.description
+                                    : preset.id === "compress-video"
+                                      ? t.presets.compressVideo.description
+                                      : preset.description
                   }
                   locale={locale}
                 />

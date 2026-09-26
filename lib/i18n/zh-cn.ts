@@ -163,6 +163,61 @@ export const zhCN = {
         ],
       },
     },
+    compressVideo: {
+      title: "压缩视频",
+      description:
+        "在保持画质的同时减小视频文件大小。",
+      inputLabel: "输入文件",
+      outputLabel: "输出文件名",
+      outputPlaceholder: "output.mp4",
+      modeLabel: "压缩模式",
+      modeHigh: "高画质",
+      modeBalanced: "平衡",
+      modeSmall: "小文件",
+      explanation: {
+        title: "工作原理",
+        description:
+          "此预设会使用所选的 CRF 值重新编码视频，从而减小文件大小。",
+        dynamic: {
+          field: "quality",
+          title: "压缩级别",
+          values: {
+            high: {
+              label: "高画质 · CRF 20",
+              description:
+                "画质更高，但输出文件也会更大。",
+            },
+            balanced: {
+              label: "平衡 · CRF 23",
+              description:
+                "在画质和文件大小之间取得良好平衡。",
+            },
+            small: {
+              label: "小文件 · CRF 28",
+              description:
+                "生成更小的文件，但会牺牲一部分画质。",
+            },
+          },
+        },
+        parameters: [
+          {
+            flag: "-c:v libx264",
+            description:
+              "使用 H.264 编码器对视频进行编码。",
+          },
+          {
+            flag: "-crf",
+            description:
+              "控制视频画质与文件大小之间的平衡。",
+          },
+          {
+            flag: "-preset",
+            description:
+              "控制编码速度和压缩效率。",
+          },
+        ],
+      },
+    },
   },
 
   about: {
