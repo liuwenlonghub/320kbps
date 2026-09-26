@@ -83,6 +83,13 @@ export async function generateMetadata({
     };
   }
 
+  if (preset.id === "resize-video") {
+    return {
+      title: t.presets.resizeVideo.title,
+      description: t.presets.resizeVideo.description,
+    };
+  }
+
   return {
     title: preset.title,
     description: preset.description,
