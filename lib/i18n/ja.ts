@@ -218,6 +218,38 @@ export const ja = {
         ],
       },
     },
+    webmToMp4: {
+      title: "WebM → MP4",
+      description: "WebM 動画を MP4 に変換します。",
+      inputLabel: "入力ファイル",
+      outputLabel: "出力ファイル",
+      outputPlaceholder: "output.mp4",
+      explanation: {
+        title: "このコマンドについて",
+        description:
+          "このコマンドは H.264 動画と AAC 音声を使用して WebM 動画を MP4 に変換し、幅広い互換性を実現します。",
+        parameters: [
+          {
+            flag: "-i",
+            description: "入力する WebM 動画ファイルを指定します。",
+          },
+          {
+            flag: "-c:v libx264",
+            description:
+              "多くのデバイスやメディアプレーヤーで広くサポートされている H.264 で動画をエンコードします。",
+          },
+          {
+            flag: "-c:a aac",
+            description: "AAC を使用して音声をエンコードします。",
+          },
+          {
+            flag: "-movflags +faststart",
+            description:
+              "MP4 のメタデータをファイルの先頭に移動し、ストリーミング再生をより早く開始できるようにします。",
+          },
+        ],
+      },
+    },
   },
 
   about: {

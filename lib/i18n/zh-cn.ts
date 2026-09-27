@@ -218,6 +218,38 @@ export const zhCN = {
         ],
       },
     },
+    webmToMp4: {
+      title: "WebM → MP4",
+      description: "将 WebM 视频转换为 MP4。",
+      inputLabel: "输入文件",
+      outputLabel: "输出文件",
+      outputPlaceholder: "output.mp4",
+      explanation: {
+        title: "关于此命令",
+        description:
+          "此命令使用 H.264 视频编码和 AAC 音频编码，将 WebM 视频转换为 MP4，以获得更广泛的兼容性。",
+        parameters: [
+          {
+            flag: "-i",
+            description: "指定输入的 WebM 视频文件。",
+          },
+          {
+            flag: "-c:v libx264",
+            description:
+              "使用 H.264 编码视频，兼容大多数设备和媒体播放器。",
+          },
+          {
+            flag: "-c:a aac",
+            description: "使用 AAC 编码音频。",
+          },
+          {
+            flag: "-movflags +faststart",
+            description:
+              "将 MP4 元数据移动到文件开头，使流式播放能够更快开始。",
+          },
+        ],
+      },
+    },
   },
 
   about: {
