@@ -250,6 +250,34 @@ export const zhCN = {
         ],
       },
     },
+    imageToWebp: {
+      title: "图片 → WebP",
+      description: "将图片转换为 WebP。",
+      inputLabel: "输入文件",
+      qualityLabel: "质量",
+      outputLabel: "输出文件",
+      outputPlaceholder: "output.webp",
+      explanation: {
+        title: "关于此命令",
+        description:
+          "此命令将输入图片转换为 WebP。质量值用于控制图片质量与文件大小之间的平衡。",
+        parameters: [
+          {
+            flag: "-i",
+            description: "指定输入图片文件。",
+          },
+          {
+            flag: "-c:v libwebp",
+            description: "使用 WebP 图片编码器编码图片。",
+          },
+          {
+            flag: "-q:v",
+            description:
+              "控制 WebP 图片质量。数值越高，通常画质越好，同时文件也越大。",
+          },
+        ],
+      },
+    },
   },
 
   about: {

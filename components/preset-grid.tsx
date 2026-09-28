@@ -53,7 +53,9 @@ export function PresetGrid({
                                       ? t.presets.compressVideo.title
                                         : preset.id === "webm-to-mp4"
                                           ? t.presets.webmToMp4.title
-                                          : preset.title
+                                            : preset.id === "image-to-webp"
+                                              ? t.presets.imageToWebp.title
+                                              : preset.title
                   }
                   description={
                     preset.id === "video-to-mp4"
@@ -72,7 +74,9 @@ export function PresetGrid({
                                       ? t.presets.compressVideo.description
                                         : preset.id === "webm-to-mp4"
                                           ? t.presets.webmToMp4.description
-                                          : preset.description
+                                            : preset.id === "image-to-webp"
+                                              ? t.presets.imageToWebp.description
+                                              : preset.description
                   }
                   locale={locale}
                 />

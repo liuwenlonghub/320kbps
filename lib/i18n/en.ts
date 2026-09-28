@@ -252,6 +252,36 @@ export const en = {
         ],
       },
     },
+    imageToWebp: {
+      title: "Image → WebP",
+      description: "Convert an image to WebP.",
+      inputLabel: "Input file",
+      qualityLabel: "Quality",
+      outputLabel: "Output file",
+      outputPlaceholder: "output.webp",
+      explanation: {
+        title: "About this command",
+        description:
+          "This command converts the input image to WebP. The quality value controls the balance between image quality and file size.",
+        parameters: [
+          {
+            flag: "-i",
+            description:
+              "Specifies the input image file.",
+          },
+          {
+            flag: "-c:v libwebp",
+            description:
+              "Encodes the image using the WebP image codec.",
+          },
+          {
+            flag: "-q:v",
+            description:
+              "Controls WebP image quality. Higher values generally produce better quality and larger files.",
+          },
+        ],
+      },
+    },
   },
 
   about: {

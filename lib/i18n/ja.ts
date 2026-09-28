@@ -250,6 +250,35 @@ export const ja = {
         ],
       },
     },
+    imageToWebp: {
+      title: "画像 → WebP",
+      description: "画像を WebP に変換します。",
+      inputLabel: "入力ファイル",
+      qualityLabel: "品質",
+      outputLabel: "出力ファイル",
+      outputPlaceholder: "output.webp",
+      explanation: {
+        title: "このコマンドについて",
+        description:
+          "このコマンドは入力画像を WebP に変換します。品質値によって、画像品質とファイルサイズのバランスを調整できます。",
+        parameters: [
+          {
+            flag: "-i",
+            description: "入力画像ファイルを指定します。",
+          },
+          {
+            flag: "-c:v libwebp",
+            description:
+              "WebP 画像コーデックを使用して画像をエンコードします。",
+          },
+          {
+            flag: "-q:v",
+            description:
+              "WebP の画像品質を指定します。値が高いほど、通常は画質が向上しますが、ファイルサイズも大きくなります。",
+          },
+        ],
+      },
+    },
   },
 
   about: {

@@ -104,6 +104,13 @@ export async function generateMetadata({
     };
   }
 
+  if (preset.id === "image-to-webp") {
+    return {
+      title: t.presets.imageToWebp.title,
+      description: t.presets.imageToWebp.description,
+    };
+  }
+
   return {
     title: preset.title,
     description: preset.description,

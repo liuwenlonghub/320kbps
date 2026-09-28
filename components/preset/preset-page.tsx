@@ -198,7 +198,9 @@ export function PresetPage<
                         ? t.presets.resizeVideo.title
                           : preset.id === "compress-video"
                               ? t.presets.compressVideo.title
-                              : preset.title}
+                                : preset.id === "image-to-webp"
+                                  ? t.presets.imageToWebp.title
+                                  : preset.title}
         </h1>
 
         <p className="mt-3 text-zinc-500">
@@ -216,7 +218,9 @@ export function PresetPage<
                         ? t.presets.resizeVideo.description
                           : preset.id === "compress-video"
                               ? t.presets.compressVideo.description
-                              : preset.description}
+                                : preset.id === "image-to-webp"
+                                  ? t.presets.imageToWebp.description
+                                  : preset.description}
         </p>
       </div>
 
@@ -434,6 +438,34 @@ export function PresetPage<
 
                       return field;
                     })
+
+                : preset.id === "image-to-webp"
+                  ? preset.fields.map((field) => {
+                      if (field.id === "input") {
+                        return {
+                          ...field,
+                          label: t.presets.imageToWebp.inputLabel,
+                        };
+                      }
+
+                      if (field.id === "quality") {
+                        return {
+                          ...field,
+                          label: t.presets.imageToWebp.qualityLabel,
+                        };
+                      }
+
+                      if (field.id === "output") {
+                        return {
+                          ...field,
+                          label: t.presets.imageToWebp.outputLabel,
+                          placeholder: t.presets.imageToWebp.outputPlaceholder,
+                        };
+                      }
+
+                      return field;
+                    })
+
                 : preset.fields
           }
           values={values}
@@ -574,7 +606,9 @@ export function PresetPage<
                         ? t.presets.compressVideo.title
                           : preset.id === "webm-to-mp4"
                             ? t.presets.webmToMp4.title
-                            : preset.title}
+                              : preset.id === "image-to-webp"
+                                ? t.presets.imageToWebp.title
+                                : preset.title}
         </h2>
         <p className="mt-3 text-sm leading-6 text-zinc-500">
           {preset.id === "video-to-mp3"
@@ -589,7 +623,9 @@ export function PresetPage<
                         ? t.presets.compressVideo.description
                           : preset.id === "webm-to-mp4"
                             ? t.presets.webmToMp4.description
-                            : preset.description}
+                              : preset.id === "image-to-webp"
+                                ? t.presets.imageToWebp.description
+                                : preset.description}
         </p>
         {preset.explanation.dynamic && (
           <div className="mt-6 rounded-2xl bg-zinc-50 p-5">
@@ -647,7 +683,9 @@ export function PresetPage<
                             ? t.presets.compressVideo.explanation.parameters
                               : preset.id === "webm-to-mp4"
                                 ? t.presets.webmToMp4.explanation.parameters
-                                : preset.explanation.parameters
+                                  : preset.id === "image-to-webp"
+                                    ? t.presets.imageToWebp.explanation.parameters
+                                    : preset.explanation.parameters
           ).map((parameter) => (
             <div
               key={parameter.flag}
