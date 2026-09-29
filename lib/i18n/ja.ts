@@ -279,6 +279,35 @@ export const ja = {
         ],
       },
     },
+    mp4ToWebm: {
+      title: "MP4 → WebM",
+      description:
+        "MP4 動画を Web 再生に適した WebM 形式に変換します。",
+      inputLabel: "入力ファイル",
+      outputLabel: "出力ファイル名",
+      outputPlaceholder: "output.webm",
+      explanation: {
+        title: "MP4 → WebM",
+        description:
+          "VP8 ビデオコーデックと Vorbis オーディオコーデックを使用して、MP4 動画を WebM に変換します。",
+        parameters: [
+          {
+            flag: "-i",
+            description: "入力 MP4 動画を指定します。",
+          },
+          {
+            flag: "-c:v libvpx",
+            description:
+              "VP8 コーデックを使用して動画をエンコードします。",
+          },
+          {
+            flag: "-c:a libvorbis",
+            description:
+              "Vorbis コーデックを使用して音声をエンコードします。",
+          },
+        ],
+      },
+    },
   },
 
   about: {

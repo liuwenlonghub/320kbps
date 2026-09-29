@@ -282,6 +282,35 @@ export const en = {
         ],
       },
     },
+    mp4ToWebm: {
+      title: "MP4 → WebM",
+      description:
+        "Convert MP4 videos to WebM format for web-friendly playback.",
+      inputLabel: "Input file",
+      outputLabel: "Output filename",
+      outputPlaceholder: "output.webm",
+      explanation: {
+        title: "MP4 → WebM",
+        description:
+          "Convert an MP4 video to WebM using the VP8 video codec and Vorbis audio codec.",
+        parameters: [
+          {
+            flag: "-i",
+            description: "Input MP4 video.",
+          },
+          {
+            flag: "-c:v libvpx",
+            description:
+              "Encode the video using the VP8 codec.",
+          },
+          {
+            flag: "-c:a libvorbis",
+            description:
+              "Encode the audio using the Vorbis codec.",
+          },
+        ],
+      },
+    },
   },
 
   about: {

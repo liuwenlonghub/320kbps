@@ -111,6 +111,13 @@ export async function generateMetadata({
     };
   }
 
+  if (preset.id === "mp4-to-webm") {
+    return {
+      title: t.presets.mp4ToWebm.title,
+      description: t.presets.mp4ToWebm.description,
+    };
+  }
+
   return {
     title: preset.title,
     description: preset.description,

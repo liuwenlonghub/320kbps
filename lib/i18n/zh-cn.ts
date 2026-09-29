@@ -278,6 +278,32 @@ export const zhCN = {
         ],
       },
     },
+    mp4ToWebm: {
+      title: "MP4 → WebM",
+      description: "将 MP4 视频转换为适合网页播放的 WebM 格式。",
+      inputLabel: "输入文件",
+      outputLabel: "输出文件名",
+      outputPlaceholder: "output.webm",
+      explanation: {
+        title: "MP4 → WebM",
+        description:
+          "使用 VP8 视频编码器和 Vorbis 音频编码器，将 MP4 视频转换为 WebM。",
+        parameters: [
+          {
+            flag: "-i",
+            description: "输入 MP4 视频。",
+          },
+          {
+            flag: "-c:v libvpx",
+            description: "使用 VP8 编码器编码视频。",
+          },
+          {
+            flag: "-c:a libvorbis",
+            description: "使用 Vorbis 编码器编码音频。",
+          },
+        ],
+      },
+    },
   },
 
   about: {
