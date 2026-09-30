@@ -202,7 +202,9 @@ export function PresetPage<
                                   ? t.presets.imageToWebp.title
                                     : preset.id === "mp4-to-webm"
                                       ? t.presets.mp4ToWebm.title
-                                      : preset.title}
+                                        : preset.id === "trim-video"
+                                          ? t.presets.trimVideo.title
+                                          : preset.title}
         </h1>
 
         <p className="mt-3 text-zinc-500">
@@ -224,7 +226,9 @@ export function PresetPage<
                                   ? t.presets.imageToWebp.description
                                     : preset.id === "mp4-to-webm"
                                       ? t.presets.mp4ToWebm.description
-                                      : preset.description}
+                                        : preset.id === "trim-video"
+                                          ? t.presets.trimVideo.description
+                                          : preset.description}
         </p>
       </div>
 
@@ -491,6 +495,45 @@ export function PresetPage<
                       return field;
                     })
 
+                : preset.id === "trim-video"
+                  ? preset.fields.map((field) => {
+                      if (field.id === "input") {
+                        return {
+                          ...field,
+                          label: t.presets.trimVideo.inputLabel,
+                        };
+                      }
+
+                      if (field.id === "start") {
+                        return {
+                          ...field,
+                          label: t.presets.trimVideo.startLabel,
+                          placeholder:
+                            t.presets.trimVideo.startPlaceholder,
+                        };
+                      }
+
+                      if (field.id === "duration") {
+                        return {
+                          ...field,
+                          label: t.presets.trimVideo.durationLabel,
+                          placeholder:
+                            t.presets.trimVideo.durationPlaceholder,
+                        };
+                      }
+
+                      if (field.id === "output") {
+                        return {
+                          ...field,
+                          label: t.presets.trimVideo.outputLabel,
+                          placeholder:
+                            t.presets.trimVideo.outputPlaceholder,
+                        };
+                      }
+
+                      return field;
+                    })
+
                 : preset.fields
           }
           values={values}
@@ -635,7 +678,9 @@ export function PresetPage<
                                 ? t.presets.imageToWebp.title
                                 : preset.id === "mp4-to-webm"
                                   ? t.presets.mp4ToWebm.title
-                                  : preset.title}
+                                    : preset.id === "trim-video"
+                                      ? t.presets.trimVideo.explanation.title
+                                      : preset.title}
         </h2>
         <p className="mt-3 text-sm leading-6 text-zinc-500">
           {preset.id === "video-to-mp3"
@@ -654,7 +699,9 @@ export function PresetPage<
                                 ? t.presets.imageToWebp.description
                                   : preset.id === "mp4-to-webm"
                                     ? t.presets.mp4ToWebm.description
-                                    : preset.description}
+                                      : preset.id === "trim-video"
+                                        ? t.presets.trimVideo.explanation.description
+                                        : preset.description}
         </p>
         {preset.explanation.dynamic && (
           <div className="mt-6 rounded-2xl bg-zinc-50 p-5">
@@ -716,7 +763,9 @@ export function PresetPage<
                                     ? t.presets.imageToWebp.explanation.parameters
                                       : preset.id === "mp4-to-webm"
                                         ? t.presets.mp4ToWebm.explanation.parameters
-                                        : preset.explanation.parameters
+                                          : preset.id === "trim-video"
+                                            ? t.presets.trimVideo.explanation.parameters
+                                            : preset.explanation.parameters
           ).map((parameter) => (
             <div
               key={parameter.flag}

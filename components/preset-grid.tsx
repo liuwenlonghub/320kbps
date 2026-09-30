@@ -57,7 +57,9 @@ export function PresetGrid({
                                               ? t.presets.imageToWebp.title
                                                 : preset.id === "mp4-to-webm"
                                                   ? t.presets.mp4ToWebm.title
-                                                  : preset.title
+                                                    : preset.id === "trim-video"
+                                                      ? t.presets.trimVideo.title
+                                                      : preset.title
                   }
                   description={
                     preset.id === "video-to-mp4"
@@ -80,7 +82,9 @@ export function PresetGrid({
                                               ? t.presets.imageToWebp.description
                                                 : preset.id === "mp4-to-webm"
                                                   ? t.presets.mp4ToWebm.description
-                                                  : preset.description
+                                                    : preset.id === "trim-video"
+                                                      ? t.presets.trimVideo.description
+                                                      : preset.description
                   }
                   locale={locale}
                 />

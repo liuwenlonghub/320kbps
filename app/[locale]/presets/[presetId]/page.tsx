@@ -118,6 +118,13 @@ export async function generateMetadata({
     };
   }
 
+  if (preset.id === "trim-video") {
+    return {
+      title: t.presets.trimVideo.title,
+      description: t.presets.trimVideo.description,
+    };
+  }
+
   return {
     title: preset.title,
     description: preset.description,

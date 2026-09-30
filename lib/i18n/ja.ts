@@ -308,6 +308,39 @@ export const ja = {
         ],
       },
     },
+    trimVideo: {
+      title: "動画をトリミング",
+      description:
+        "開始時間と長さを指定して動画をトリミングします。",
+      inputLabel: "入力ファイル",
+      startLabel: "開始時間",
+      startPlaceholder: "HH:MM:SS",
+      durationLabel: "長さ",
+      durationPlaceholder: "HH:MM:SS",
+      outputLabel: "出力ファイル名",
+      outputPlaceholder: "output.mp4",
+      explanation: {
+        title: "動画をトリミング",
+        description:
+          "指定した時間から、選択した長さの動画セグメントを抽出します。",
+        parameters: [
+          {
+            flag: "-ss",
+            description:
+              "トリミングする動画の開始位置を指定します。",
+          },
+          {
+            flag: "-i",
+            description: "入力動画ファイルを指定します。",
+          },
+          {
+            flag: "-t",
+            description:
+              "出力する動画セグメントの長さを指定します。",
+          },
+        ],
+      },
+    },
   },
 
   about: {

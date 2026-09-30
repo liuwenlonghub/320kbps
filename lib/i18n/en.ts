@@ -311,6 +311,40 @@ export const en = {
         ],
       },
     },
+    trimVideo: {
+      title: "Trim Video",
+      description:
+        "Cut a video by specifying a start time and duration.",
+      inputLabel: "Input file",
+      startLabel: "Start time",
+      startPlaceholder: "HH:MM:SS",
+      durationLabel: "Duration",
+      durationPlaceholder: "HH:MM:SS",
+      outputLabel: "Output filename",
+      outputPlaceholder: "output.mp4",
+      explanation: {
+        title: "Trim Video",
+        description:
+          "Extract a section of a video starting at the specified time and continuing for the selected duration.",
+        parameters: [
+          {
+            flag: "-ss",
+            description:
+              "Set the start position of the trimmed video.",
+          },
+          {
+            flag: "-i",
+            description:
+              "Input video file.",
+          },
+          {
+            flag: "-t",
+            description:
+              "Set the duration of the output segment.",
+          },
+        ],
+      },
+    },
   },
 
   about: {

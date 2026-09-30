@@ -304,6 +304,36 @@ export const zhCN = {
         ],
       },
     },
+    trimVideo: {
+      title: "裁剪视频",
+      description: "通过指定开始时间和时长裁剪视频。",
+      inputLabel: "输入文件",
+      startLabel: "开始时间",
+      startPlaceholder: "HH:MM:SS",
+      durationLabel: "时长",
+      durationPlaceholder: "HH:MM:SS",
+      outputLabel: "输出文件名",
+      outputPlaceholder: "output.mp4",
+      explanation: {
+        title: "裁剪视频",
+        description:
+          "从指定时间开始提取视频片段，并持续指定的时长。",
+        parameters: [
+          {
+            flag: "-ss",
+            description: "设置裁剪视频的开始位置。",
+          },
+          {
+            flag: "-i",
+            description: "输入视频文件。",
+          },
+          {
+            flag: "-t",
+            description: "设置输出视频片段的时长。",
+          },
+        ],
+      },
+    },
   },
 
   about: {
