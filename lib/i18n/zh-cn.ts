@@ -334,6 +334,34 @@ export const zhCN = {
         ],
       },
     },
+    videoToImage: {
+      title: "视频 → 图片",
+      description: "在指定时间从视频中提取单帧图片。",
+      inputLabel: "输入文件",
+      timeLabel: "时间",
+      timePlaceholder: "HH:MM:SS",
+      outputLabel: "输出文件名",
+      outputPlaceholder: "frame.jpg",
+      explanation: {
+        title: "视频 → 图片",
+        description:
+          "从指定时间戳的视频中提取一帧，并将其保存为 JPEG 图片。",
+        parameters: [
+          {
+            flag: "-i",
+            description: "输入视频文件。",
+          },
+          {
+            flag: "-ss",
+            description: "跳转到视频中的指定位置。",
+          },
+          {
+            flag: "-frames:v 1",
+            description: "准确提取一帧视频画面。",
+          },
+        ],
+      },
+    },
   },
 
   about: {

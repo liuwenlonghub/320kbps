@@ -345,6 +345,37 @@ export const en = {
         ],
       },
     },
+    videoToImage: {
+      title: "Video → Image",
+      description:
+        "Extract a single frame from a video at a specified time.",
+      inputLabel: "Input file",
+      timeLabel: "Time",
+      timePlaceholder: "HH:MM:SS",
+      outputLabel: "Output filename",
+      outputPlaceholder: "frame.jpg",
+      explanation: {
+        title: "Video → Image",
+        description:
+          "Extract one frame from a video at the specified timestamp and save it as a JPEG image.",
+        parameters: [
+          {
+            flag: "-i",
+            description: "Input video file.",
+          },
+          {
+            flag: "-ss",
+            description:
+              "Seek to the specified position in the video.",
+          },
+          {
+            flag: "-frames:v 1",
+            description:
+              "Extract exactly one video frame.",
+          },
+        ],
+      },
+    },
   },
 
   about: {

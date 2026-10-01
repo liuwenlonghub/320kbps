@@ -125,6 +125,13 @@ export async function generateMetadata({
     };
   }
 
+  if (preset.id === "video-to-image") {
+    return {
+      title: t.presets.videoToImage.title,
+      description: t.presets.videoToImage.description,
+    };
+  }
+
   return {
     title: preset.title,
     description: preset.description,

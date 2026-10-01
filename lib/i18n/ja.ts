@@ -341,6 +341,35 @@ export const ja = {
         ],
       },
     },
+    videoToImage: {
+      title: "動画 → 画像",
+      description:
+        "指定した時間の動画から1フレームを抽出します。",
+      inputLabel: "入力ファイル",
+      timeLabel: "時間",
+      timePlaceholder: "HH:MM:SS",
+      outputLabel: "出力ファイル名",
+      outputPlaceholder: "frame.jpg",
+      explanation: {
+        title: "動画 → 画像",
+        description:
+          "指定したタイムスタンプの動画から1フレームを抽出し、JPEG画像として保存します。",
+        parameters: [
+          {
+            flag: "-i",
+            description: "入力動画ファイルを指定します。",
+          },
+          {
+            flag: "-ss",
+            description: "動画内の指定した位置へ移動します。",
+          },
+          {
+            flag: "-frames:v 1",
+            description: "動画フレームを1フレームだけ抽出します。",
+          },
+        ],
+      },
+    },
   },
 
   about: {
