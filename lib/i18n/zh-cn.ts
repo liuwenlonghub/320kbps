@@ -362,6 +362,42 @@ export const zhCN = {
         ],
       },
     },
+    videoToGif: {
+      title: "视频 → GIF",
+      description: "将短视频片段转换为动态 GIF。",
+      inputLabel: "输入文件",
+      startLabel: "开始时间",
+      startPlaceholder: "HH:MM:SS",
+      durationLabel: "时长",
+      durationPlaceholder: "HH:MM:SS",
+      fpsLabel: "帧率",
+      widthLabel: "宽度",
+      outputLabel: "输出文件名",
+      outputPlaceholder: "output.gif",
+      explanation: {
+        title: "视频 → GIF",
+        description:
+          "将视频中的短片段转换为动态 GIF，并可选择帧率和宽度。",
+        parameters: [
+          {
+            flag: "-ss",
+            description: "设置 GIF 的开始位置。",
+          },
+          {
+            flag: "-t",
+            description: "设置 GIF 的持续时间。",
+          },
+          {
+            flag: "-vf",
+            description: "设置帧率和输出宽度。",
+          },
+          {
+            flag: "-f gif",
+            description: "将输出写入为动态 GIF。",
+          },
+        ],
+      },
+    },
   },
 
   about: {

@@ -376,6 +376,47 @@ export const en = {
         ],
       },
     },
+    videoToGif: {
+      title: "Video → GIF",
+      description:
+        "Convert a short video segment to an animated GIF.",
+      inputLabel: "Input file",
+      startLabel: "Start time",
+      startPlaceholder: "HH:MM:SS",
+      durationLabel: "Duration",
+      durationPlaceholder: "HH:MM:SS",
+      fpsLabel: "Frame rate",
+      widthLabel: "Width",
+      outputLabel: "Output filename",
+      outputPlaceholder: "output.gif",
+      explanation: {
+        title: "Video → GIF",
+        description:
+          "Convert a short section of a video into an animated GIF with a selected frame rate and width.",
+        parameters: [
+          {
+            flag: "-ss",
+            description:
+              "Set the starting position of the GIF.",
+          },
+          {
+            flag: "-t",
+            description:
+              "Set the duration of the GIF.",
+          },
+          {
+            flag: "-vf",
+            description:
+              "Set the frame rate and output width.",
+          },
+          {
+            flag: "-f gif",
+            description:
+              "Write the output as an animated GIF.",
+          },
+        ],
+      },
+    },
   },
 
   about: {

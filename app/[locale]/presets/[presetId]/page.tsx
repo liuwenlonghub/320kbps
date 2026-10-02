@@ -132,6 +132,13 @@ export async function generateMetadata({
     };
   }
 
+  if (preset.id === "video-to-gif") {
+    return {
+      title: t.presets.videoToGif.title,
+      description: t.presets.videoToGif.description,
+    };
+  }
+
   return {
     title: preset.title,
     description: preset.description,

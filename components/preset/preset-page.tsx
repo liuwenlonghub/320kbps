@@ -206,7 +206,9 @@ export function PresetPage<
                                           ? t.presets.trimVideo.title
                                             : preset.id === "video-to-image"
                                               ? t.presets.videoToImage.title
-                                              : preset.title}
+                                                : preset.id === "video-to-gif"
+                                                  ? t.presets.videoToGif.title
+                                                  : preset.title}
         </h1>
 
         <p className="mt-3 text-zinc-500">
@@ -232,7 +234,9 @@ export function PresetPage<
                                           ? t.presets.trimVideo.description
                                             : preset.id === "video-to-image"
                                               ? t.presets.videoToImage.description
-                                              : preset.description}
+                                                : preset.id === "video-to-gif"
+                                                  ? t.presets.videoToGif.description
+                                                  : preset.description}
         </p>
       </div>
 
@@ -568,6 +572,59 @@ export function PresetPage<
                       return field;
                     })
 
+                : preset.id === "video-to-gif"
+                  ? preset.fields.map((field) => {
+                      if (field.id === "input") {
+                        return {
+                          ...field,
+                          label: t.presets.videoToGif.inputLabel,
+                        };
+                      }
+
+                      if (field.id === "start") {
+                        return {
+                          ...field,
+                          label: t.presets.videoToGif.startLabel,
+                          placeholder:
+                            t.presets.videoToGif.startPlaceholder,
+                        };
+                      }
+
+                      if (field.id === "duration") {
+                        return {
+                          ...field,
+                          label: t.presets.videoToGif.durationLabel,
+                          placeholder:
+                            t.presets.videoToGif.durationPlaceholder,
+                        };
+                      }
+
+                      if (field.id === "fps") {
+                        return {
+                          ...field,
+                          label: t.presets.videoToGif.fpsLabel,
+                        };
+                      }
+
+                      if (field.id === "width") {
+                        return {
+                          ...field,
+                          label: t.presets.videoToGif.widthLabel,
+                        };
+                      }
+
+                      if (field.id === "output") {
+                        return {
+                          ...field,
+                          label: t.presets.videoToGif.outputLabel,
+                          placeholder:
+                            t.presets.videoToGif.outputPlaceholder,
+                        };
+                      }
+
+                      return field;
+                    })
+                    
                 : preset.fields
           }
           values={values}
@@ -716,7 +773,9 @@ export function PresetPage<
                                       ? t.presets.trimVideo.explanation.title
                                         : preset.id === "video-to-image"
                                           ? t.presets.videoToImage.explanation.title
-                                          : preset.title}
+                                            : preset.id === "video-to-gif"
+                                              ? t.presets.videoToGif.explanation.title
+                                              : preset.title}
         </h2>
         <p className="mt-3 text-sm leading-6 text-zinc-500">
           {preset.id === "video-to-mp3"
@@ -739,7 +798,9 @@ export function PresetPage<
                                         ? t.presets.trimVideo.explanation.description
                                           : preset.id === "video-to-image"
                                             ? t.presets.videoToImage.explanation.description
-                                            : preset.description}
+                                              : preset.id === "video-to-gif"
+                                                ? t.presets.videoToGif.explanation.description
+                                                : preset.description}
         </p>
         {preset.explanation.dynamic && (
           <div className="mt-6 rounded-2xl bg-zinc-50 p-5">
@@ -805,7 +866,9 @@ export function PresetPage<
                                             ? t.presets.trimVideo.explanation.parameters
                                               : preset.id === "video-to-image"
                                                 ? t.presets.videoToImage.explanation.parameters
-                                                : preset.explanation.parameters
+                                                  : preset.id === "video-to-gif"
+                                                    ? t.presets.videoToGif.explanation.parameters
+                                                    : preset.explanation.parameters
           ).map((parameter) => (
             <div
               key={parameter.flag}

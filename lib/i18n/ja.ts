@@ -370,6 +370,45 @@ export const ja = {
         ],
       },
     },
+    videoToGif: {
+      title: "動画 → GIF",
+      description:
+        "短い動画をアニメーション GIF に変換します。",
+      inputLabel: "入力ファイル",
+      startLabel: "開始時間",
+      startPlaceholder: "HH:MM:SS",
+      durationLabel: "長さ",
+      durationPlaceholder: "HH:MM:SS",
+      fpsLabel: "フレームレート",
+      widthLabel: "幅",
+      outputLabel: "出力ファイル名",
+      outputPlaceholder: "output.gif",
+      explanation: {
+        title: "動画 → GIF",
+        description:
+          "動画の短い区間を、指定したフレームレートと幅でアニメーション GIF に変換します。",
+        parameters: [
+          {
+            flag: "-ss",
+            description: "GIF の開始位置を指定します。",
+          },
+          {
+            flag: "-t",
+            description: "GIF の長さを指定します。",
+          },
+          {
+            flag: "-vf",
+            description:
+              "フレームレートと出力幅を指定します。",
+          },
+          {
+            flag: "-f gif",
+            description:
+              "出力をアニメーション GIF として書き出します。",
+          },
+        ],
+      },
+    },
   },
 
   about: {
