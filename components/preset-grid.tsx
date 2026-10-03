@@ -63,7 +63,9 @@ export function PresetGrid({
                                                             ? t.presets.videoToImage.title
                                                               : preset.id === "video-to-gif"
                                                                 ? t.presets.videoToGif.title
-                                                                : preset.title
+                                                                  : preset.id === "mov-to-mp4"
+                                                                    ? t.presets.movToMp4.title
+                                                                    : preset.title
                   }
                   description={
                     preset.id === "video-to-mp4"
@@ -92,7 +94,9 @@ export function PresetGrid({
                                                             ? t.presets.videoToImage.description
                                                               : preset.id === "video-to-gif"
                                                                 ? t.presets.videoToGif.description
-                                                                : preset.description
+                                                                  : preset.id === "mov-to-mp4"
+                                                                    ? t.presets.movToMp4.description
+                                                                    : preset.description
                   }
                   locale={locale}
                 />

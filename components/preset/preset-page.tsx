@@ -208,7 +208,9 @@ export function PresetPage<
                                               ? t.presets.videoToImage.title
                                                 : preset.id === "video-to-gif"
                                                   ? t.presets.videoToGif.title
-                                                  : preset.title}
+                                                    : preset.id === "mov-to-mp4"
+                                                      ? t.presets.movToMp4.title
+                                                      : preset.title}
         </h1>
 
         <p className="mt-3 text-zinc-500">
@@ -236,7 +238,9 @@ export function PresetPage<
                                               ? t.presets.videoToImage.description
                                                 : preset.id === "video-to-gif"
                                                   ? t.presets.videoToGif.description
-                                                  : preset.description}
+                                                    : preset.id === "mov-to-mp4"
+                                                      ? t.presets.movToMp4.description
+                                                      : preset.description}
         </p>
       </div>
 
@@ -624,7 +628,28 @@ export function PresetPage<
 
                       return field;
                     })
-                    
+
+                : preset.id === "mov-to-mp4"
+                  ? preset.fields.map((field) => {
+                      if (field.id === "input") {
+                        return {
+                          ...field,
+                          label: t.presets.movToMp4.inputLabel,
+                        };
+                      }
+
+                      if (field.id === "output") {
+                        return {
+                          ...field,
+                          label: t.presets.movToMp4.outputLabel,
+                          placeholder:
+                            t.presets.movToMp4.outputPlaceholder,
+                        };
+                      }
+
+                      return field;
+                    })                    
+
                 : preset.fields
           }
           values={values}
@@ -775,7 +800,9 @@ export function PresetPage<
                                           ? t.presets.videoToImage.explanation.title
                                             : preset.id === "video-to-gif"
                                               ? t.presets.videoToGif.explanation.title
-                                              : preset.title}
+                                                : preset.id === "mov-to-mp4"
+                                                  ? t.presets.movToMp4.explanation.title
+                                                  : preset.title}
         </h2>
         <p className="mt-3 text-sm leading-6 text-zinc-500">
           {preset.id === "video-to-mp3"
@@ -800,7 +827,9 @@ export function PresetPage<
                                             ? t.presets.videoToImage.explanation.description
                                               : preset.id === "video-to-gif"
                                                 ? t.presets.videoToGif.explanation.description
-                                                : preset.description}
+                                                  : preset.id === "mov-to-mp4"
+                                                    ? t.presets.movToMp4.explanation.description
+                                                    : preset.description}
         </p>
         {preset.explanation.dynamic && (
           <div className="mt-6 rounded-2xl bg-zinc-50 p-5">
@@ -868,7 +897,9 @@ export function PresetPage<
                                                 ? t.presets.videoToImage.explanation.parameters
                                                   : preset.id === "video-to-gif"
                                                     ? t.presets.videoToGif.explanation.parameters
-                                                    : preset.explanation.parameters
+                                                      : preset.id === "mov-to-mp4"
+                                                        ? t.presets.movToMp4.explanation.parameters
+                                                        : preset.explanation.parameters
           ).map((parameter) => (
             <div
               key={parameter.flag}

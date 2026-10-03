@@ -409,6 +409,35 @@ export const ja = {
         ],
       },
     },
+    movToMp4: {
+      title: "MOV → MP4",
+      description:
+        "MOV 動画を、より幅広い環境で再生できる MP4 形式に変換します。",
+      inputLabel: "入力ファイル",
+      outputLabel: "出力ファイル名",
+      outputPlaceholder: "output.mp4",
+      explanation: {
+        title: "MOV → MP4",
+        description:
+          "メディアストリームを再エンコードせずに、MOV コンテナを MP4 に変換します。",
+        parameters: [
+          {
+            flag: "-i",
+            description: "入力 MOV 動画を指定します。",
+          },
+          {
+            flag: "-c copy",
+            description:
+              "既存の動画と音声ストリームを再エンコードせずにコピーします。",
+          },
+          {
+            flag: "-movflags +faststart",
+            description:
+              "MP4 のメタデータをファイルの先頭に移動し、Web 上での再生開始を高速化します。",
+          },
+        ],
+      },
+    },
   },
 
   about: {

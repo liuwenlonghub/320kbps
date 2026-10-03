@@ -398,6 +398,34 @@ export const zhCN = {
         ],
       },
     },
+    movToMp4: {
+      title: "MOV → MP4",
+      description: "将 MOV 视频转换为兼容性更广的 MP4 格式。",
+      inputLabel: "输入文件",
+      outputLabel: "输出文件名",
+      outputPlaceholder: "output.mp4",
+      explanation: {
+        title: "MOV → MP4",
+        description:
+          "将 MOV 容器转换为 MP4，无需重新编码媒体流。",
+        parameters: [
+          {
+            flag: "-i",
+            description: "输入 MOV 视频。",
+          },
+          {
+            flag: "-c copy",
+            description:
+              "直接复制现有的视频和音频流，无需重新编码。",
+          },
+          {
+            flag: "-movflags +faststart",
+            description:
+              "将 MP4 元数据移动到文件开头，以加快网页播放速度。",
+          },
+        ],
+      },
+    },
   },
 
   about: {
