@@ -12,6 +12,12 @@ export const en = {
     about: "About",
   },
 
+  categories: {
+    audio: "Audio",
+    video: "Video",
+    image: "Image",
+  },
+
   home: {
     title: "Simple media tools, powered by FFmpeg.",
     description:

@@ -12,6 +12,12 @@ export const ja = {
     about: "このサイトについて",
   },
 
+  categories: {
+    audio: "オーディオ",
+    video: "動画",
+    image: "画像",
+  },
+
   home: {
     title: "FFmpeg を使ったシンプルなメディアツール。",
     description:

@@ -12,6 +12,12 @@ export const zhCN = {
     about: "关于",
   },
 
+  categories: {
+    audio: "音频",
+    video: "视频",
+    image: "图片",
+  },
+
   home: {
     title: "由 FFmpeg 驱动的简单媒体工具。",
     description:

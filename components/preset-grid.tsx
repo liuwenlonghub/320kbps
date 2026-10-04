@@ -29,7 +29,10 @@ export function PresetGrid({
 
         return (
           <div key={category}>
-            <PresetCategoryLabel category={category} />
+            <PresetCategoryLabel
+              category={category}
+              locale={locale}
+            />
 
             <div className="grid gap-4 sm:grid-cols-2">
               {categoryPresets.map((preset) => (
