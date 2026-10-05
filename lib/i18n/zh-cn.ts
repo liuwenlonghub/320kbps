@@ -29,6 +29,28 @@ export const zhCN = {
     backToPresets: "返回预设",
   },
 
+  presetPage: {
+    convertInBrowser: "在浏览器中转换",
+    runsLocally: "在浏览器本地运行。你的文件不会上传。",
+    convertInBrowserButton: "在浏览器中转换",
+    loadingFFmpeg: "正在加载 FFmpeg…",
+    loadingFFmpegDescription: "首次加载 FFmpeg.wasm 可能需要一些时间。",
+    converting: "正在转换…",
+    conversionComplete: "转换完成",
+    download: "下载",
+    conversionFailed: "转换失败，请尝试其他视频。",
+    tryAgain: "重试",
+    ffmpegCommand: "FFmpeg 命令",
+    copyCommand: "复制命令",
+    copied: "已复制！",
+    releaseToUpload: "松开以上传文件",
+    dropYourFile: "将文件拖放到这里",
+    clickToChooseFile: "或点击选择文件",
+    supportedFormats: "支持格式",
+    selectedFile: "已选择文件",
+    ready: "准备就绪",
+  },
+
   presets: {
     videoToMp4: {
       title: "视频 → MP4",

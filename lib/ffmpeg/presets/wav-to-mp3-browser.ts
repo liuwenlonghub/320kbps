@@ -3,10 +3,6 @@ import { fetchFile, toBlobURL } from "@ffmpeg/util";
 
 let ffmpeg: FFmpeg | null = null;
 
-let progressHandler:
-  | ((event: { progress: number }) => void)
-  | null = null;
-
 async function getFFmpeg() {
   if (ffmpeg) {
     return ffmpeg;

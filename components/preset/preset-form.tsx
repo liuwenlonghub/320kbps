@@ -3,12 +3,15 @@
 import { useState } from "react";
 import type { DragEvent, ChangeEvent } from "react";
 import type { PresetField } from "@/lib/ffmpeg/types/preset";
+import type { Locale } from "@/lib/i18n";
+import { getDictionary } from "@/lib/i18n";
 
 type PresetFormProps = {
   fields: readonly PresetField[];
   values: Record<string, string | number>;
   onChange: (id: string, value: string | number) => void;
   onFileChange?: (id: string, file: File) => void;
+  locale: Locale;
 };
 
 function formatAcceptedTypes(
@@ -51,7 +54,9 @@ export function PresetForm({
   values,
   onChange,
   onFileChange,
+  locale,
 }: PresetFormProps) {
+  const t = getDictionary(locale);
   const [draggingField, setDraggingField] =
     useState<string | null>(null);
 
@@ -152,17 +157,17 @@ export function PresetForm({
               >
                 <span className="text-sm font-medium text-zinc-950">
                   {isDragging
-                    ? "Release to upload"
-                    : "Drop your file here"}
+                    ? t.presetPage.releaseToUpload
+                    : t.presetPage.dropYourFile}
                 </span>
 
                 <span className="mt-1 text-sm text-zinc-500">
-                  or click to choose a file
+                  {t.presetPage.clickToChooseFile}
                 </span>
 
                 {acceptedTypes && (
                   <span className="mt-3 text-xs text-zinc-400">
-                    Supported formats: {acceptedTypes}
+                    {t.presetPage.supportedFormats}: {acceptedTypes}
                   </span>
                 )}
 
@@ -188,12 +193,12 @@ export function PresetForm({
                     </p>
 
                     <p className="mt-1 text-xs text-zinc-400">
-                      Selected file
+                      {t.presetPage.selectedFile}
                     </p>
                   </div>
 
                   <span className="ml-4 shrink-0 text-xs text-zinc-400">
-                    Ready
+                    {t.presetPage.ready}
                   </span>
                 </div>
               )}

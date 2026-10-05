@@ -1,13 +1,20 @@
 "use client";
 
 import { useState } from "react";
+import type { Locale } from "@/lib/i18n";
+import { getDictionary } from "@/lib/i18n";
 
 type CopyButtonProps = {
   value: string;
+  locale: Locale;
 };
 
-export function CopyButton({ value }: CopyButtonProps) {
+export function CopyButton({
+  value,
+  locale,
+}: CopyButtonProps) {
   const [copied, setCopied] = useState(false);
+  const t = getDictionary(locale);
 
   async function handleCopy() {
     try {
@@ -28,7 +35,9 @@ export function CopyButton({ value }: CopyButtonProps) {
       onClick={handleCopy}
       className="text-sm font-medium text-zinc-500 transition-colors hover:text-zinc-950"
     >
-      {copied ? "Copied!" : "Copy command"}
+      {copied
+        ? t.presetPage.copied
+        : t.presetPage.copyCommand}
     </button>
   );
 }

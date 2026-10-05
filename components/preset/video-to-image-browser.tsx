@@ -1,5 +1,8 @@
 "use client";
 
+import type { Locale } from "@/lib/i18n";
+import { getDictionary } from "@/lib/i18n";
+
 import { useEffect, useState } from "react";
 import { extractVideoFrameInBrowser } from "@/lib/ffmpeg/presets/video-to-image-browser";
 
@@ -7,13 +10,18 @@ type VideoToImageBrowserProps = {
   file: File | null;
   time: string;
   outputFilename: string;
+  locale: Locale;
+
 };
 
 export function VideoToImageBrowser({
   file,
   time,
   outputFilename,
+  locale,
+
 }: VideoToImageBrowserProps) {
+  const t = getDictionary(locale);
   const [status, setStatus] = useState<
     "idle" | "loading" | "converting" | "done" | "error"
   >("idle");
@@ -22,16 +30,6 @@ export function VideoToImageBrowser({
 
   const [downloadUrl, setDownloadUrl] =
     useState<string | null>(null);
-
-  useEffect(() => {
-    setStatus("idle");
-    setProgress(0);
-
-    if (downloadUrl) {
-      URL.revokeObjectURL(downloadUrl);
-      setDownloadUrl(null);
-    }
-  }, [file]);
 
   useEffect(() => {
     return () => {
@@ -84,12 +82,11 @@ export function VideoToImageBrowser({
     <section className="mt-10 rounded-2xl bg-zinc-50 p-6">
       <div>
         <h2 className="text-sm font-medium">
-          Convert in your browser
+          {t.presetPage.convertInBrowser}
         </h2>
 
         <p className="mt-2 text-sm leading-6 text-zinc-500">
-          Runs locally in your browser. Your file
-          is not uploaded.
+          {t.presetPage.runsLocally}
         </p>
       </div>
 
@@ -101,19 +98,18 @@ export function VideoToImageBrowser({
             disabled={!file}
             className="inline-flex h-10 items-center rounded-full bg-zinc-950 px-5 text-sm font-medium text-white transition-colors hover:bg-zinc-800 disabled:cursor-not-allowed disabled:bg-zinc-300"
           >
-            Convert in browser
+            {t.presetPage.convertInBrowserButton}
           </button>
         )}
 
         {status === "loading" && (
           <div>
             <p className="text-sm text-zinc-500">
-              Loading FFmpeg…
+              {t.presetPage.loadingFFmpeg}
             </p>
 
             <p className="mt-2 text-xs leading-5 text-zinc-400">
-              Loading FFmpeg.wasm for the first time
-              may take a moment.
+              {t.presetPage.loadingFFmpegDescription}
             </p>
           </div>
         )}
@@ -144,8 +140,7 @@ export function VideoToImageBrowser({
         {status === "error" && (
           <div>
             <p className="text-sm text-red-600">
-              Conversion failed. Please try another
-              video.
+              {t.presetPage.conversionFailed}
             </p>
 
             <button
@@ -154,7 +149,7 @@ export function VideoToImageBrowser({
               disabled={isWorking || !file}
               className="mt-4 text-sm font-medium text-zinc-950 underline underline-offset-4 disabled:cursor-not-allowed disabled:opacity-40"
             >
-              Try again
+              {t.presetPage.tryAgain}
             </button>
           </div>
         )}

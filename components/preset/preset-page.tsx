@@ -655,6 +655,7 @@ export function PresetPage<
           values={values}
           onChange={handleOptionChange}
           onFileChange={handleBrowserFileChange}
+          locale={locale}
         />
       </section>
 
@@ -663,6 +664,7 @@ export function PresetPage<
           file={selectedFile}
           width={Number(values.width)}
           outputFilename={String(values.output)}
+          locale={locale}
         />
       )}
 
@@ -676,6 +678,7 @@ export function PresetPage<
               | "small"
           }
           outputFilename={String(values.output)}
+          locale={locale}
         />
       )}
 
@@ -683,6 +686,7 @@ export function PresetPage<
         <WebmToMp4Browser
           file={selectedFile}
           outputFilename={String(values.output)}
+            locale={locale}
         />
       )}
 
@@ -691,6 +695,7 @@ export function PresetPage<
           file={selectedFile}
           quality={Number(values.quality)}
           outputFilename={String(values.output)}
+            locale={locale}
         />
       )}
 
@@ -699,6 +704,7 @@ export function PresetPage<
           file={selectedFile}
           bitrate={Number(values.bitrate)}
           outputFilename={String(values.output)}
+          locale={locale}
         />
       )}
 
@@ -707,6 +713,7 @@ export function PresetPage<
           file={selectedFile}
           bitrate={Number(values.bitrate)}
           outputFilename={String(values.output)}
+            locale={locale}
         />
       )}
 
@@ -715,6 +722,7 @@ export function PresetPage<
           file={selectedFile}
           bitrate={Number(values.bitrate)}
           outputFilename={String(values.output)}
+          locale={locale}
         />
       )}
 
@@ -722,6 +730,7 @@ export function PresetPage<
         <Mp4ToWebmBrowser
           file={selectedFile}
           outputFilename={String(values.output)}
+          locale={locale}
         />
       )}
 
@@ -731,6 +740,7 @@ export function PresetPage<
           start={String(values.start)}
           duration={String(values.duration)}
           outputFilename={String(values.output)}
+          locale={locale}
         />
       )}
 
@@ -739,6 +749,7 @@ export function PresetPage<
           file={selectedFile}
           time={String(values.time)}
           outputFilename={String(values.output)}
+          locale={locale}
         />
       )}
 
@@ -750,6 +761,7 @@ export function PresetPage<
           fps={Number(values.fps)}
           width={Number(values.width)}
           outputFilename={String(values.output)}
+          locale={locale}
         />
       )}
 
@@ -757,6 +769,7 @@ export function PresetPage<
         <MkvToMp4Browser
           file={selectedFile}
           outputFilename={String(values.output)}
+          locale={locale}
         />
       )}
 
@@ -764,6 +777,7 @@ export function PresetPage<
         <MovToMp4Browser
           file={selectedFile}
           outputFilename={String(values.output)}
+          locale={locale}
         />
       )}
 
@@ -771,10 +785,11 @@ export function PresetPage<
         <VideoToMp4Browser
           file={selectedFile}
           outputFilename={String(values.output)}
+          locale={locale}
         />
       )}
 
-      <CommandPreview command={command} />
+      <CommandPreview command={command} locale={locale} />
 
       <section className="mt-12 border-t border-zinc-200 pt-8">
         <h2 className="text-sm font-medium">

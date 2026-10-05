@@ -1,11 +1,5 @@
 import type { Locale } from "./index";
 
-const supportedLocales: Locale[] = [
-  "en",
-  "zh-cn",
-  "ja",
-];
-
 export function getBrowserLocale(): Locale {
   const languages = navigator.languages;
 

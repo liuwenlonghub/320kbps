@@ -29,6 +29,28 @@ export const ja = {
     backToPresets: "プリセットに戻る",
   },
 
+  presetPage: {
+    convertInBrowser: "ブラウザで変換",
+    runsLocally: "ブラウザ上でローカルに処理します。ファイルはアップロードされません。",
+    convertInBrowserButton: "ブラウザで変換",
+    loadingFFmpeg: "FFmpeg を読み込んでいます…",
+    loadingFFmpegDescription: "初回の FFmpeg.wasm の読み込みには少し時間がかかる場合があります。",
+    converting: "変換中…",
+    conversionComplete: "変換が完了しました",
+    download: "ダウンロード",
+    conversionFailed: "変換に失敗しました。別の動画を試してください。",
+    tryAgain: "もう一度試す",
+    ffmpegCommand: "FFmpeg コマンド",
+    copyCommand: "コマンドをコピー",
+    copied: "コピーしました！",
+    releaseToUpload: "離してアップロード",
+    dropYourFile: "ここにファイルをドロップ",
+    clickToChooseFile: "またはクリックしてファイルを選択",
+    supportedFormats: "対応形式",
+    selectedFile: "選択したファイル",
+    ready: "準備完了",
+  },
+
   presets: {
     videoToMp4: {
       title: "動画 → MP4",

@@ -29,6 +29,28 @@ export const en = {
     backToPresets: "Back to presets",
   },
 
+  presetPage: {
+    convertInBrowser: "Convert in your browser",
+    runsLocally: "Runs locally in your browser. Your file is not uploaded.",
+    convertInBrowserButton: "Convert in browser",
+    loadingFFmpeg: "Loading FFmpeg…",
+    loadingFFmpegDescription: "Loading FFmpeg.wasm for the first time may take a moment.",
+    converting: "Converting…",
+    conversionComplete: "Conversion complete",
+    download: "Download",
+    conversionFailed: "Conversion failed. Please try another video.",
+    tryAgain: "Try again",
+    ffmpegCommand: "FFmpeg command",
+    copyCommand: "Copy command",
+    copied: "Copied!",
+    releaseToUpload: "Release to upload",
+    dropYourFile: "Drop your file here",
+    clickToChooseFile: "or click to choose a file",
+    supportedFormats: "Supported formats",
+    selectedFile: "Selected file",
+    ready: "Ready",
+  },
+
   presets: {
     videoToMp4: {
       title: "Video → MP4",
