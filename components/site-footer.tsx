@@ -13,7 +13,7 @@ export function SiteFooter() {
         </a>
       </span>
 
-      <span>Powered by FFmpeg</span>
+      <span>Powered by <a href="https://ffmpeg.org" target="_blank" rel="noopener noreferrer" className="transition-opacity hover:opacity-50">FFmpeg</a></span>
     </footer>
   );
 }
