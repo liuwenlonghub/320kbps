@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Preset } from "@/lib/ffmpeg/types/preset";
 import type { Locale } from "@/lib/i18n";
+import { getDictionary } from "@/lib/i18n";
 
 type PresetCardProps = Pick<
   Preset,
@@ -15,6 +16,8 @@ export function PresetCard({
   description,
   locale = "en",
 }: PresetCardProps) {
+  const t = getDictionary(locale);
+
   return (
     <Link
       href={`/${locale}/presets/${id}`}
@@ -29,7 +32,7 @@ export function PresetCard({
       </p>
 
       <div className="mt-6 text-sm font-medium text-zinc-400 transition-colors group-hover:text-zinc-950">
-        Configure →
+        {t.home.configure} →
       </div>
     </Link>
   );

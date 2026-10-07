@@ -3,8 +3,7 @@ export const zhCN = {
     name: "320kbps",
     tagline: "为人类设计的 FFmpeg 预设和工具。",
     description: "由 FFmpeg 驱动的简单媒体工具。",
-    supporting:
-      "无需记忆 FFmpeg 命令，即可构建自己的 FFmpeg 命令。",
+    supporting: "无需记忆 FFmpeg 命令，即可构建自己的 FFmpeg 命令。",
   },
 
   navigation: {
@@ -20,13 +19,12 @@ export const zhCN = {
 
   home: {
     title: "由 FFmpeg 驱动的简单媒体工具。",
-    description:
-      "选择常用的媒体任务，配置几个选项，即可直接在浏览器中转换文件，或获取 FFmpeg 命令在本地运行。",
+    description: "选择常用的媒体任务，配置几个选项，即可直接在浏览器中转换文件，或获取 FFmpeg 命令在本地运行。",
     explorePresets: "探索预设",
     browseAll: "浏览全部预设",
-    presetsDescription:
-      "用于处理常见音频、视频和图像任务的简单工具。",
+    presetsDescription: "用于处理常见音频、视频和图像任务的简单工具。",
     backToPresets: "返回预设",
+    configure: "配置",
   },
 
   presetPage: {

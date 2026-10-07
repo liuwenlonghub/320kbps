@@ -20,13 +20,12 @@ export const en = {
 
   home: {
     title: "Simple media tools, powered by FFmpeg.",
-    description:
-      "Choose a common media task, configure a few options, and convert files directly in your browser or get the FFmpeg command to run locally.",
+    description: "Choose a common media task, configure a few options, and convert files directly in your browser or get the FFmpeg command to run locally.",
     explorePresets: "Explore presets",
     browseAll: "Browse all presets",
-    presetsDescription:
-      "Simple tools for common audio, video, and image tasks.",
+    presetsDescription: "Simple tools for common audio, video, and image tasks.",
     backToPresets: "Back to presets",
+    configure: "Configure",
   },
 
   presetPage: {

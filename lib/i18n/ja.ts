@@ -3,8 +3,7 @@ export const ja = {
     name: "320kbps",
     tagline: "人のための FFmpeg プリセットとツール。",
     description: "FFmpeg を使ったシンプルなメディアツール。",
-    supporting:
-      "FFmpeg のコマンドを覚えなくても、コマンドを作成できます。",
+    supporting: "FFmpeg のコマンドを覚えなくても、コマンドを作成できます。",
   },
 
   navigation: {
@@ -20,13 +19,12 @@ export const ja = {
 
   home: {
     title: "FFmpeg を使ったシンプルなメディアツール。",
-    description:
-      "よく使うメディア処理を選び、いくつかのオプションを設定するだけで、ブラウザ上でファイルを変換したり、ローカルで実行できる FFmpeg コマンドを取得できます。",
+    description: "よく使うメディア処理を選び、いくつかのオプションを設定するだけで、ブラウザ上でファイルを変換したり、ローカルで実行できる FFmpeg コマンドを取得できます。",
     explorePresets: "プリセットを見る",
     browseAll: "すべてのプリセットを見る",
-    presetsDescription:
-      "音声、動画、画像の一般的な処理に使えるシンプルなツール。",
+    presetsDescription: "音声、動画、画像の一般的な処理に使えるシンプルなツール。",
     backToPresets: "プリセットに戻る",
+    configure: "設定",
   },
 
   presetPage: {
