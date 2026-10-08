@@ -62,7 +62,7 @@ export default async function LocaleHome({
   ];
 
   return (
-    <div className="mx-auto max-w-[1100px] bg-white px-[6vw] text-zinc-950">
+    <div className="mx-auto max-w-[1280px] bg-white px-[6vw] text-zinc-950">
       {/* Hero */}
       <section className="flex min-h-[680px] flex-col justify-center py-24">
         <div className="max-w-3xl">
