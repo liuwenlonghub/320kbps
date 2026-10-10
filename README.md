@@ -2,36 +2,60 @@
 
 [English](README.md) · [中文](README.zh-CN.md)
 
-320kbps is a collection of lightweight media tools powered by FFmpeg. Choose a preset, configure a few options, and process files directly in your browser or copy the generated FFmpeg command to run locally.
+320kbps is a lightweight media toolkit built around FFmpeg. It helps users convert common audio, video, and image files without memorizing FFmpeg flags. Each preset exposes a small set of options, generates the matching FFmpeg command, and can run locally in the browser through FFmpeg.wasm.
 
 Demo: [https://www.320kbps.com](https://www.320kbps.com)
 
-## Features
+## What this project does
 
-- **Video to MP3**: Extract audio from a video and choose a bitrate of 128, 192, 256, or 320 kbps.
-- **Video → GIF**: Convert a short video segment into an animated GIF with a selected frame rate and width.
-- **MKV → MP4**: Convert MKV videos to MP4 for broader compatibility and faster web playback.
-- **MOV → MP4**: Convert MOV videos to MP4 for broader compatibility and faster web playback.
-- **Video → MP4**: Convert videos to MP4 for broader compatibility and faster web playback.
-- **WAV to MP3**: Convert uncompressed WAV audio to MP3 with a selectable bitrate.
-- **FLAC to MP3**: Convert lossless FLAC audio to MP3 with a selectable bitrate.
-- **Resize video**: Scale a video to a chosen width.
-- **Compress video**: Choose between high quality, balanced compression, and a smaller file.
-- **Trim video**: Cut a video by specifying a start time and duration.
-- **Video → Image**: Extract a single frame from a video at a chosen timestamp and save it as an image.
-- **MP4 to WebM**: Convert MP4 videos to WebM with adjustable quality.
-- **WebM to MP4**: Convert WebM videos to MP4.
-- **Image to WebP**: Convert JPG, PNG, GIF, BMP, or TIFF images to WebP and adjust the quality.
+This app is a static Next.js site for common media conversions. Users can:
 
-Each preset page shows the FFmpeg command for the current configuration and explains its main parameters. Browser-capable presets show conversion progress and provide a download for the result.
+- choose a preset from the homepage,
+- customize a few parameters,
+- process files directly in the browser, or
+- copy the generated FFmpeg command and run it locally.
 
-## Privacy and Runtime
+The project is designed for simple, repeatable tasks: converting between containers, extracting audio, resizing media, compressing video, and generating stills or animated assets.
 
-Browser conversions use [FFmpeg.wasm](https://github.com/ffmpegwasm/ffmpeg.wasm). Files are processed in the current browser and are not uploaded to the application server. The FFmpeg WebAssembly core is loaded from jsDelivr on the first conversion, so the initial run may take longer and requires a network connection.
+## Supported presets
 
-Browser processing uses local CPU and memory. Large files or more complex encoding tasks may take longer. For cases that are not supported or practical in the browser, copy the command from the page and run it after installing FFmpeg locally.
+### Audio
 
-## Getting Started
+- **Video → MP3**: Extract audio from a video file and choose a bitrate of 128, 192, 256, or 320 kbps.
+- **WAV → MP3**: Convert uncompressed WAV files to MP3.
+- **FLAC → MP3**: Convert lossless FLAC files to MP3.
+
+### Video
+
+- **Video → MP4**: Convert compatible video files to MP4.
+- **MKV → MP4**: Convert MKV to MP4.
+- **MOV → MP4**: Convert MOV to MP4.
+- **MP4 → WebM**: Convert MP4 files to WebM with adjustable quality.
+- **WebM → MP4**: Convert WebM files back to MP4.
+- **Resize video**: Scale a video to a target width while preserving aspect ratio.
+- **Compress video**: Reduce file size with different quality settings.
+- **Trim video**: Cut a segment by start time and duration.
+- **Video → GIF**: Export a short segment as a GIF.
+- **Video → Image**: Extract a single frame at a chosen timestamp.
+
+### Image
+
+- **Image → WebP**: Convert JPG, PNG, GIF, BMP, or TIFF files to WebP.
+
+Each preset page shows the exact FFmpeg command for the current configuration and explains the main flags used. Presets that support browser execution also show progress and allow direct downloads from the browser.
+
+## Privacy and runtime behavior
+
+Browser conversions use [FFmpeg.wasm](https://github.com/ffmpegwasm/ffmpeg.wasm). Files are processed in the current browser and are not uploaded to an application server.
+
+Important notes:
+
+- The FFmpeg WebAssembly core is loaded from jsDelivr on first use, so the initial conversion may take longer and requires an internet connection.
+- Browser processing uses local CPU and memory.
+- Large or more complex tasks may take longer to finish.
+- If a task is not practical in the browser, copy the generated command and run it locally after installing FFmpeg.
+
+## Getting started
 
 Requires Node.js and npm.
 
@@ -40,62 +64,76 @@ npm install
 npm run dev
 ```
 
-Open <http://localhost:3000> to view the application.
+Then open <http://localhost:3000>.
 
-## Common Commands
+## Common commands
 
 | Command | Description |
 | --- | --- |
-| `npm run dev` | Start the development server |
+| `npm run dev` | Start the Next.js development server |
 | `npm run build` | Build the static production output |
-| `npm run start` | Start the Next.js production server |
-| `npm run lint` | Run ESLint checks |
-| `npm test` | Run Vitest tests |
+| `npm run start` | Start the production server |
+| `npm run lint` | Run ESLint |
+| `npm test` | Run the Vitest suite |
 | `npm run test:watch` | Run tests in watch mode |
 
-## Production Build and Deployment
+## Production build and deployment
 
-The project uses Next.js static export (`output: "export"`). Run:
+The app is configured for a static export:
+
+```ts
+const nextConfig: NextConfig = {
+  output: "export",
+};
+```
+
+Run:
 
 ```bash
 npm run build
 ```
 
-The build output is written to `out/` and can be deployed to any static hosting service, such as GitHub Pages, Netlify, or static website hosting on object storage.
+The generated output is written to `out/` and can be deployed to any static-hosting provider, including GitHub Pages, Netlify, Vercel static hosting, or object-storage static sites.
 
-When deploying under a subdirectory, configure `basePath` in `next.config.ts` and rebuild:
+If the site is deployed under a subdirectory, set `basePath` in `next.config.ts` before building.
 
-```ts
-const nextConfig: NextConfig = {
-	output: "export",
-	basePath: "/your-subdirectory",
-};
-```
+## Localization and app structure
 
-## Project Structure
+The site supports multiple locales, currently:
+
+- `en`
+- `zh-cn`
+- `ja`
+
+The routing structure includes localized home pages and preset pages under `app/[locale]/`, while the root `app/` route redirects to the user’s detected locale.
+
+## Project structure
 
 ```text
-app/                         Routes, layout, and global styles
-components/                 Page components and browser conversion components
-lib/ffmpeg/
-	command-builder/           Build FFmpeg commands from preset options
-	output/                    Generate default output filenames
-	presets/                   Preset definitions and browser conversion logic
-	types/                     Preset data structures
+app/                         App Router routes, localized pages, and layouts
+app/[locale]/               Localized home and preset interfaces
+components/                 UI components and browser conversion widgets
+lib/
+  ffmpeg/
+    command-builder/         FFmpeg command generation per preset
+    output/                  Default output filename generation
+    presets/                 Preset metadata, browser logic, and registry
+    types/                   Shared preset type definitions
+  i18n/                     Locale settings and copy for English, Simplified Chinese, and Japanese
 ```
 
-When adding a new media tool, you will typically need to:
+When adding a new media tool, the workflow is typically:
 
 1. Add a preset definition in `lib/ffmpeg/presets/`.
-2. Add a command builder in `lib/ffmpeg/command-builder/` and register it in `registry.ts`.
-3. Add output filename logic in `lib/ffmpeg/output/` and register it in the corresponding `registry.ts`.
-4. Add a browser conversion component as needed and connect it in `components/preset/preset-page.tsx`.
-5. Add a route page and metadata in `app/presets/`.
-6. Add Vitest tests for the command builder and output filename logic.
+2. Add a command builder in `lib/ffmpeg/command-builder/` and register it in the relevant registry.
+3. Add output-filename generation in `lib/ffmpeg/output/`.
+4. Add or update the browser conversion UI in `components/` and the preset page integration.
+5. Add localized copy if needed in `lib/i18n/`.
+6. Add Vitest tests for the command builder and output naming logic.
 
-## Tech Stack
+## Tech stack
 
-- Next.js 16 App Router
+- Next.js 16
 - React 19
 - TypeScript
 - Tailwind CSS 4
@@ -106,4 +144,4 @@ When adding a new media tool, you will typically need to:
 
 The 320kbps source code is licensed under the MIT License. See [LICENSE](LICENSE).
 
-320kbps uses third-party software including FFmpeg and FFmpeg.wasm, which are distributed under their respective licenses. Their licenses and terms remain applicable to those components.
+320kbps includes third-party software such as FFmpeg and FFmpeg.wasm, each subject to its own license and terms.

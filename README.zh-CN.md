@@ -2,34 +2,58 @@
 
 [English](README.md) · [中文](README.zh-CN.md)
 
-320kbps 是一组基于 FFmpeg 的轻量媒体处理工具。选择一个预设、配置少量参数后，可以直接在浏览器中处理文件，也可以复制生成的 FFmpeg 命令在本地执行。
+320kbps 是一个围绕 FFmpeg 构建的轻量媒体工具集。它通过预设化的参数配置，让用户不必记住复杂的 FFmpeg 命令即可完成常见的音视频和图片转换。每个预设都支持生成对应命令，并可在浏览器中使用 FFmpeg.wasm 直接处理文件。
 
 演示: [https://www.320kbps.com](https://www.320kbps.com)
 
-## 功能
+## 项目定位
 
-- **视频转 MP3**：从视频中提取音频，并选择 128、192、256 或 320 kbps 的码率。
-- **视频转 GIF**：将短视频片段转换为动画 GIF，并可选择帧率和宽度。
-- **MKV 转 MP4**：将 MKV 视频转换为 MP4，以获得更广泛的兼容性和更适合网页播放的文件。
-- **MOV 转 MP4**：将 MOV 视频转换为 MP4，以获得更广泛的兼容性和更适合网页播放的文件。
-- **视频 转 MP4**：将视频转换为 MP4，以获得更广泛的兼容性和更适合网页播放的文件。
-- **WAV 转 MP3**：将无压缩 WAV 音频转换为 MP3，并选择输出码率。
-- **FLAC 转 MP3**：将无损 FLAC 音频转换为 MP3，并选择输出码率。
-- **调整视频尺寸**：按目标宽度缩放视频。
-- **压缩视频**：在高质量、平衡和更小文件之间选择压缩级别。
-- **裁剪视频**：通过指定起始时间和持续时长来截取视频片段。
-- **视频转图片**：从视频中指定时间点抽取单帧，并保存为图片。
-- **MP4 转 WebM**：将 MP4 视频转换为 WebM，并可调整质量。
-- **WebM 转 MP4**：将 WebM 视频转换为 MP4。
-- **图片转 WebP**：将 JPG、PNG、GIF、BMP 或 TIFF 转换为 WebP，并调整质量。
+这个项目本质上是一个静态的 Next.js 网站，用于处理常见媒体转换任务。用户可以：
 
-每个预设页面都会显示当前配置对应的 FFmpeg 命令，并解释主要参数。支持浏览器处理的预设会显示进度并提供结果下载。
+- 从首页选择一个预设；
+- 调整少量参数；
+- 直接在浏览器中转换文件；
+- 或复制生成的 FFmpeg 命令，在本地运行。
+
+它的设计目标是让简单、重复的媒体任务可以快速完成，而不是专门做复杂的影音后期处理。
+
+## 支持的预设
+
+### 音频
+
+- **视频转 MP3**：从视频中提取音频，并可选择 128、192、256 或 320 kbps 码率。
+- **WAV 转 MP3**：将无压缩 WAV 文件转换为 MP3。
+- **FLAC 转 MP3**：将无损 FLAC 文件转换为 MP3。
+
+### 视频
+
+- **视频转 MP4**：将兼容的视频文件转换为 MP4。
+- **MKV 转 MP4**：将 MKV 转换为 MP4。
+- **MOV 转 MP4**：将 MOV 转换为 MP4。
+- **MP4 转 WebM**：将 MP4 转为 WebM，并可调整质量。
+- **WebM 转 MP4**：将 WebM 转回 MP4。
+- **调整视频尺寸**：按目标宽度缩放视频，同时保留纵横比。
+- **压缩视频**：通过不同的质量设置来降低文件体积。
+- **裁剪视频**：按起始时间和持续时长截取视频片段。
+- **视频转 GIF**：将短片段导出为 GIF 动画。
+- **视频转图片**：在指定时间点提取单帧图片。
+
+### 图片
+
+- **图片转 WebP**：将 JPG、PNG、GIF、BMP 或 TIFF 图片转换为 WebP。
+
+每个预设页面都会显示当前配置对应的 FFmpeg 命令，并说明其核心参数。支持浏览器处理的预设还会显示进度，并允许直接下载转换结果。
 
 ## 隐私与运行方式
 
-浏览器转换使用 [FFmpeg.wasm](https://github.com/ffmpegwasm/ffmpeg.wasm)，文件在当前浏览器中处理，不会上传到应用服务器。首次转换时需要从 jsDelivr 加载 FFmpeg WebAssembly 核心，因此首次启动可能需要更长时间，并且需要网络连接。
+浏览器端转换基于 [FFmpeg.wasm](https://github.com/ffmpegwasm/ffmpeg.wasm)，文件会在当前浏览器中处理，不会上传到应用服务器。
 
-浏览器处理会占用本机 CPU 和内存，大文件或较复杂的编码任务可能需要较长时间。对于不支持或不适合浏览器处理的场景，可以复制页面中的命令，在本地安装 FFmpeg 后执行。
+注意事项：
+
+- 首次运行时，FFmpeg WebAssembly 核心会从 jsDelivr 加载，因此第一次转换可能更慢，并且需要网络连接。
+- 浏览器端处理会消耗本机 CPU 和内存。
+- 大文件或较复杂的编码任务可能需要更长时间。
+- 如果某种任务不适合在浏览器中执行，可复制页面中的命令，并在本地安装 FFmpeg 后运行。
 
 ## 快速开始
 
@@ -40,62 +64,76 @@ npm install
 npm run dev
 ```
 
-打开 <http://localhost:3000> 查看应用。
+随后打开 <http://localhost:3000>。
 
 ## 常用命令
 
 | 命令 | 作用 |
 | --- | --- |
-| `npm run dev` | 启动开发服务器 |
+| `npm run dev` | 启动 Next.js 开发服务器 |
 | `npm run build` | 构建静态生产版本 |
-| `npm run start` | 启动 Next.js 生产服务器 |
+| `npm run start` | 启动生产服务器 |
 | `npm run lint` | 执行 ESLint 检查 |
-| `npm test` | 执行 Vitest 测试 |
+| `npm test` | 运行 Vitest 测试套件 |
 | `npm run test:watch` | 以监听模式运行测试 |
 
 ## 生产构建与部署
 
-项目使用 Next.js 的静态导出配置（`output: "export"`）。执行：
+该项目配置为静态导出：
+
+```ts
+const nextConfig: NextConfig = {
+  output: "export",
+};
+```
+
+运行：
 
 ```bash
 npm run build
 ```
 
-构建结果位于 `out/`，可以部署到任意静态文件托管服务，例如 GitHub Pages、Netlify 或对象存储静态网站托管。
+生成的产物位于 `out/`，可部署到任意静态托管服务，例如 GitHub Pages、Netlify、Vercel 静态托管，或者对象存储上的静态网站。
 
-如果部署在子目录，需要在 `next.config.ts` 中配置 `basePath`，然后重新构建：
+如果站点部署在子目录中，需要在构建前在 `next.config.ts` 中设置 `basePath`。
 
-```ts
-const nextConfig: NextConfig = {
-	output: "export",
-	basePath: "/your-subdirectory",
-};
-```
+## 多语言与应用结构
+
+当前网站支持多语言，包括：
+
+- `en`
+- `zh-cn`
+- `ja`
+
+路由中有 `app/[locale]/` 目录，用于展示本地化首页和预设页；根目录的 `app/` 页面会根据用户语言重定向到对应 locale。
 
 ## 项目结构
 
 ```text
-app/                         页面路由、布局和全局样式
-components/                 页面组件和浏览器端转换组件
-lib/ffmpeg/
-	command-builder/           根据预设选项生成 FFmpeg 命令
-	output/                    生成默认输出文件名
-	presets/                   预设定义和浏览器转换逻辑
-	types/                     预设数据结构
+app/                         App Router 路由、布局和页面入口
+app/[locale]/               本地化首页与预设页面
+components/                 UI 组件和浏览器端转换控件
+lib/
+  ffmpeg/
+    command-builder/         为每个预设生成 FFmpeg 命令
+    output/                  生成默认输出文件名
+    presets/                 预设元数据、浏览器逻辑和注册表
+    types/                   共享的预设类型定义
+  i18n/                     英文、简体中文和日文的文案与 locale 配置
 ```
 
-新增一个媒体工具时，通常需要：
+新增一个媒体工具时，通常按如下步骤处理：
 
-1. 在 `lib/ffmpeg/presets/` 添加预设定义。
-2. 在 `lib/ffmpeg/command-builder/` 添加命令构建器，并注册到 `registry.ts`。
-3. 在 `lib/ffmpeg/output/` 添加输出文件名逻辑，并注册到对应的 `registry.ts`。
-4. 按需添加浏览器端转换组件，并在 `components/preset/preset-page.tsx` 接入。
-5. 在 `app/presets/` 添加路由页面和页面元数据。
-6. 为命令构建和输出文件名逻辑补充 Vitest 测试。
+1. 在 `lib/ffmpeg/presets/` 中新增预设定义。
+2. 在 `lib/ffmpeg/command-builder/` 中增加命令生成逻辑，并注册到对应的 registry。
+3. 在 `lib/ffmpeg/output/` 中增加输出文件名生成逻辑。
+4. 在 `components/` 中补充或更新浏览器模式的转换 UI，并接入对应页面。
+5. 如有必要，在 `lib/i18n/` 中补充文案。
+6. 为命令构建和输出命名逻辑增加 Vitest 测试。
 
 ## 技术栈
 
-- Next.js 16 App Router
+- Next.js 16
 - React 19
 - TypeScript
 - Tailwind CSS 4
@@ -106,4 +144,4 @@ lib/ffmpeg/
 
 320kbps 源代码采用 MIT 许可证，详见 [LICENSE](LICENSE)。
 
-320kbps 使用了包括 FFmpeg 和 FFmpeg.wasm 在内的第三方软件，它们分别遵循各自的许可证。这些组件仍适用其对应的许可证和条款。
+320kbps 包含 FFmpeg 和 FFmpeg.wasm 等第三方软件，这些组件各自遵循其许可证和条款。

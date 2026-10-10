@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-
 import { en } from "@/lib/i18n/en";
 import { zhCN } from "@/lib/i18n/zh-cn";
 import { ja } from "@/lib/i18n/ja";
