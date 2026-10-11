@@ -484,6 +484,6 @@ export const en = {
   privacy: {
     title: "Privacy",
     description:
-      "No uploads. Process your files locally in your browser.",
+      "No uploads, Process your files locally in your browser.",
   },
 } as const;

@@ -463,6 +463,6 @@ export const zhCN = {
   privacy: {
     title: "隐私",
     description:
-      "无需上传文件。所有处理均在浏览器本地完成。",
+      "无需上传文件，所有处理均在浏览器本地完成。",
   },
 } as const;
