@@ -1,7 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { presets } from "@/lib/ffmpeg/presets";
-import type { PresetCategory } from "@/lib/ffmpeg/types/preset";
+import { presetCategories, presets } from "@/lib/ffmpeg/presets";
 import { en } from "@/lib/i18n/en";
 import { zhCN } from "@/lib/i18n/zh-cn";
 import { ja } from "@/lib/i18n/ja";
@@ -54,12 +53,6 @@ export default async function LocaleHome({
 
   const t = languages[locale as Locale];
 
-  const categories: PresetCategory[] = [
-    "audio",
-    "video",
-    "image",
-  ];
-
   return (
     <div className="mx-auto max-w-[1280px] bg-white px-[6vw] text-zinc-950">
       {/* Hero */}
@@ -107,7 +100,7 @@ export default async function LocaleHome({
 
         <PresetGrid
           presets={presets}
-          categories={categories}
+          categories={presetCategories}
           locale={locale as Locale}
         />
       </section>

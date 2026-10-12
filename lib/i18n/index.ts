@@ -10,8 +10,51 @@ export const languages = {
 
 export type Locale = keyof typeof languages;
 
+type PresetCopySource = {
+  id: string;
+  title: string;
+  description: string;
+};
+
+const presetTranslationKeys: Record<string, keyof typeof en.presets> = {
+  "video-to-mp4": "videoToMp4",
+  "mkv-to-mp4": "mkvToMp4",
+  "video-to-mp3": "videoToMp3",
+  "flac-to-mp3": "flacToMp3",
+  "wav-to-mp3": "wavToMp3",
+  "resize-video": "resizeVideo",
+  "compress-video": "compressVideo",
+  "webm-to-mp4": "webmToMp4",
+  "image-to-webp": "imageToWebp",
+  "mp4-to-webm": "mp4ToWebm",
+  "trim-video": "trimVideo",
+  "video-to-image": "videoToImage",
+  "video-to-gif": "videoToGif",
+  "mov-to-mp4": "movToMp4",
+};
+
 export function getDictionary(
   locale: Locale,
 ) {
   return languages[locale];
+}
+
+export function getPresetCopy(
+  preset: PresetCopySource,
+  locale: Locale,
+) {
+  const translationKey = presetTranslationKeys[preset.id];
+
+  if (!translationKey) {
+    return {
+      title: preset.title,
+      description: preset.description,
+    };
+  }
+
+  const copy = getDictionary(locale).presets[translationKey];
+  return {
+    title: copy.title,
+    description: copy.description,
+  };
 }

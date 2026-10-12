@@ -1,8 +1,7 @@
 import { PresetCard } from "@/components/preset-card";
 import { PresetCategory as PresetCategoryLabel } from "@/components/preset-category";
 import type { Preset, PresetCategory } from "@/lib/ffmpeg/types/preset";
-import type { Locale } from "@/lib/i18n";
-import { getDictionary } from "@/lib/i18n";
+import { getPresetCopy, type Locale } from "@/lib/i18n";
 
 type PresetGridProps = {
   presets: readonly Preset[];
@@ -15,7 +14,6 @@ export function PresetGrid({
   categories,
   locale = "en",
 }: PresetGridProps) {
-  const t = getDictionary(locale);
   return (
     <div className="space-y-12">
       {categories.map((category) => {
@@ -35,75 +33,19 @@ export function PresetGrid({
             />
 
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {categoryPresets.map((preset) => (
-                <PresetCard
-                  key={preset.id}
-                  id={preset.id}
-                  title={
-                    preset.id === "video-to-mp4"
-                      ? t.presets.videoToMp4.title
-                      : preset.id === "mkv-to-mp4"
-                        ? t.presets.mkvToMp4.title
-                        : preset.id === "video-to-mp3"
-                          ? t.presets.videoToMp3.title
-                          : preset.id === "wav-to-mp3"
-                            ? t.presets.wavToMp3.title
-                            : preset.id === "flac-to-mp3"
-                              ? t.presets.flacToMp3.title
-                                : preset.id === "resize-video"
-                                  ? t.presets.resizeVideo.title
-                                    : preset.id === "compress-video"
-                                      ? t.presets.compressVideo.title
-                                        : preset.id === "webm-to-mp4"
-                                          ? t.presets.webmToMp4.title
-                                            : preset.id === "image-to-webp"
-                                              ? t.presets.imageToWebp.title
-                                                : preset.id === "mp4-to-webm"
-                                                  ? t.presets.mp4ToWebm.title
-                                                    : preset.id === "trim-video"
-                                                      ? t.presets.trimVideo.title
-                                                         : preset.id === "video-to-image"
-                                                            ? t.presets.videoToImage.title
-                                                              : preset.id === "video-to-gif"
-                                                                ? t.presets.videoToGif.title
-                                                                  : preset.id === "mov-to-mp4"
-                                                                    ? t.presets.movToMp4.title
-                                                                    : preset.title
-                  }
-                  description={
-                    preset.id === "video-to-mp4"
-                      ? t.presets.videoToMp4.description
-                      : preset.id === "mkv-to-mp4"
-                        ? t.presets.mkvToMp4.description
-                        : preset.id === "video-to-mp3"
-                          ? t.presets.videoToMp3.description
-                          : preset.id === "wav-to-mp3"
-                            ? t.presets.wavToMp3.description
-                            : preset.id === "flac-to-mp3"
-                              ? t.presets.flacToMp3.description
-                                : preset.id === "resize-video"
-                                  ? t.presets.resizeVideo.description
-                                    : preset.id === "compress-video"
-                                      ? t.presets.compressVideo.description
-                                        : preset.id === "webm-to-mp4"
-                                          ? t.presets.webmToMp4.description
-                                            : preset.id === "image-to-webp"
-                                              ? t.presets.imageToWebp.description
-                                                : preset.id === "mp4-to-webm"
-                                                  ? t.presets.mp4ToWebm.description
-                                                    : preset.id === "trim-video"
-                                                      ? t.presets.trimVideo.description
-                                                          : preset.id === "video-to-image"
-                                                            ? t.presets.videoToImage.description
-                                                              : preset.id === "video-to-gif"
-                                                                ? t.presets.videoToGif.description
-                                                                  : preset.id === "mov-to-mp4"
-                                                                    ? t.presets.movToMp4.description
-                                                                    : preset.description
-                  }
-                  locale={locale}
-                />
-              ))}
+              {categoryPresets.map((preset) => {
+                const copy = getPresetCopy(preset, locale);
+
+                return (
+                  <PresetCard
+                    key={preset.id}
+                    id={preset.id}
+                    title={copy.title}
+                    description={copy.description}
+                    locale={locale}
+                  />
+                );
+              })}
             </div>
           </div>
         );

@@ -117,18 +117,18 @@ lib/
   ffmpeg/
     command-builder/         为每个预设生成 FFmpeg 命令
     output/                  生成默认输出文件名
-    presets/                 预设元数据、浏览器逻辑和注册表
+    presets/                 预设元数据、浏览器逻辑和分类注册表
     types/                   共享的预设类型定义
   i18n/                     英文、简体中文和日文的文案与 locale 配置
 ```
 
 新增一个媒体工具时，通常按如下步骤处理：
 
-1. 在 `lib/ffmpeg/presets/` 中新增预设定义。
+1. 在 `lib/ffmpeg/presets/` 中新增预设定义，并在 `lib/ffmpeg/presets/index.ts` 中注册。首页分类会根据已注册的预设自动生成。
 2. 在 `lib/ffmpeg/command-builder/` 中增加命令生成逻辑，并注册到对应的 registry。
 3. 在 `lib/ffmpeg/output/` 中增加输出文件名生成逻辑。
 4. 在 `components/` 中补充或更新浏览器模式的转换 UI，并接入对应页面。
-5. 如有必要，在 `lib/i18n/` 中补充文案。
+5. 在 `lib/i18n/` 中补充本地化文案，并在 `lib/i18n/index.ts` 中将预设 ID 映射到对应的字典键。
 6. 为命令构建和输出命名逻辑增加 Vitest 测试。
 
 ## 技术栈

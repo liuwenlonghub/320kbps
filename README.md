@@ -117,18 +117,18 @@ lib/
   ffmpeg/
     command-builder/         FFmpeg command generation per preset
     output/                  Default output filename generation
-    presets/                 Preset metadata, browser logic, and registry
+    presets/                 Preset metadata, browser logic, and category registry
     types/                   Shared preset type definitions
   i18n/                     Locale settings and copy for English, Simplified Chinese, and Japanese
 ```
 
 When adding a new media tool, the workflow is typically:
 
-1. Add a preset definition in `lib/ffmpeg/presets/`.
+1. Add a preset definition in `lib/ffmpeg/presets/` and register it in `lib/ffmpeg/presets/index.ts`. Homepage categories are derived from the registered presets.
 2. Add a command builder in `lib/ffmpeg/command-builder/` and register it in the relevant registry.
 3. Add output-filename generation in `lib/ffmpeg/output/`.
 4. Add or update the browser conversion UI in `components/` and the preset page integration.
-5. Add localized copy if needed in `lib/i18n/`.
+5. Add localized copy in `lib/i18n/` and map the preset ID to its dictionary key in `lib/i18n/index.ts`.
 6. Add Vitest tests for the command builder and output naming logic.
 
 ## Tech stack

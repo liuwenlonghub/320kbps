@@ -30,6 +30,10 @@ export const presets = [
   videoToMp4Preset,
 ] as const;
 
+export const presetCategories = [
+  ...new Set(presets.map((preset) => preset.category)),
+];
+
 export {
   compressVideoPreset,
   flacToMp3Preset,

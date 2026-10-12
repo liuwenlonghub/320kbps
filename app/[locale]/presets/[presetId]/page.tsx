@@ -1,19 +1,8 @@
 import { notFound } from "next/navigation";
 
-import { en } from "@/lib/i18n/en";
-import { zhCN } from "@/lib/i18n/zh-cn";
-import { ja } from "@/lib/i18n/ja";
-
 import { PresetPage } from "@/components/preset/preset-page";
 import { presets } from "@/lib/ffmpeg/presets";
-
-const languages = {
-  en,
-  "zh-cn": zhCN,
-  ja,
-} as const;
-
-type Locale = keyof typeof languages;
+import { getPresetCopy, languages, type Locale } from "@/lib/i18n";
 
 export function generateStaticParams() {
   return Object.keys(languages).flatMap((locale) =>
@@ -46,110 +35,7 @@ export async function generateMetadata({
     notFound();
   }
 
-  const t = languages[locale as Locale];
-
-  if (preset.id === "video-to-mp4") {
-    return {
-      title: t.presets.videoToMp4.title,
-      description: t.presets.videoToMp4.description,
-    };
-  }
-
-  if (preset.id === "mkv-to-mp4") {
-    return {
-      title: t.presets.mkvToMp4.title,
-      description: t.presets.mkvToMp4.description,
-    };
-  }
-
-  if (preset.id === "video-to-mp3") {
-    return {
-      title: t.presets.videoToMp3.title,
-      description: t.presets.videoToMp3.description,
-    };
-  }
-
-  if (preset.id === "flac-to-mp3") {
-    return {
-      title: t.presets.flacToMp3.title,
-      description: t.presets.flacToMp3.description,
-    };
-  }
-
-  if (preset.id === "wav-to-mp3") {
-    return {
-      title: t.presets.wavToMp3.title,
-      description: t.presets.wavToMp3.description,
-    };
-  }
-
-  if (preset.id === "resize-video") {
-    return {
-      title: t.presets.resizeVideo.title,
-      description: t.presets.resizeVideo.description,
-    };
-  }
-
-  if (preset.id === "compress-video") {
-    return {
-      title: t.presets.compressVideo.title,
-      description: t.presets.compressVideo.description,
-    };
-  }
-
-  if (preset.id === "webm-to-mp4") {
-    return {
-      title: t.presets.webmToMp4.title,
-      description: t.presets.webmToMp4.description,
-    };
-  }
-
-  if (preset.id === "image-to-webp") {
-    return {
-      title: t.presets.imageToWebp.title,
-      description: t.presets.imageToWebp.description,
-    };
-  }
-
-  if (preset.id === "mp4-to-webm") {
-    return {
-      title: t.presets.mp4ToWebm.title,
-      description: t.presets.mp4ToWebm.description,
-    };
-  }
-
-  if (preset.id === "trim-video") {
-    return {
-      title: t.presets.trimVideo.title,
-      description: t.presets.trimVideo.description,
-    };
-  }
-
-  if (preset.id === "video-to-image") {
-    return {
-      title: t.presets.videoToImage.title,
-      description: t.presets.videoToImage.description,
-    };
-  }
-
-  if (preset.id === "video-to-gif") {
-    return {
-      title: t.presets.videoToGif.title,
-      description: t.presets.videoToGif.description,
-    };
-  }
-
-  if (preset.id === "mov-to-mp4") {
-    return {
-      title: t.presets.movToMp4.title,
-      description: t.presets.movToMp4.description,
-    };
-  }
-
-  return {
-    title: preset.title,
-    description: preset.description,
-  };
+  return getPresetCopy(preset, locale as Locale);
 }
 
 export default async function LocalePresetPage({
