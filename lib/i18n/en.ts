@@ -37,7 +37,7 @@ export const en = {
     converting: "Converting…",
     conversionComplete: "Conversion complete",
     download: "Download",
-    conversionFailed: "Conversion failed. Please try another video.",
+    conversionFailed: "Conversion failed. Please try another file.",
     tryAgain: "Try again",
     ffmpegCommand: "FFmpeg command",
     copyCommand: "Copy command",
@@ -440,6 +440,38 @@ export const en = {
             flag: "-f gif",
             description:
               "Write the output as an animated GIF.",
+          },
+        ],
+      },
+    },
+    gifToMp4: {
+      title: "GIF → MP4",
+      description:
+        "Convert an animated GIF to an MP4 video. Transparency is not preserved.",
+      inputLabel: "Input GIF",
+      outputLabel: "Output filename",
+      outputPlaceholder: "output.mp4",
+      explanation: {
+        title: "GIF → MP4",
+        description:
+          "Encode the GIF animation as an H.264 video. The animation plays once, has no audio, and does not retain transparency.",
+        parameters: [
+          {
+            flag: "-an",
+            description: "Disable audio; GIF files do not contain an audio track.",
+          },
+          {
+            flag: "-c:v libx264",
+            description: "Encode the video using the widely supported H.264 codec.",
+          },
+          {
+            flag: "-pix_fmt yuv420p",
+            description:
+              "Use a pixel format supported by most MP4 players. Odd dimensions are rounded down to even values.",
+          },
+          {
+            flag: "-fps_mode vfr",
+            description: "Preserve the GIF's frame timing in the output video.",
           },
         ],
       },

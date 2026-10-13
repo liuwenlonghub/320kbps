@@ -36,7 +36,7 @@ export const zhCN = {
     converting: "正在转换…",
     conversionComplete: "转换完成",
     download: "下载",
-    conversionFailed: "转换失败，请尝试其他视频。",
+    conversionFailed: "转换失败，请尝试其他文件。",
     tryAgain: "重试",
     ffmpegCommand: "FFmpeg 命令",
     copyCommand: "复制命令",
@@ -420,6 +420,37 @@ export const zhCN = {
           {
             flag: "-f gif",
             description: "将输出写入为动态 GIF。",
+          },
+        ],
+      },
+    },
+    gifToMp4: {
+      title: "GIF → MP4",
+      description: "将动态 GIF 转换为 MP4 视频，不保留透明度。",
+      inputLabel: "输入 GIF",
+      outputLabel: "输出文件名",
+      outputPlaceholder: "output.mp4",
+      explanation: {
+        title: "GIF → MP4",
+        description:
+          "将 GIF 动画编码为 H.264 视频。动画播放一次，不含音频，且不会保留透明度。",
+        parameters: [
+          {
+            flag: "-an",
+            description: "禁用音频；GIF 文件不包含音轨。",
+          },
+          {
+            flag: "-c:v libx264",
+            description: "使用兼容性广泛的 H.264 编码视频。",
+          },
+          {
+            flag: "-pix_fmt yuv420p",
+            description:
+              "使用大多数 MP4 播放器支持的像素格式；奇数尺寸会向下调整为偶数。",
+          },
+          {
+            flag: "-fps_mode vfr",
+            description: "保留 GIF 动画的帧时间间隔。",
           },
         ],
       },

@@ -26,6 +26,8 @@ import { buildMovToMp4Command } from "./mov-to-mp4";
 import type { MovToMp4Options } from "@/lib/ffmpeg/presets/mov-to-mp4";
 import { buildVideoToMp4Command } from "./video-to-mp4";
 import type { VideoToMp4Options } from "@/lib/ffmpeg/presets/video-to-mp4";
+import { buildGifToMp4Command } from "./gif-to-mp4";
+import type { GifToMp4Options } from "@/lib/ffmpeg/presets/gif-to-mp4";
 
 type CommandValues =
   Record<string, string | number>;
@@ -137,5 +139,11 @@ export const commandBuilders: Record<
       input: String(values.input),
       output: String(values.output),
     } satisfies VideoToMp4Options),
+
+  "gif-to-mp4": (values) =>
+    buildGifToMp4Command({
+      input: String(values.input),
+      output: String(values.output),
+    } satisfies GifToMp4Options),
     
 };

@@ -12,6 +12,7 @@ import { videoToGifPreset } from "./video-to-gif";
 import { mkvToMp4Preset } from "./mkv-to-mp4";
 import { movToMp4Preset } from "./mov-to-mp4";
 import { videoToMp4Preset } from "./video-to-mp4";
+import { gifToMp4Preset } from "./gif-to-mp4";
 
 export const presets = [
   videoToMp3Preset,
@@ -28,6 +29,7 @@ export const presets = [
   mkvToMp4Preset,
   movToMp4Preset,
   videoToMp4Preset,
+  gifToMp4Preset,
 ] as const;
 
 export const presetCategories = [
@@ -49,4 +51,5 @@ export {
   mkvToMp4Preset,
   movToMp4Preset,
   videoToMp4Preset,
+  gifToMp4Preset,
 };

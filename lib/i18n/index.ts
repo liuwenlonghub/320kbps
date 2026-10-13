@@ -18,6 +18,7 @@ type PresetCopySource = {
 
 const presetTranslationKeys: Record<string, keyof typeof en.presets> = {
   "video-to-mp4": "videoToMp4",
+  "gif-to-mp4": "gifToMp4",
   "mkv-to-mp4": "mkvToMp4",
   "video-to-mp3": "videoToMp3",
   "flac-to-mp3": "flacToMp3",

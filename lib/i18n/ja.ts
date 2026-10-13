@@ -36,7 +36,7 @@ export const ja = {
     converting: "変換中…",
     conversionComplete: "変換が完了しました",
     download: "ダウンロード",
-    conversionFailed: "変換に失敗しました。別の動画を試してください。",
+    conversionFailed: "変換に失敗しました。別のファイルをお試しください。",
     tryAgain: "もう一度試す",
     ffmpegCommand: "FFmpeg コマンド",
     copyCommand: "コマンドをコピー",
@@ -431,6 +431,38 @@ export const ja = {
             flag: "-f gif",
             description:
               "出力をアニメーション GIF として書き出します。",
+          },
+        ],
+      },
+    },
+    gifToMp4: {
+      title: "GIF → MP4",
+      description:
+        "アニメーション GIF を MP4 動画に変換します。透明度は保持されません。",
+      inputLabel: "入力 GIF",
+      outputLabel: "出力ファイル名",
+      outputPlaceholder: "output.mp4",
+      explanation: {
+        title: "GIF → MP4",
+        description:
+          "GIF アニメーションを H.264 動画としてエンコードします。アニメーションは1回再生され、音声と透明度は保持されません。",
+        parameters: [
+          {
+            flag: "-an",
+            description: "GIF に音声トラックはないため、音声処理を無効にします。",
+          },
+          {
+            flag: "-c:v libx264",
+            description: "幅広く対応している H.264 コーデックで動画をエンコードします。",
+          },
+          {
+            flag: "-pix_fmt yuv420p",
+            description:
+              "多くの MP4 プレーヤーに対応するピクセル形式を使用します。奇数の寸法は偶数に切り下げます。",
+          },
+          {
+            flag: "-fps_mode vfr",
+            description: "GIF のフレームタイミングを出力動画に保持します。",
           },
         ],
       },

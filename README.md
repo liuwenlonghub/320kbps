@@ -36,6 +36,7 @@ The project is designed for simple, repeatable tasks: converting between contain
 - **Compress video**: Reduce file size with different quality settings.
 - **Trim video**: Cut a segment by start time and duration.
 - **Video → GIF**: Export a short segment as a GIF.
+- **GIF → MP4**: Convert an animated GIF to H.264 MP4 (transparency is not preserved).
 - **Video → Image**: Extract a single frame at a chosen timestamp.
 
 ### Image
