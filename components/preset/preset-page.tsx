@@ -101,6 +101,14 @@ const TrimVideoBrowser = dynamic(
   { ssr: false },
 );
 
+const TrimAudioBrowser = dynamic(
+  () =>
+    import("./trim-audio-browser").then(
+      (mod) => mod.TrimAudioBrowser,
+    ),
+  { ssr: false },
+);
+
 const VideoToImageBrowser = dynamic(
   () =>
     import("./video-to-image-browser").then(
@@ -212,15 +220,17 @@ export function PresetPage<
                                       ? t.presets.mp4ToWebm.title
                                         : preset.id === "trim-video"
                                           ? t.presets.trimVideo.title
+                                          : preset.id === "trim-audio"
+                                            ? t.presets.trimAudio.title
                                             : preset.id === "video-to-image"
                                               ? t.presets.videoToImage.title
-                                                : preset.id === "video-to-gif"
-                                                  ? t.presets.videoToGif.title
-                                                    : preset.id === "gif-to-mp4"
-                                                      ? t.presets.gifToMp4.title
-                                                      : preset.id === "mov-to-mp4"
-                                                        ? t.presets.movToMp4.title
-                                                        : preset.title}
+                                              : preset.id === "video-to-gif"
+                                                ? t.presets.videoToGif.title
+                                                : preset.id === "gif-to-mp4"
+                                                  ? t.presets.gifToMp4.title
+                                                  : preset.id === "mov-to-mp4"
+                                                    ? t.presets.movToMp4.title
+                                                    : preset.title}
         </h1>
 
         <p className="mt-3 text-zinc-500">
@@ -244,15 +254,17 @@ export function PresetPage<
                                       ? t.presets.mp4ToWebm.description
                                         : preset.id === "trim-video"
                                           ? t.presets.trimVideo.description
+                                          : preset.id === "trim-audio"
+                                            ? t.presets.trimAudio.description
                                             : preset.id === "video-to-image"
                                               ? t.presets.videoToImage.description
-                                                : preset.id === "video-to-gif"
-                                                  ? t.presets.videoToGif.description
-                                                    : preset.id === "gif-to-mp4"
-                                                      ? t.presets.gifToMp4.description
-                                                      : preset.id === "mov-to-mp4"
-                                                        ? t.presets.movToMp4.description
-                                                        : preset.description}
+                                              : preset.id === "video-to-gif"
+                                                ? t.presets.videoToGif.description
+                                                : preset.id === "gif-to-mp4"
+                                                  ? t.presets.gifToMp4.description
+                                                  : preset.id === "mov-to-mp4"
+                                                    ? t.presets.movToMp4.description
+                                                    : preset.description}
         </p>
       </div>
 
@@ -558,6 +570,45 @@ export function PresetPage<
                       return field;
                     })
 
+                : preset.id === "trim-audio"
+                  ? preset.fields.map((field) => {
+                      if (field.id === "input") {
+                        return {
+                          ...field,
+                          label: t.presets.trimAudio.inputLabel,
+                        };
+                      }
+
+                      if (field.id === "start") {
+                        return {
+                          ...field,
+                          label: t.presets.trimAudio.startLabel,
+                          placeholder:
+                            t.presets.trimAudio.startPlaceholder,
+                        };
+                      }
+
+                      if (field.id === "duration") {
+                        return {
+                          ...field,
+                          label: t.presets.trimAudio.durationLabel,
+                          placeholder:
+                            t.presets.trimAudio.durationPlaceholder,
+                        };
+                      }
+
+                      if (field.id === "output") {
+                        return {
+                          ...field,
+                          label: t.presets.trimAudio.outputLabel,
+                          placeholder:
+                            t.presets.trimAudio.outputPlaceholder,
+                        };
+                      }
+
+                      return field;
+                    })
+
                 : preset.id === "video-to-image"
                   ? preset.fields.map((field) => {
                       if (field.id === "input") {
@@ -777,6 +828,16 @@ export function PresetPage<
         />
       )}
 
+      {preset.id === "trim-audio" && (
+        <TrimAudioBrowser
+          file={selectedFile}
+          start={String(values.start)}
+          duration={String(values.duration)}
+          outputFilename={String(values.output)}
+          locale={locale}
+        />
+      )}
+
       {preset.id === "video-to-image" && (
         <VideoToImageBrowser
           file={selectedFile}
@@ -852,15 +913,17 @@ export function PresetPage<
                                   ? t.presets.mp4ToWebm.title
                                     : preset.id === "trim-video"
                                       ? t.presets.trimVideo.explanation.title
+                                      : preset.id === "trim-audio"
+                                        ? t.presets.trimAudio.explanation.title
                                         : preset.id === "video-to-image"
                                           ? t.presets.videoToImage.explanation.title
-                                            : preset.id === "video-to-gif"
-                                              ? t.presets.videoToGif.explanation.title
-                                                : preset.id === "gif-to-mp4"
-                                                  ? t.presets.gifToMp4.explanation.title
-                                                  : preset.id === "mov-to-mp4"
-                                                    ? t.presets.movToMp4.explanation.title
-                                                    : preset.title}
+                                          : preset.id === "video-to-gif"
+                                            ? t.presets.videoToGif.explanation.title
+                                            : preset.id === "gif-to-mp4"
+                                              ? t.presets.gifToMp4.explanation.title
+                                              : preset.id === "mov-to-mp4"
+                                                ? t.presets.movToMp4.explanation.title
+                                                : preset.title}
         </h2>
         <p className="mt-3 text-sm leading-6 text-zinc-500">
           {preset.id === "video-to-mp3"
@@ -881,15 +944,17 @@ export function PresetPage<
                                     ? t.presets.mp4ToWebm.description
                                       : preset.id === "trim-video"
                                         ? t.presets.trimVideo.explanation.description
+                                        : preset.id === "trim-audio"
+                                          ? t.presets.trimAudio.explanation.description
                                           : preset.id === "video-to-image"
                                             ? t.presets.videoToImage.explanation.description
-                                              : preset.id === "video-to-gif"
-                                                ? t.presets.videoToGif.explanation.description
-                                                    : preset.id === "gif-to-mp4"
-                                                      ? t.presets.gifToMp4.explanation.description
-                                                      : preset.id === "mov-to-mp4"
-                                                        ? t.presets.movToMp4.explanation.description
-                                                        : preset.description}
+                                            : preset.id === "video-to-gif"
+                                              ? t.presets.videoToGif.explanation.description
+                                              : preset.id === "gif-to-mp4"
+                                                ? t.presets.gifToMp4.explanation.description
+                                                : preset.id === "mov-to-mp4"
+                                                    ? t.presets.movToMp4.explanation.description
+                                                    : preset.description}
         </p>
         {preset.explanation.dynamic && (
           <div className="mt-6 rounded-2xl bg-zinc-50 p-5">
@@ -953,15 +1018,17 @@ export function PresetPage<
                                         ? t.presets.mp4ToWebm.explanation.parameters
                                           : preset.id === "trim-video"
                                             ? t.presets.trimVideo.explanation.parameters
-                                              : preset.id === "video-to-image"
-                                                ? t.presets.videoToImage.explanation.parameters
-                                                  : preset.id === "video-to-gif"
-                                                    ? t.presets.videoToGif.explanation.parameters
-                                                      : preset.id === "gif-to-mp4"
-                                                        ? t.presets.gifToMp4.explanation.parameters
-                                                        : preset.id === "mov-to-mp4"
-                                                          ? t.presets.movToMp4.explanation.parameters
-                                                          : preset.explanation.parameters
+                                          : preset.id === "trim-audio"
+                                            ? t.presets.trimAudio.explanation.parameters
+                                            : preset.id === "video-to-image"
+                                              ? t.presets.videoToImage.explanation.parameters
+                                              : preset.id === "video-to-gif"
+                                                ? t.presets.videoToGif.explanation.parameters
+                                                : preset.id === "gif-to-mp4"
+                                                  ? t.presets.gifToMp4.explanation.parameters
+                                                  : preset.id === "mov-to-mp4"
+                                                    ? t.presets.movToMp4.explanation.parameters
+                                                    : preset.explanation.parameters
           ).map((parameter) => (
             <div
               key={parameter.flag}

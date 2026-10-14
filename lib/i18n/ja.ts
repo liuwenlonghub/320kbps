@@ -367,6 +367,40 @@ export const ja = {
         ],
       },
     },
+    trimAudio: {
+      title: "音声をトリミング",
+      description:
+        "開始時間と長さを指定して音声ファイルをトリミングします。",
+      inputLabel: "入力ファイル",
+      startLabel: "開始時間",
+      startPlaceholder: "HH:MM:SS",
+      durationLabel: "長さ",
+      durationPlaceholder: "HH:MM:SS",
+      outputLabel: "出力ファイル名",
+      outputPlaceholder: "output.mp3",
+      explanation: {
+        title: "音声をトリミング",
+        description:
+          "指定した時間から、選択した長さの音声セグメントを抽出します。音声ストリームは再エンコードせずにコピーされます。",
+        parameters: [
+          {
+            flag: "-ss",
+            description:
+              "音声セグメントの開始位置を指定します。",
+          },
+          {
+            flag: "-t",
+            description:
+              "出力する音声セグメントの長さを指定します。",
+          },
+          {
+            flag: "-vn -c:a copy",
+            description:
+              "動画ストリームを除外し、音声を再エンコードせずにコピーします。",
+          },
+        ],
+      },
+    },
     videoToImage: {
       title: "動画 → 画像",
       description:

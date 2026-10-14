@@ -32,6 +32,7 @@ const presetTranslationKeys: Record<string, keyof typeof en.presets> = {
   "video-to-image": "videoToImage",
   "video-to-gif": "videoToGif",
   "mov-to-mp4": "movToMp4",
+  "trim-audio": "trimAudio",
 };
 
 export function getDictionary(

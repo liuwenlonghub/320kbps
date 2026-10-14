@@ -13,6 +13,7 @@ import { mkvToMp4Preset } from "./mkv-to-mp4";
 import { movToMp4Preset } from "./mov-to-mp4";
 import { videoToMp4Preset } from "./video-to-mp4";
 import { gifToMp4Preset } from "./gif-to-mp4";
+import { trimAudioPreset } from "./trim-audio";
 
 export const presets = [
   videoToMp3Preset,
@@ -30,6 +31,7 @@ export const presets = [
   movToMp4Preset,
   videoToMp4Preset,
   gifToMp4Preset,
+  trimAudioPreset,
 ] as const;
 
 export const presetCategories = [
@@ -52,4 +54,5 @@ export {
   movToMp4Preset,
   videoToMp4Preset,
   gifToMp4Preset,
+  trimAudioPreset,
 };

@@ -360,6 +360,36 @@ export const zhCN = {
         ],
       },
     },
+    trimAudio: {
+      title: "裁剪音频",
+      description: "通过指定开始时间和时长截取音频片段。",
+      inputLabel: "输入文件",
+      startLabel: "开始时间",
+      startPlaceholder: "HH:MM:SS",
+      durationLabel: "时长",
+      durationPlaceholder: "HH:MM:SS",
+      outputLabel: "输出文件名",
+      outputPlaceholder: "output.mp3",
+      explanation: {
+        title: "裁剪音频",
+        description:
+          "从指定时间开始提取音频片段，并持续指定的时长。音频流会直接复制，不重新编码。",
+        parameters: [
+          {
+            flag: "-ss",
+            description: "设置音频片段的开始位置。",
+          },
+          {
+            flag: "-t",
+            description: "设置输出音频片段的时长。",
+          },
+          {
+            flag: "-vn -c:a copy",
+            description: "丢弃视频流并直接复制音频，不重新编码。",
+          },
+        ],
+      },
+    },
     videoToImage: {
       title: "视频 → 图片",
       description: "在指定时间从视频中提取单帧图片。",

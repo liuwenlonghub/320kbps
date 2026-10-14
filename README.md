@@ -24,6 +24,7 @@ The project is designed for simple, repeatable tasks: converting between contain
 - **Video → MP3**: Extract audio from a video file and choose a bitrate of 128, 192, 256, or 320 kbps.
 - **WAV → MP3**: Convert uncompressed WAV files to MP3.
 - **FLAC → MP3**: Convert lossless FLAC files to MP3.
+- **Trim audio**: Cut an MP3, WAV, FLAC, M4A, AAC, OGG, or Opus file by start time and duration without re-encoding.
 
 ### Video
 

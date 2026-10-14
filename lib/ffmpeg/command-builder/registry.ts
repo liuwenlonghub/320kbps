@@ -28,6 +28,8 @@ import { buildVideoToMp4Command } from "./video-to-mp4";
 import type { VideoToMp4Options } from "@/lib/ffmpeg/presets/video-to-mp4";
 import { buildGifToMp4Command } from "./gif-to-mp4";
 import type { GifToMp4Options } from "@/lib/ffmpeg/presets/gif-to-mp4";
+import { buildTrimAudioCommand } from "./trim-audio";
+import type { TrimAudioOptions } from "@/lib/ffmpeg/presets/trim-audio";
 
 type CommandValues =
   Record<string, string | number>;
@@ -145,5 +147,13 @@ export const commandBuilders: Record<
       input: String(values.input),
       output: String(values.output),
     } satisfies GifToMp4Options),
+
+  "trim-audio": (values) =>
+    buildTrimAudioCommand({
+      input: String(values.input),
+      start: String(values.start),
+      duration: String(values.duration),
+      output: String(values.output),
+    } satisfies TrimAudioOptions),
     
 };

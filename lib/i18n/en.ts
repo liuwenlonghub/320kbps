@@ -372,6 +372,40 @@ export const en = {
         ],
       },
     },
+    trimAudio: {
+      title: "Trim Audio",
+      description:
+        "Cut an audio file by specifying a start time and duration.",
+      inputLabel: "Input file",
+      startLabel: "Start time",
+      startPlaceholder: "HH:MM:SS",
+      durationLabel: "Duration",
+      durationPlaceholder: "HH:MM:SS",
+      outputLabel: "Output filename",
+      outputPlaceholder: "output.mp3",
+      explanation: {
+        title: "Trim Audio",
+        description:
+          "Extract an audio segment from the selected start time for the specified duration. The audio stream is copied without re-encoding.",
+        parameters: [
+          {
+            flag: "-ss",
+            description:
+              "Set the start position of the audio segment.",
+          },
+          {
+            flag: "-t",
+            description:
+              "Set the duration of the output segment.",
+          },
+          {
+            flag: "-vn -c:a copy",
+            description:
+              "Discard any video stream and copy the audio without re-encoding.",
+          },
+        ],
+      },
+    },
     videoToImage: {
       title: "Video → Image",
       description:
