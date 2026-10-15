@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import { buildCommand } from "../build-command";
 import { videoToMp3Preset } from "@/lib/ffmpeg/presets/video-to-mp3";
 import { trimAudioPreset } from "@/lib/ffmpeg/presets/trim-audio";
+import { resizeImagePreset } from "@/lib/ffmpeg/presets/resize-image";
 
 describe("buildCommand", () => {
   it("builds a command for a registered preset", () => {
@@ -42,6 +43,18 @@ describe("buildCommand", () => {
       }),
     ).toBe(
       "ffmpeg -ss '00:00:15' -i 'song.flac' -t '00:00:10' -vn -c:a copy 'song-trimmed.flac'",
+    );
+  });
+
+  it("builds a command for the image resizing preset", () => {
+    expect(
+      buildCommand(resizeImagePreset, {
+        input: "photo.png",
+        width: 640,
+        output: "photo-640.png",
+      }),
+    ).toBe(
+      "ffmpeg -i 'photo.png' -vf scale=640:-1 'photo-640.png'",
     );
   });
 });

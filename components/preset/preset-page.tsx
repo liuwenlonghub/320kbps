@@ -59,6 +59,14 @@ const ImageToWebpBrowser = dynamic(
   },
 );
 
+const ResizeImageBrowser = dynamic(
+  () =>
+    import("./resize-image-browser").then(
+      (module) => module.ResizeImageBrowser,
+    ),
+  { ssr: false },
+);
+
 const VideoToMp3Browser = dynamic(
   () =>
     import("./video-to-mp3-browser").then(
@@ -216,6 +224,8 @@ export function PresetPage<
                               ? t.presets.compressVideo.title
                                 : preset.id === "image-to-webp"
                                   ? t.presets.imageToWebp.title
+                                  : preset.id === "resize-image"
+                                    ? t.presets.resizeImage.title
                                     : preset.id === "mp4-to-webm"
                                       ? t.presets.mp4ToWebm.title
                                         : preset.id === "trim-video"
@@ -250,6 +260,8 @@ export function PresetPage<
                               ? t.presets.compressVideo.description
                                 : preset.id === "image-to-webp"
                                   ? t.presets.imageToWebp.description
+                                  : preset.id === "resize-image"
+                                    ? t.presets.resizeImage.description
                                     : preset.id === "mp4-to-webm"
                                       ? t.presets.mp4ToWebm.description
                                         : preset.id === "trim-video"
@@ -504,6 +516,34 @@ export function PresetPage<
                           ...field,
                           label: t.presets.imageToWebp.outputLabel,
                           placeholder: t.presets.imageToWebp.outputPlaceholder,
+                        };
+                      }
+
+                      return field;
+                    })
+
+                : preset.id === "resize-image"
+                  ? preset.fields.map((field) => {
+                      if (field.id === "input") {
+                        return {
+                          ...field,
+                          label: t.presets.resizeImage.inputLabel,
+                        };
+                      }
+
+                      if (field.id === "width") {
+                        return {
+                          ...field,
+                          label: t.presets.resizeImage.widthLabel,
+                        };
+                      }
+
+                      if (field.id === "output") {
+                        return {
+                          ...field,
+                          label: t.presets.resizeImage.outputLabel,
+                          placeholder:
+                            t.presets.resizeImage.outputPlaceholder,
                         };
                       }
 
@@ -783,6 +823,15 @@ export function PresetPage<
         />
       )}
 
+      {preset.id === "resize-image" && (
+        <ResizeImageBrowser
+          file={selectedFile}
+          width={Number(values.width)}
+          outputFilename={String(values.output)}
+          locale={locale}
+        />
+      )}
+
       {preset.id === "video-to-mp3" && (
         <VideoToMp3Browser
           file={selectedFile}
@@ -909,6 +958,8 @@ export function PresetPage<
                             ? t.presets.webmToMp4.title
                               : preset.id === "image-to-webp"
                                 ? t.presets.imageToWebp.title
+                              : preset.id === "resize-image"
+                                ? t.presets.resizeImage.title
                                 : preset.id === "mp4-to-webm"
                                   ? t.presets.mp4ToWebm.title
                                     : preset.id === "trim-video"
@@ -940,8 +991,10 @@ export function PresetPage<
                             ? t.presets.webmToMp4.description
                               : preset.id === "image-to-webp"
                                 ? t.presets.imageToWebp.description
-                                  : preset.id === "mp4-to-webm"
-                                    ? t.presets.mp4ToWebm.description
+                              : preset.id === "resize-image"
+                                ? t.presets.resizeImage.explanation.description
+                                : preset.id === "mp4-to-webm"
+                                  ? t.presets.mp4ToWebm.description
                                       : preset.id === "trim-video"
                                         ? t.presets.trimVideo.explanation.description
                                         : preset.id === "trim-audio"
@@ -1014,8 +1067,10 @@ export function PresetPage<
                                 ? t.presets.webmToMp4.explanation.parameters
                                   : preset.id === "image-to-webp"
                                     ? t.presets.imageToWebp.explanation.parameters
-                                      : preset.id === "mp4-to-webm"
-                                        ? t.presets.mp4ToWebm.explanation.parameters
+                                  : preset.id === "resize-image"
+                                    ? t.presets.resizeImage.explanation.parameters
+                                    : preset.id === "mp4-to-webm"
+                                      ? t.presets.mp4ToWebm.explanation.parameters
                                           : preset.id === "trim-video"
                                             ? t.presets.trimVideo.explanation.parameters
                                           : preset.id === "trim-audio"

@@ -43,6 +43,7 @@ The project is designed for simple, repeatable tasks: converting between contain
 ### Image
 
 - **Image → WebP**: Convert JPG, PNG, GIF, BMP, or TIFF files to WebP.
+- **Resize image**: Scale a JPG, PNG, WebP, BMP, or TIFF image to a target width while preserving its aspect ratio.
 
 Each preset page shows the exact FFmpeg command for the current configuration and explains the main flags used. Presets that support browser execution also show progress and allow direct downloads from the browser.
 

@@ -17,6 +17,19 @@ describe("getPresetCopy", () => {
     });
   });
 
+  it("returns localized copy for the image resizing preset", () => {
+    const preset = {
+      id: "resize-image",
+      title: "Fallback title",
+      description: "Fallback description",
+    };
+
+    expect(getPresetCopy(preset, "zh-cn")).toEqual({
+      title: getDictionary("zh-cn").presets.resizeImage.title,
+      description: getDictionary("zh-cn").presets.resizeImage.description,
+    });
+  });
+
   it("uses preset copy when there is no translation mapping", () => {
     const preset = {
       id: "new-preset",

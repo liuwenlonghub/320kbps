@@ -305,6 +305,35 @@ export const ja = {
         ],
       },
     },
+    resizeImage: {
+      title: "画像サイズを変更",
+      description:
+        "縦横比を維持したまま、画像を指定した幅にリサイズします。",
+      inputLabel: "入力画像",
+      widthLabel: "幅",
+      outputLabel: "出力ファイル名",
+      outputPlaceholder: "output.jpg",
+      explanation: {
+        title: "仕組み",
+        description:
+          "選択した幅に画像をリサイズし、元の縦横比を維持するよう高さを自動計算します。",
+        parameters: [
+          {
+            flag: "-i",
+            description: "入力画像ファイルを指定します。",
+          },
+          {
+            flag: "-vf scale",
+            description: "FFmpeg の画像スケーリングフィルターを適用します。",
+          },
+          {
+            flag: "scale=1280:-1",
+            description:
+              "画像の幅を 1280 ピクセルに設定し、縦横比に合わせて高さを自動計算します。",
+          },
+        ],
+      },
+    },
     mp4ToWebm: {
       title: "MP4 → WebM",
       description:

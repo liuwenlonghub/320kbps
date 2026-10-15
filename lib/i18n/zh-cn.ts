@@ -304,6 +304,34 @@ export const zhCN = {
         ],
       },
     },
+    resizeImage: {
+      title: "调整图片尺寸",
+      description: "将图片缩放到指定宽度，同时保持原始宽高比。",
+      inputLabel: "输入图片",
+      widthLabel: "宽度",
+      outputLabel: "输出文件名",
+      outputPlaceholder: "output.jpg",
+      explanation: {
+        title: "工作原理",
+        description:
+          "此预设会将图片缩放到所选宽度，并自动计算高度以保持原始宽高比。",
+        parameters: [
+          {
+            flag: "-i",
+            description: "指定输入图片文件。",
+          },
+          {
+            flag: "-vf scale",
+            description: "应用 FFmpeg 图片缩放滤镜。",
+          },
+          {
+            flag: "scale=1280:-1",
+            description:
+              "将图片宽度设为 1280 像素，并按原始宽高比自动计算高度。",
+          },
+        ],
+      },
+    },
     mp4ToWebm: {
       title: "MP4 → WebM",
       description: "将 MP4 视频转换为适合网页播放的 WebM 格式。",

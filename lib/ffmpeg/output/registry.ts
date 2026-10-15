@@ -30,6 +30,8 @@ import { buildGifToMp4OutputFilename } from "./gif-to-mp4";
 import type { GifToMp4Options } from "../presets/gif-to-mp4";
 import { buildTrimAudioOutputFilename } from "./trim-audio";
 import type { TrimAudioOptions } from "../presets/trim-audio";
+import { buildResizeImageOutputFilename } from "./resize-image";
+import type { ResizeImageOptions } from "../presets/resize-image";
 
 type OutputValues = Record<string, string | number>;
 
@@ -154,5 +156,12 @@ export const outputBuilders: Record<
       duration: String(values.duration),
       output: String(values.output),
     } satisfies TrimAudioOptions),
+
+  "resize-image": (values) =>
+    buildResizeImageOutputFilename({
+      input: String(values.input),
+      width: Number(values.width),
+      output: String(values.output),
+    } satisfies ResizeImageOptions),
   
 };

@@ -30,6 +30,8 @@ import { buildGifToMp4Command } from "./gif-to-mp4";
 import type { GifToMp4Options } from "@/lib/ffmpeg/presets/gif-to-mp4";
 import { buildTrimAudioCommand } from "./trim-audio";
 import type { TrimAudioOptions } from "@/lib/ffmpeg/presets/trim-audio";
+import { buildResizeImageCommand } from "./resize-image";
+import type { ResizeImageOptions } from "@/lib/ffmpeg/presets/resize-image";
 
 type CommandValues =
   Record<string, string | number>;
@@ -155,5 +157,12 @@ export const commandBuilders: Record<
       duration: String(values.duration),
       output: String(values.output),
     } satisfies TrimAudioOptions),
+
+  "resize-image": (values) =>
+    buildResizeImageCommand({
+      input: String(values.input),
+      width: Number(values.width),
+      output: String(values.output),
+    } satisfies ResizeImageOptions),
     
 };

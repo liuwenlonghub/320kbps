@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import { buildOutputFilename } from "../build-output-filename";
 import { videoToMp3Preset } from "@/lib/ffmpeg/presets/video-to-mp3";
 import { trimAudioPreset } from "@/lib/ffmpeg/presets/trim-audio";
+import { resizeImagePreset } from "@/lib/ffmpeg/presets/resize-image";
 
 describe("buildOutputFilename", () => {
   it("builds an output filename for a registered preset", () => {
@@ -39,5 +40,15 @@ describe("buildOutputFilename", () => {
         output: "output.mp3",
       }),
     ).toBe("song-trimmed.flac");
+  });
+
+  it("builds a resized output filename for the image resizing preset", () => {
+    expect(
+      buildOutputFilename(resizeImagePreset, {
+        input: "photo.webp",
+        width: 640,
+        output: "output.jpg",
+      }),
+    ).toBe("photo-640.webp");
   });
 });

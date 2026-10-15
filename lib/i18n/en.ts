@@ -309,6 +309,35 @@ export const en = {
         ],
       },
     },
+    resizeImage: {
+      title: "Resize Image",
+      description:
+        "Resize an image to a specific width while preserving its aspect ratio.",
+      inputLabel: "Input file",
+      widthLabel: "Width",
+      outputLabel: "Output filename",
+      outputPlaceholder: "output.jpg",
+      explanation: {
+        title: "How it works",
+        description:
+          "This preset scales the image to the selected width while calculating its height to preserve the original aspect ratio.",
+        parameters: [
+          {
+            flag: "-i",
+            description: "Specifies the input image file.",
+          },
+          {
+            flag: "-vf scale",
+            description: "Applies FFmpeg's image scaling filter.",
+          },
+          {
+            flag: "scale=1280:-1",
+            description:
+              "Sets the image width to 1280 pixels and calculates the height to preserve its aspect ratio.",
+          },
+        ],
+      },
+    },
     mp4ToWebm: {
       title: "MP4 → WebM",
       description:
