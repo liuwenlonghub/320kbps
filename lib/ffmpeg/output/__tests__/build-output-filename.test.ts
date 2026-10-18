@@ -3,6 +3,7 @@ import { buildOutputFilename } from "../build-output-filename";
 import { videoToMp3Preset } from "@/lib/ffmpeg/presets/video-to-mp3";
 import { trimAudioPreset } from "@/lib/ffmpeg/presets/trim-audio";
 import { resizeImagePreset } from "@/lib/ffmpeg/presets/resize-image";
+import { audioToMp3Preset } from "@/lib/ffmpeg/presets/audio-to-mp3";
 
 describe("buildOutputFilename", () => {
   it("builds an output filename for a registered preset", () => {
@@ -13,6 +14,16 @@ describe("buildOutputFilename", () => {
     });
 
     expect(filename).toBe("my video.mp3".replace(".mp4", ".mp3"));
+  });
+
+  it("builds an MP3 filename for the general audio-to-MP3 preset", () => {
+    expect(
+      buildOutputFilename(audioToMp3Preset, {
+        input: "recording.m4a",
+        bitrate: 192,
+        output: "output.mp3",
+      }),
+    ).toBe("recording.mp3");
   });
 
   it("returns an empty string for an unknown preset", () => {

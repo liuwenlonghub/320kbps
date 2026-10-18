@@ -3,6 +3,7 @@ import { buildCommand } from "../build-command";
 import { videoToMp3Preset } from "@/lib/ffmpeg/presets/video-to-mp3";
 import { trimAudioPreset } from "@/lib/ffmpeg/presets/trim-audio";
 import { resizeImagePreset } from "@/lib/ffmpeg/presets/resize-image";
+import { audioToMp3Preset } from "@/lib/ffmpeg/presets/audio-to-mp3";
 
 describe("buildCommand", () => {
   it("builds a command for a registered preset", () => {
@@ -14,6 +15,18 @@ describe("buildCommand", () => {
 
     expect(command).toBe(
       "ffmpeg -i 'input.mp4' -codec:a libmp3lame -b:a 320k 'output.mp3'",
+    );
+  });
+
+  it("builds a command for the general audio-to-MP3 preset", () => {
+    expect(
+      buildCommand(audioToMp3Preset, {
+        input: "recording.m4a",
+        bitrate: 192,
+        output: "recording.mp3",
+      }),
+    ).toBe(
+      "ffmpeg -i 'recording.m4a' -vn -codec:a libmp3lame -b:a 192k 'recording.mp3'",
     );
   });
 

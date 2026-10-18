@@ -169,6 +169,41 @@ export const en = {
         ],
       },
     },
+    audioToMp3: {
+      title: "Audio → MP3",
+      description:
+        "Convert WAV, FLAC, M4A, AAC, OGG, Opus, AIFF, or WMA audio files to MP3.",
+      inputLabel: "Input audio file",
+      outputLabel: "Output filename",
+      outputPlaceholder: "output.mp3",
+      bitrateLabel: "Bitrate",
+      explanation: {
+        title: "How it works",
+        description:
+          "This preset converts a supported audio file to MP3 using the selected bitrate.",
+        parameters: [
+          {
+            flag: "-i",
+            description: "Specifies the input audio file.",
+          },
+          {
+            flag: "-vn",
+            description:
+              "Excludes embedded video or cover-art streams.",
+          },
+          {
+            flag: "-codec:a libmp3lame",
+            description:
+              "Encodes the audio using the LAME MP3 encoder.",
+          },
+          {
+            flag: "-b:a",
+            description:
+              "Sets the MP3 audio bitrate.",
+          },
+        ],
+      },
+    },
     resizeVideo: {
       title: "Resize Video",
       description:

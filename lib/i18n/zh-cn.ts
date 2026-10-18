@@ -168,6 +168,41 @@ export const zhCN = {
         ],
       },
     },
+    audioToMp3: {
+      title: "音频 → MP3",
+      description:
+        "将 WAV、FLAC、M4A、AAC、OGG、Opus、AIFF 或 WMA 音频转换为 MP3。",
+      inputLabel: "输入音频文件",
+      outputLabel: "输出文件名",
+      outputPlaceholder: "output.mp3",
+      bitrateLabel: "比特率",
+      explanation: {
+        title: "工作原理",
+        description:
+          "此预设会根据所选比特率，将支持的音频文件转换为 MP3。",
+        parameters: [
+          {
+            flag: "-i",
+            description: "指定输入音频文件。",
+          },
+          {
+            flag: "-vn",
+            description:
+              "排除嵌入的视频或封面图流。",
+          },
+          {
+            flag: "-codec:a libmp3lame",
+            description:
+              "使用 LAME MP3 编码器对音频进行编码。",
+          },
+          {
+            flag: "-b:a",
+            description:
+              "设置 MP3 音频比特率。",
+          },
+        ],
+      },
+    },
     resizeVideo: {
       title: "调整视频尺寸",
       description:

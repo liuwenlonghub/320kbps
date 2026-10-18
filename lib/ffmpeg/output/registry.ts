@@ -32,6 +32,8 @@ import { buildTrimAudioOutputFilename } from "./trim-audio";
 import type { TrimAudioOptions } from "../presets/trim-audio";
 import { buildResizeImageOutputFilename } from "./resize-image";
 import type { ResizeImageOptions } from "../presets/resize-image";
+import { buildAudioToMp3OutputFilename } from "./audio-to-mp3";
+import type { AudioToMp3Options } from "../presets/audio-to-mp3";
 
 type OutputValues = Record<string, string | number>;
 
@@ -43,6 +45,13 @@ export const outputBuilders: Record<
   string,
   OutputBuilder
 > = {
+  "audio-to-mp3": (values) =>
+    buildAudioToMp3OutputFilename({
+      input: String(values.input),
+      bitrate: Number(values.bitrate),
+      output: String(values.output),
+    } satisfies AudioToMp3Options),
+
   "video-to-mp3": (values) =>
     buildVideoToMp3OutputFilename({
       input: String(values.input),

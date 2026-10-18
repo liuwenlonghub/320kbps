@@ -4,9 +4,9 @@ import type { Locale } from "@/lib/i18n";
 import { getDictionary } from "@/lib/i18n";
 
 import { useEffect, useState } from "react";
-import { wavToMp3InBrowser } from "@/lib/ffmpeg/presets/wav-to-mp3-browser";
+import { audioToMp3InBrowser } from "@/lib/ffmpeg/presets/audio-to-mp3-browser";
 
-type WavToMp3BrowserProps = {
+type AudioToMp3BrowserProps = {
   file: File | null;
   bitrate: number;
   outputFilename: string;
@@ -14,13 +14,13 @@ type WavToMp3BrowserProps = {
 
 };
 
-export function WavToMp3Browser({
+export function AudioToMp3Browser({
   file,
   bitrate,
   outputFilename,
   locale,
 
-}: WavToMp3BrowserProps) {
+}: AudioToMp3BrowserProps) {
   const t = getDictionary(locale);
   const [status, setStatus] = useState<
     "idle" | "loading" | "converting" | "done" | "error"
@@ -53,7 +53,7 @@ export function WavToMp3Browser({
       setStatus("loading");
       setProgress(0);
 
-      const blob = await wavToMp3InBrowser(
+      const blob = await audioToMp3InBrowser(
         file,
         bitrate,
         (value) => {
@@ -164,7 +164,7 @@ export function WavToMp3Browser({
               download={outputFilename}
               className="mt-4 inline-flex h-10 items-center rounded-full bg-zinc-950 px-5 text-sm font-medium text-white transition-colors hover:bg-zinc-800"
             >
-              Download {outputFilename}
+              {t.presetPage.download} {outputFilename}
             </a>
           </div>
         )}

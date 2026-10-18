@@ -77,10 +77,10 @@ const VideoToMp3Browser = dynamic(
   },
 );
 
-const WavToMp3Browser = dynamic(
+const AudioToMp3Browser = dynamic(
   () =>
-    import("./wav-to-mp3-browser").then(
-      (mod) => mod.WavToMp3Browser,
+    import("./audio-to-mp3-browser").then(
+      (mod) => mod.AudioToMp3Browser,
     ),
   { ssr: false },
 );
@@ -214,6 +214,8 @@ export function PresetPage<
               ? t.presets.mkvToMp4.title
               : preset.id === "video-to-mp3"
                 ? t.presets.videoToMp3.title
+                : preset.id === "audio-to-mp3"
+                  ? t.presets.audioToMp3.title
                 : preset.id === "wav-to-mp3"
                   ? t.presets.wavToMp3.title
                   : preset.id === "flac-to-mp3"
@@ -250,6 +252,8 @@ export function PresetPage<
               ? t.presets.mkvToMp4.description
               : preset.id === "video-to-mp3"
                 ? t.presets.videoToMp3.description
+                : preset.id === "audio-to-mp3"
+                  ? t.presets.audioToMp3.description
                 : preset.id === "wav-to-mp3"
                   ? t.presets.wavToMp3.description
                   : preset.id === "flac-to-mp3"
@@ -347,6 +351,34 @@ export function PresetPage<
                         return {
                           ...field,
                           label: t.presets.videoToMp3.bitrateLabel,
+                        };
+                      }
+
+                      return field;
+                    })
+
+                : preset.id === "audio-to-mp3"
+                  ? preset.fields.map((field) => {
+                      if (field.id === "input") {
+                        return {
+                          ...field,
+                          label: t.presets.audioToMp3.inputLabel,
+                        };
+                      }
+
+                      if (field.id === "output") {
+                        return {
+                          ...field,
+                          label: t.presets.audioToMp3.outputLabel,
+                          placeholder:
+                            t.presets.audioToMp3.outputPlaceholder,
+                        };
+                      }
+
+                      if (field.id === "bitrate") {
+                        return {
+                          ...field,
+                          label: t.presets.audioToMp3.bitrateLabel,
                         };
                       }
 
@@ -841,8 +873,9 @@ export function PresetPage<
         />
       )}
 
-      {preset.id === "wav-to-mp3" && (
-        <WavToMp3Browser
+      {(preset.id === "wav-to-mp3" ||
+        preset.id === "audio-to-mp3") && (
+        <AudioToMp3Browser
           file={selectedFile}
           bitrate={Number(values.bitrate)}
           outputFilename={String(values.output)}
@@ -946,6 +979,8 @@ export function PresetPage<
         <h2 className="text-sm font-medium">
           {preset.id === "video-to-mp3"
             ? t.presets.videoToMp3.title
+            : preset.id === "audio-to-mp3"
+              ? t.presets.audioToMp3.explanation.title
             : preset.id === "wav-to-mp3"
               ? t.presets.wavToMp3.title
               : preset.id === "flac-to-mp3"
@@ -979,6 +1014,8 @@ export function PresetPage<
         <p className="mt-3 text-sm leading-6 text-zinc-500">
           {preset.id === "video-to-mp3"
             ? t.presets.videoToMp3.description
+            : preset.id === "audio-to-mp3"
+              ? t.presets.audioToMp3.explanation.description
             : preset.id === "wav-to-mp3"
               ? t.presets.wavToMp3.description
               : preset.id === "flac-to-mp3"
@@ -1055,6 +1092,8 @@ export function PresetPage<
               ? t.presets.mkvToMp4.explanation.parameters
               : preset.id === "video-to-mp3"
                 ? t.presets.videoToMp3.explanation.parameters
+                : preset.id === "audio-to-mp3"
+                  ? t.presets.audioToMp3.explanation.parameters
                 : preset.id === "wav-to-mp3"
                   ? t.presets.wavToMp3.explanation.parameters
                   : preset.id === "flac-to-mp3"

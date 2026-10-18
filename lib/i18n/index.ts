@@ -21,6 +21,7 @@ const presetTranslationKeys: Record<string, keyof typeof en.presets> = {
   "gif-to-mp4": "gifToMp4",
   "mkv-to-mp4": "mkvToMp4",
   "video-to-mp3": "videoToMp3",
+  "audio-to-mp3": "audioToMp3",
   "flac-to-mp3": "flacToMp3",
   "wav-to-mp3": "wavToMp3",
   "resize-video": "resizeVideo",

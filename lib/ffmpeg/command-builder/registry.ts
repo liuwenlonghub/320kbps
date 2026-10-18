@@ -32,6 +32,8 @@ import { buildTrimAudioCommand } from "./trim-audio";
 import type { TrimAudioOptions } from "@/lib/ffmpeg/presets/trim-audio";
 import { buildResizeImageCommand } from "./resize-image";
 import type { ResizeImageOptions } from "@/lib/ffmpeg/presets/resize-image";
+import { buildAudioToMp3Command } from "./audio-to-mp3";
+import type { AudioToMp3Options } from "@/lib/ffmpeg/presets/audio-to-mp3";
 
 type CommandValues =
   Record<string, string | number>;
@@ -44,6 +46,13 @@ export const commandBuilders: Record<
   string,
   CommandBuilder
 > = {
+  "audio-to-mp3": (values) =>
+    buildAudioToMp3Command({
+      input: String(values.input),
+      bitrate: Number(values.bitrate),
+      output: String(values.output),
+    } satisfies AudioToMp3Options),
+
   "video-to-mp3": (values) =>
     buildVideoToMp3Command({
       input: String(values.input),

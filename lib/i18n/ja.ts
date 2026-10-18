@@ -168,6 +168,41 @@ export const ja = {
         ],
       },
     },
+    audioToMp3: {
+      title: "音声 → MP3",
+      description:
+        "WAV、FLAC、M4A、AAC、OGG、Opus、AIFF、WMA の音声ファイルを MP3 に変換します。",
+      inputLabel: "入力音声ファイル",
+      outputLabel: "出力ファイル名",
+      outputPlaceholder: "output.mp3",
+      bitrateLabel: "ビットレート",
+      explanation: {
+        title: "仕組み",
+        description:
+          "選択したビットレートで、対応する音声ファイルを MP3 に変換します。",
+        parameters: [
+          {
+            flag: "-i",
+            description: "入力音声ファイルを指定します。",
+          },
+          {
+            flag: "-vn",
+            description:
+              "埋め込み動画やカバーアートのストリームを除外します。",
+          },
+          {
+            flag: "-codec:a libmp3lame",
+            description:
+              "LAME MP3 エンコーダーで音声をエンコードします。",
+          },
+          {
+            flag: "-b:a",
+            description:
+              "MP3 音声のビットレートを設定します。",
+          },
+        ],
+      },
+    },
     resizeVideo: {
       title: "動画のサイズ変更",
       description:

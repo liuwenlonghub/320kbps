@@ -28,6 +28,20 @@ describe("getPresetCopy", () => {
       title: getDictionary("zh-cn").presets.resizeImage.title,
       description: getDictionary("zh-cn").presets.resizeImage.description,
     });
+
+  });
+
+  it("returns localized copy for the general audio-to-MP3 preset", () => {
+    const preset = {
+      id: "audio-to-mp3",
+      title: "Fallback title",
+      description: "Fallback description",
+    };
+
+    expect(getPresetCopy(preset, "zh-cn")).toEqual({
+      title: getDictionary("zh-cn").presets.audioToMp3.title,
+      description: getDictionary("zh-cn").presets.audioToMp3.description,
+    });
   });
 
   it("uses preset copy when there is no translation mapping", () => {

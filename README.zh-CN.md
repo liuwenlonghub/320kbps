@@ -24,6 +24,7 @@
 - **视频转 MP3**：从视频中提取音频，并可选择 128、192、256 或 320 kbps 码率。
 - **WAV 转 MP3**：将无压缩 WAV 文件转换为 MP3。
 - **FLAC 转 MP3**：将无损 FLAC 文件转换为 MP3。
+- **音频转 MP3**：将 WAV、FLAC、M4A、AAC、OGG、Opus、AIFF 或 WMA 音频转换为 MP3，并可调整比特率。
 - **裁剪音频**：按开始时间和时长截取 MP3、WAV、FLAC、M4A、AAC、OGG 或 Opus 文件，不重新编码。
 
 ### 视频
