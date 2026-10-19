@@ -340,6 +340,40 @@ export const ja = {
         ],
       },
     },
+    compressImage: {
+      title: "画像を圧縮",
+      description:
+        "画質と高圧縮エンコードの設定を調整して、画像を WebP に圧縮します。",
+      inputLabel: "入力ファイル",
+      qualityLabel: "画質",
+      outputLabel: "出力ファイル",
+      outputPlaceholder: "output.webp",
+      explanation: {
+        title: "このコマンドについて",
+        description:
+          "入力画像を WebP としてエンコードします。画質設定で画質とファイルサイズのバランスを調整でき、最大の圧縮処理で小さいファイルを優先します。",
+        parameters: [
+          {
+            flag: "-i",
+            description: "入力画像ファイルを指定します。",
+          },
+          {
+            flag: "-c:v libwebp",
+            description: "WebP 画像コーデックで画像をエンコードします。",
+          },
+          {
+            flag: "-q:v",
+            description:
+              "WebP の画質を設定します。値を低くすると、通常はファイルサイズが小さくなります。",
+          },
+          {
+            flag: "-compression_level 6",
+            description:
+              "最も高い WebP 圧縮処理を使用して、より小さいファイルを優先します。",
+          },
+        ],
+      },
+    },
     resizeImage: {
       title: "画像サイズを変更",
       description:

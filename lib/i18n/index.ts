@@ -28,6 +28,7 @@ const presetTranslationKeys: Record<string, keyof typeof en.presets> = {
   "compress-video": "compressVideo",
   "webm-to-mp4": "webmToMp4",
   "image-to-webp": "imageToWebp",
+  "compress-image": "compressImage",
   "mp4-to-webm": "mp4ToWebm",
   "trim-video": "trimVideo",
   "video-to-image": "videoToImage",

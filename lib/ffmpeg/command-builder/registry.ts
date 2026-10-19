@@ -34,6 +34,8 @@ import { buildResizeImageCommand } from "./resize-image";
 import type { ResizeImageOptions } from "@/lib/ffmpeg/presets/resize-image";
 import { buildAudioToMp3Command } from "./audio-to-mp3";
 import type { AudioToMp3Options } from "@/lib/ffmpeg/presets/audio-to-mp3";
+import { buildCompressImageCommand } from "./compress-image";
+import type { CompressImageOptions } from "@/lib/ffmpeg/presets/compress-image";
 
 type CommandValues =
   Record<string, string | number>;
@@ -173,5 +175,13 @@ export const commandBuilders: Record<
       width: Number(values.width),
       output: String(values.output),
     } satisfies ResizeImageOptions),
+
+  "compress-image": (values) =>
+    buildCompressImageCommand({
+      input: String(values.input),
+      quality: Number(values.quality),
+      compressionLevel: Number(values.compressionLevel),
+      output: String(values.output),
+    } satisfies CompressImageOptions),
     
 };

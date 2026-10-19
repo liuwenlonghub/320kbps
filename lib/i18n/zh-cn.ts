@@ -339,6 +339,37 @@ export const zhCN = {
         ],
       },
     },
+    compressImage: {
+      title: "压缩图片",
+      description: "以 WebP 格式压缩图片，并可调整画质和编码压缩力度。",
+      inputLabel: "输入文件",
+      qualityLabel: "画质",
+      outputLabel: "输出文件",
+      outputPlaceholder: "output.webp",
+      explanation: {
+        title: "关于此命令",
+        description:
+          "此命令会将输入图片编码为 WebP。画质选项用于平衡视觉质量与文件大小，最高压缩力度会优先减小输出文件。",
+        parameters: [
+          {
+            flag: "-i",
+            description: "指定输入图片文件。",
+          },
+          {
+            flag: "-c:v libwebp",
+            description: "使用 WebP 图片编码器编码图片。",
+          },
+          {
+            flag: "-q:v",
+            description: "设置 WebP 图片画质，较低的数值通常会生成更小的文件。",
+          },
+          {
+            flag: "-compression_level 6",
+            description: "使用最高的 WebP 压缩力度，以优先减小输出文件。",
+          },
+        ],
+      },
+    },
     resizeImage: {
       title: "调整图片尺寸",
       description: "将图片缩放到指定宽度，同时保持原始宽高比。",

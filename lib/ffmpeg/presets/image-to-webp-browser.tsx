@@ -36,6 +36,7 @@ export async function convertImageToWebpInBrowser(
   file: File,
   quality: number,
   onProgress?: (progress: number) => void,
+  compressionLevel?: number,
 ): Promise<Blob> {
   await ensureFFmpegLoaded();
 
@@ -60,15 +61,21 @@ export async function convertImageToWebpInBrowser(
       await fetchFile(file),
     );
 
-    await ffmpeg.exec([
+    const command = [
       "-i",
       inputFilename,
       "-c:v",
       "libwebp",
       "-q:v",
       String(quality),
-      outputFilename,
-    ]);
+    ];
+
+    if (compressionLevel !== undefined) {
+      command.push("-compression_level", String(compressionLevel));
+    }
+
+    command.push(outputFilename);
+    await ffmpeg.exec(command);
 
     const data = await ffmpeg.readFile(outputFilename);
 

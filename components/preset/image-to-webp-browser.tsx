@@ -9,6 +9,7 @@ import { convertImageToWebpInBrowser } from "@/lib/ffmpeg/presets/image-to-webp-
 type ImageToWebpBrowserProps = {
   file: File | null;
   quality: number;
+  compressionLevel?: number;
   outputFilename: string;
   locale: Locale;
 
@@ -17,6 +18,7 @@ type ImageToWebpBrowserProps = {
 export function ImageToWebpBrowser({
   file,
   quality,
+  compressionLevel,
   outputFilename,
   locale,
 
@@ -60,6 +62,7 @@ export function ImageToWebpBrowser({
           setStatus("converting");
           setProgress(value);
         },
+        compressionLevel,
       );
 
       const url = URL.createObjectURL(blob);

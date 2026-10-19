@@ -4,6 +4,7 @@ import { videoToMp3Preset } from "@/lib/ffmpeg/presets/video-to-mp3";
 import { trimAudioPreset } from "@/lib/ffmpeg/presets/trim-audio";
 import { resizeImagePreset } from "@/lib/ffmpeg/presets/resize-image";
 import { audioToMp3Preset } from "@/lib/ffmpeg/presets/audio-to-mp3";
+import { compressImagePreset } from "@/lib/ffmpeg/presets/compress-image";
 
 describe("buildOutputFilename", () => {
   it("builds an output filename for a registered preset", () => {
@@ -61,5 +62,16 @@ describe("buildOutputFilename", () => {
         output: "output.jpg",
       }),
     ).toBe("photo-640.webp");
+  });
+
+  it("builds a WebP output filename for the image compression preset", () => {
+    expect(
+      buildOutputFilename(compressImagePreset, {
+        input: "photo.png",
+        quality: 75,
+        compressionLevel: 6,
+        output: "output.webp",
+      }),
+    ).toBe("photo.webp");
   });
 });

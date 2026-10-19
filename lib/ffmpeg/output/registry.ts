@@ -34,6 +34,8 @@ import { buildResizeImageOutputFilename } from "./resize-image";
 import type { ResizeImageOptions } from "../presets/resize-image";
 import { buildAudioToMp3OutputFilename } from "./audio-to-mp3";
 import type { AudioToMp3Options } from "../presets/audio-to-mp3";
+import { buildCompressImageOutputFilename } from "./compress-image";
+import type { CompressImageOptions } from "../presets/compress-image";
 
 type OutputValues = Record<string, string | number>;
 
@@ -172,5 +174,13 @@ export const outputBuilders: Record<
       width: Number(values.width),
       output: String(values.output),
     } satisfies ResizeImageOptions),
+
+  "compress-image": (values) =>
+    buildCompressImageOutputFilename({
+      input: String(values.input),
+      quality: Number(values.quality),
+      compressionLevel: Number(values.compressionLevel),
+      output: String(values.output),
+    } satisfies CompressImageOptions),
   
 };

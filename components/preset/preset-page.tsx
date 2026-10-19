@@ -226,9 +226,11 @@ export function PresetPage<
                               ? t.presets.compressVideo.title
                                 : preset.id === "image-to-webp"
                                   ? t.presets.imageToWebp.title
-                                  : preset.id === "resize-image"
-                                    ? t.presets.resizeImage.title
-                                    : preset.id === "mp4-to-webm"
+                                  : preset.id === "compress-image"
+                                    ? t.presets.compressImage.title
+                                    : preset.id === "resize-image"
+                                      ? t.presets.resizeImage.title
+                                      : preset.id === "mp4-to-webm"
                                       ? t.presets.mp4ToWebm.title
                                         : preset.id === "trim-video"
                                           ? t.presets.trimVideo.title
@@ -264,9 +266,11 @@ export function PresetPage<
                               ? t.presets.compressVideo.description
                                 : preset.id === "image-to-webp"
                                   ? t.presets.imageToWebp.description
-                                  : preset.id === "resize-image"
-                                    ? t.presets.resizeImage.description
-                                    : preset.id === "mp4-to-webm"
+                                  : preset.id === "compress-image"
+                                    ? t.presets.compressImage.description
+                                    : preset.id === "resize-image"
+                                      ? t.presets.resizeImage.description
+                                      : preset.id === "mp4-to-webm"
                                       ? t.presets.mp4ToWebm.description
                                         : preset.id === "trim-video"
                                           ? t.presets.trimVideo.description
@@ -521,6 +525,33 @@ export function PresetPage<
                           ...field,
                           label: t.presets.webmToMp4.outputLabel,
                           placeholder: t.presets.webmToMp4.outputPlaceholder,
+                        };
+                      }
+
+                      return field;
+                    })
+
+                : preset.id === "compress-image"
+                  ? preset.fields.map((field) => {
+                      if (field.id === "input") {
+                        return {
+                          ...field,
+                          label: t.presets.compressImage.inputLabel,
+                        };
+                      }
+
+                      if (field.id === "quality") {
+                        return {
+                          ...field,
+                          label: t.presets.compressImage.qualityLabel,
+                        };
+                      }
+
+                      if (field.id === "output") {
+                        return {
+                          ...field,
+                          label: t.presets.compressImage.outputLabel,
+                          placeholder: t.presets.compressImage.outputPlaceholder,
                         };
                       }
 
@@ -846,10 +877,15 @@ export function PresetPage<
         />
       )}
 
-      {preset.id === "image-to-webp" && (
+      {(preset.id === "image-to-webp" || preset.id === "compress-image") && (
         <ImageToWebpBrowser
           file={selectedFile}
           quality={Number(values.quality)}
+          compressionLevel={
+            preset.id === "compress-image"
+              ? Number(values.compressionLevel)
+              : undefined
+          }
           outputFilename={String(values.output)}
             locale={locale}
         />
@@ -993,6 +1029,8 @@ export function PresetPage<
                             ? t.presets.webmToMp4.title
                               : preset.id === "image-to-webp"
                                 ? t.presets.imageToWebp.title
+                                : preset.id === "compress-image"
+                                  ? t.presets.compressImage.explanation.title
                               : preset.id === "resize-image"
                                 ? t.presets.resizeImage.title
                                 : preset.id === "mp4-to-webm"
@@ -1028,6 +1066,8 @@ export function PresetPage<
                             ? t.presets.webmToMp4.description
                               : preset.id === "image-to-webp"
                                 ? t.presets.imageToWebp.description
+                                : preset.id === "compress-image"
+                                  ? t.presets.compressImage.explanation.description
                               : preset.id === "resize-image"
                                 ? t.presets.resizeImage.explanation.description
                                 : preset.id === "mp4-to-webm"
@@ -1106,7 +1146,9 @@ export function PresetPage<
                                 ? t.presets.webmToMp4.explanation.parameters
                                   : preset.id === "image-to-webp"
                                     ? t.presets.imageToWebp.explanation.parameters
-                                  : preset.id === "resize-image"
+                                    : preset.id === "compress-image"
+                                      ? t.presets.compressImage.explanation.parameters
+                                      : preset.id === "resize-image"
                                     ? t.presets.resizeImage.explanation.parameters
                                     : preset.id === "mp4-to-webm"
                                       ? t.presets.mp4ToWebm.explanation.parameters

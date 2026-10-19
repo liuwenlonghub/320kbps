@@ -344,6 +344,40 @@ export const en = {
         ],
       },
     },
+    compressImage: {
+      title: "Compress Image",
+      description:
+        "Compress images to WebP with adjustable quality and high-effort encoding.",
+      inputLabel: "Input file",
+      qualityLabel: "Quality",
+      outputLabel: "Output file",
+      outputPlaceholder: "output.webp",
+      explanation: {
+        title: "About this command",
+        description:
+          "This command encodes the input image as WebP. The quality setting controls the balance between visual quality and file size, while maximum compression effort favors smaller output files.",
+        parameters: [
+          {
+            flag: "-i",
+            description: "Specifies the input image file.",
+          },
+          {
+            flag: "-c:v libwebp",
+            description: "Encodes the image using the WebP image codec.",
+          },
+          {
+            flag: "-q:v",
+            description:
+              "Sets WebP image quality. Lower values generally produce smaller files.",
+          },
+          {
+            flag: "-compression_level 6",
+            description:
+              "Uses the highest WebP compression effort to favor smaller output files.",
+          },
+        ],
+      },
+    },
     resizeImage: {
       title: "Resize Image",
       description:
