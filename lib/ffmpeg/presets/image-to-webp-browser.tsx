@@ -32,11 +32,12 @@ async function ensureFFmpegLoaded() {
   loaded = true;
 }
 
-export async function convertImageToWebpInBrowser(
+export async function convertImageInBrowser(
   file: File,
   quality: number,
   onProgress?: (progress: number) => void,
   compressionLevel?: number,
+  outputFormat: "webp" | "jpeg" = "webp",
 ): Promise<Blob> {
   await ensureFFmpegLoaded();
 
@@ -53,7 +54,8 @@ export async function convertImageToWebpInBrowser(
   ffmpeg.on("progress", progressHandler);
 
   const inputFilename = `input-${Date.now()}-${file.name}`;
-  const outputFilename = "output.webp";
+  const outputFilename =
+    outputFormat === "jpeg" ? "output.jpg" : "output.webp";
 
   try {
     await ffmpeg.writeFile(
@@ -61,16 +63,28 @@ export async function convertImageToWebpInBrowser(
       await fetchFile(file),
     );
 
-    const command = [
-      "-i",
-      inputFilename,
-      "-c:v",
-      "libwebp",
-      "-q:v",
-      String(quality),
-    ];
+    const command =
+      outputFormat === "jpeg"
+        ? [
+            "-i",
+            inputFilename,
+            "-frames:v",
+            "1",
+            "-c:v",
+            "mjpeg",
+            "-q:v",
+            String(quality),
+          ]
+        : [
+            "-i",
+            inputFilename,
+            "-c:v",
+            "libwebp",
+            "-q:v",
+            String(quality),
+          ];
 
-    if (compressionLevel !== undefined) {
+    if (outputFormat === "webp" && compressionLevel !== undefined) {
       command.push("-compression_level", String(compressionLevel));
     }
 
@@ -89,7 +103,7 @@ export async function convertImageToWebpInBrowser(
     new Uint8Array(buffer).set(data);
 
     return new Blob([buffer], {
-      type: "image/webp",
+      type: outputFormat === "jpeg" ? "image/jpeg" : "image/webp",
     });
   } finally {
     ffmpeg.off("progress", progressHandler);

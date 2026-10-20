@@ -4,12 +4,13 @@ import type { Locale } from "@/lib/i18n";
 import { getDictionary } from "@/lib/i18n";
 
 import { useEffect, useState } from "react";
-import { convertImageToWebpInBrowser } from "@/lib/ffmpeg/presets/image-to-webp-browser";
+import { convertImageInBrowser } from "@/lib/ffmpeg/presets/image-to-webp-browser";
 
 type ImageToWebpBrowserProps = {
   file: File | null;
   quality: number;
   compressionLevel?: number;
+  outputFormat?: "webp" | "jpeg";
   outputFilename: string;
   locale: Locale;
 
@@ -19,6 +20,7 @@ export function ImageToWebpBrowser({
   file,
   quality,
   compressionLevel,
+  outputFormat = "webp",
   outputFilename,
   locale,
 
@@ -55,7 +57,7 @@ export function ImageToWebpBrowser({
       setStatus("loading");
       setProgress(0);
 
-      const blob = await convertImageToWebpInBrowser(
+      const blob = await convertImageInBrowser(
         file,
         quality,
         (value) => {
@@ -63,6 +65,7 @@ export function ImageToWebpBrowser({
           setProgress(value);
         },
         compressionLevel,
+        outputFormat,
       );
 
       const url = URL.createObjectURL(blob);

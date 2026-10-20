@@ -340,6 +340,38 @@ export const ja = {
         ],
       },
     },
+    imageToJpeg: {
+      title: "画像 → JPEG",
+      description: "画質を調整して画像を JPEG に変換します。",
+      inputLabel: "入力ファイル",
+      qualityLabel: "画質（値が小さいほど高画質）",
+      outputLabel: "出力ファイル",
+      outputPlaceholder: "output.jpg",
+      explanation: {
+        title: "このコマンドについて",
+        description:
+          "入力画像を JPEG に変換します。JPEG は透明度をサポートしないため、変換時に透明部分は平坦化されます。",
+        parameters: [
+          {
+            flag: "-i",
+            description: "入力画像ファイルを指定します。",
+          },
+          {
+            flag: "-frames:v 1",
+            description: "1 フレームのみ出力し、アニメーション画像では最初のフレームを使用します。",
+          },
+          {
+            flag: "-c:v mjpeg",
+            description: "Motion JPEG コーデックで画像をエンコードします。",
+          },
+          {
+            flag: "-q:v",
+            description:
+              "JPEG の画質を 2（最高画質）から 31（最小サイズ）で設定します。",
+          },
+        ],
+      },
+    },
     compressImage: {
       title: "画像を圧縮",
       description:

@@ -44,6 +44,7 @@ The project is designed for simple, repeatable tasks: converting between contain
 ### Image
 
 - **Image → WebP**: Convert JPG, PNG, GIF, BMP, or TIFF files to WebP.
+- **Image → JPEG**: Convert common image formats to JPEG with adjustable quality.
 - **Compress image**: Encode common image formats as WebP with adjustable quality and maximum compression effort.
 - **Resize image**: Scale a JPG, PNG, WebP, BMP, or TIFF image to a target width while preserving its aspect ratio.
 

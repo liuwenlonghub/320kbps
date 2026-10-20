@@ -43,6 +43,19 @@ describe("getPresetCopy", () => {
     });
   });
 
+  it("returns localized copy for the image to JPEG preset", () => {
+    const preset = {
+      id: "image-to-jpeg",
+      title: "Fallback title",
+      description: "Fallback description",
+    };
+
+    expect(getPresetCopy(preset, "zh-cn")).toEqual({
+      title: getDictionary("zh-cn").presets.imageToJpeg.title,
+      description: getDictionary("zh-cn").presets.imageToJpeg.description,
+    });
+  });
+
   it("returns localized copy for the general audio-to-MP3 preset", () => {
     const preset = {
       id: "audio-to-mp3",

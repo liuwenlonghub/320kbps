@@ -339,6 +339,38 @@ export const zhCN = {
         ],
       },
     },
+    imageToJpeg: {
+      title: "图片 → JPEG",
+      description: "将图片转换为 JPEG，并可调整画质。",
+      inputLabel: "输入文件",
+      qualityLabel: "画质（数值越小越清晰）",
+      outputLabel: "输出文件",
+      outputPlaceholder: "output.jpg",
+      explanation: {
+        title: "关于此命令",
+        description:
+          "此命令会将输入图片转换为 JPEG。JPEG 不支持透明度，因此转换时透明区域会被展平。",
+        parameters: [
+          {
+            flag: "-i",
+            description: "指定输入图片文件。",
+          },
+          {
+            flag: "-frames:v 1",
+            description: "只输出一帧；对于动画图片，使用第一帧。",
+          },
+          {
+            flag: "-c:v mjpeg",
+            description: "使用 Motion JPEG 编码器编码图片。",
+          },
+          {
+            flag: "-q:v",
+            description:
+              "设置 JPEG 画质：2 画质最佳，31 输出文件最小。",
+          },
+        ],
+      },
+    },
     compressImage: {
       title: "压缩图片",
       description: "以 WebP 格式压缩图片，并可调整画质和编码压缩力度。",

@@ -344,6 +344,38 @@ export const en = {
         ],
       },
     },
+    imageToJpeg: {
+      title: "Image → JPEG",
+      description: "Convert images to JPEG with adjustable quality.",
+      inputLabel: "Input file",
+      qualityLabel: "Quality (lower is better)",
+      outputLabel: "Output file",
+      outputPlaceholder: "output.jpg",
+      explanation: {
+        title: "About this command",
+        description:
+          "This command converts the input image to JPEG. JPEG does not support transparency, so transparent areas are flattened during conversion.",
+        parameters: [
+          {
+            flag: "-i",
+            description: "Specifies the input image file.",
+          },
+          {
+            flag: "-frames:v 1",
+            description: "Writes one frame, using the first frame for animated images.",
+          },
+          {
+            flag: "-c:v mjpeg",
+            description: "Encodes the image using the Motion JPEG codec.",
+          },
+          {
+            flag: "-q:v",
+            description:
+              "Sets JPEG quality from 2 (best quality) to 31 (smallest output).",
+          },
+        ],
+      },
+    },
     compressImage: {
       title: "Compress Image",
       description:

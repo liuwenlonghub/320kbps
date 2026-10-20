@@ -17,6 +17,7 @@ import { trimAudioPreset } from "./trim-audio";
 import { resizeImagePreset } from "./resize-image";
 import { audioToMp3Preset } from "./audio-to-mp3";
 import { compressImagePreset } from "./compress-image";
+import { imageToJpegPreset } from "./image-to-jpeg";
 
 export const presets = [
   videoToMp3Preset,
@@ -38,6 +39,7 @@ export const presets = [
   trimAudioPreset,
   audioToMp3Preset,
   compressImagePreset,
+  imageToJpegPreset,
 ] as const;
 
 export const presetCategories = [
@@ -64,4 +66,5 @@ export {
   resizeImagePreset,
   audioToMp3Preset,
   compressImagePreset,
+  imageToJpegPreset,
 };

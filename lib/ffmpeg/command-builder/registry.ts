@@ -36,6 +36,8 @@ import { buildAudioToMp3Command } from "./audio-to-mp3";
 import type { AudioToMp3Options } from "@/lib/ffmpeg/presets/audio-to-mp3";
 import { buildCompressImageCommand } from "./compress-image";
 import type { CompressImageOptions } from "@/lib/ffmpeg/presets/compress-image";
+import { buildImageToJpegCommand } from "./image-to-jpeg";
+import type { ImageToJpegOptions } from "@/lib/ffmpeg/presets/image-to-jpeg";
 
 type CommandValues =
   Record<string, string | number>;
@@ -183,5 +185,12 @@ export const commandBuilders: Record<
       compressionLevel: Number(values.compressionLevel),
       output: String(values.output),
     } satisfies CompressImageOptions),
+
+  "image-to-jpeg": (values) =>
+    buildImageToJpegCommand({
+      input: String(values.input),
+      quality: Number(values.quality),
+      output: String(values.output),
+    } satisfies ImageToJpegOptions),
     
 };

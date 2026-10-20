@@ -5,6 +5,7 @@ import { trimAudioPreset } from "@/lib/ffmpeg/presets/trim-audio";
 import { resizeImagePreset } from "@/lib/ffmpeg/presets/resize-image";
 import { audioToMp3Preset } from "@/lib/ffmpeg/presets/audio-to-mp3";
 import { compressImagePreset } from "@/lib/ffmpeg/presets/compress-image";
+import { imageToJpegPreset } from "@/lib/ffmpeg/presets/image-to-jpeg";
 
 describe("buildCommand", () => {
   it("builds a command for a registered preset", () => {
@@ -82,6 +83,18 @@ describe("buildCommand", () => {
       }),
     ).toBe(
       "ffmpeg -i 'photo.png' -c:v libwebp -q:v 60 -compression_level 6 'photo.webp'",
+    );
+  });
+
+  it("builds a command for the image to JPEG preset", () => {
+    expect(
+      buildCommand(imageToJpegPreset, {
+        input: "photo.png",
+        quality: 5,
+        output: "photo.jpg",
+      }),
+    ).toBe(
+      "ffmpeg -i 'photo.png' -frames:v 1 -c:v mjpeg -q:v 5 'photo.jpg'",
     );
   });
 });
