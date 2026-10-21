@@ -8,9 +8,9 @@ import { convertImageInBrowser } from "@/lib/ffmpeg/presets/image-to-webp-browse
 
 type ImageToWebpBrowserProps = {
   file: File | null;
-  quality: number;
+  quality?: number;
   compressionLevel?: number;
-  outputFormat?: "webp" | "jpeg";
+  outputFormat?: "webp" | "jpeg" | "png";
   outputFilename: string;
   locale: Locale;
 

@@ -38,6 +38,8 @@ import { buildCompressImageCommand } from "./compress-image";
 import type { CompressImageOptions } from "@/lib/ffmpeg/presets/compress-image";
 import { buildImageToJpegCommand } from "./image-to-jpeg";
 import type { ImageToJpegOptions } from "@/lib/ffmpeg/presets/image-to-jpeg";
+import { buildImageToPngCommand } from "./image-to-png";
+import type { ImageToPngOptions } from "@/lib/ffmpeg/presets/image-to-png";
 
 type CommandValues =
   Record<string, string | number>;
@@ -192,5 +194,11 @@ export const commandBuilders: Record<
       quality: Number(values.quality),
       output: String(values.output),
     } satisfies ImageToJpegOptions),
+
+  "image-to-png": (values) =>
+    buildImageToPngCommand({
+      input: String(values.input),
+      output: String(values.output),
+    } satisfies ImageToPngOptions),
     
 };

@@ -38,6 +38,8 @@ import { buildCompressImageOutputFilename } from "./compress-image";
 import type { CompressImageOptions } from "../presets/compress-image";
 import { buildImageToJpegOutputFilename } from "./image-to-jpeg";
 import type { ImageToJpegOptions } from "../presets/image-to-jpeg";
+import { buildImageToPngOutputFilename } from "./image-to-png";
+import type { ImageToPngOptions } from "../presets/image-to-png";
 
 type OutputValues = Record<string, string | number>;
 
@@ -191,5 +193,11 @@ export const outputBuilders: Record<
       quality: Number(values.quality),
       output: String(values.output),
     } satisfies ImageToJpegOptions),
+
+  "image-to-png": (values) =>
+    buildImageToPngOutputFilename({
+      input: String(values.input),
+      output: String(values.output),
+    } satisfies ImageToPngOptions),
   
 };

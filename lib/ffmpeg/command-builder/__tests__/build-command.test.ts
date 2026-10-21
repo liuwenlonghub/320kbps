@@ -6,6 +6,7 @@ import { resizeImagePreset } from "@/lib/ffmpeg/presets/resize-image";
 import { audioToMp3Preset } from "@/lib/ffmpeg/presets/audio-to-mp3";
 import { compressImagePreset } from "@/lib/ffmpeg/presets/compress-image";
 import { imageToJpegPreset } from "@/lib/ffmpeg/presets/image-to-jpeg";
+import { imageToPngPreset } from "@/lib/ffmpeg/presets/image-to-png";
 
 describe("buildCommand", () => {
   it("builds a command for a registered preset", () => {
@@ -96,5 +97,14 @@ describe("buildCommand", () => {
     ).toBe(
       "ffmpeg -i 'photo.png' -frames:v 1 -c:v mjpeg -q:v 5 'photo.jpg'",
     );
+  });
+
+  it("builds a command for the image to PNG preset", () => {
+    expect(
+      buildCommand(imageToPngPreset, {
+        input: "photo.webp",
+        output: "photo.png",
+      }),
+    ).toBe("ffmpeg -i 'photo.webp' -frames:v 1 -c:v png 'photo.png'");
   });
 });

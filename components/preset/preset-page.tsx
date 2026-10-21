@@ -228,6 +228,8 @@ export function PresetPage<
                                   ? t.presets.imageToWebp.title
                                   : preset.id === "image-to-jpeg"
                                     ? t.presets.imageToJpeg.title
+                                    : preset.id === "image-to-png"
+                                      ? t.presets.imageToPng.title
                                     : preset.id === "compress-image"
                                       ? t.presets.compressImage.title
                                       : preset.id === "resize-image"
@@ -270,6 +272,8 @@ export function PresetPage<
                                   ? t.presets.imageToWebp.description
                                   : preset.id === "image-to-jpeg"
                                     ? t.presets.imageToJpeg.description
+                                    : preset.id === "image-to-png"
+                                      ? t.presets.imageToPng.description
                                     : preset.id === "compress-image"
                                       ? t.presets.compressImage.description
                                       : preset.id === "resize-image"
@@ -529,6 +533,26 @@ export function PresetPage<
                           ...field,
                           label: t.presets.webmToMp4.outputLabel,
                           placeholder: t.presets.webmToMp4.outputPlaceholder,
+                        };
+                      }
+
+                      return field;
+                    })
+
+                : preset.id === "image-to-png"
+                  ? preset.fields.map((field) => {
+                      if (field.id === "input") {
+                        return {
+                          ...field,
+                          label: t.presets.imageToPng.inputLabel,
+                        };
+                      }
+
+                      if (field.id === "output") {
+                        return {
+                          ...field,
+                          label: t.presets.imageToPng.outputLabel,
+                          placeholder: t.presets.imageToPng.outputPlaceholder,
                         };
                       }
 
@@ -911,13 +935,22 @@ export function PresetPage<
       {(
         preset.id === "image-to-webp" ||
         preset.id === "image-to-jpeg" ||
+        preset.id === "image-to-png" ||
         preset.id === "compress-image"
       ) && (
         <ImageToWebpBrowser
           file={selectedFile}
-          quality={Number(values.quality)}
+          quality={
+            preset.id === "image-to-png"
+              ? undefined
+              : Number(values.quality)
+          }
           outputFormat={
-            preset.id === "image-to-jpeg" ? "jpeg" : "webp"
+            preset.id === "image-to-jpeg"
+              ? "jpeg"
+              : preset.id === "image-to-png"
+                ? "png"
+                : "webp"
           }
           compressionLevel={
             preset.id === "compress-image"
@@ -1069,7 +1102,9 @@ export function PresetPage<
                                 ? t.presets.imageToWebp.title
                                 : preset.id === "image-to-jpeg"
                                   ? t.presets.imageToJpeg.explanation.title
-                                  : preset.id === "compress-image"
+                                  : preset.id === "image-to-png"
+                                    ? t.presets.imageToPng.explanation.title
+                                : preset.id === "compress-image"
                                     ? t.presets.compressImage.explanation.title
                                     : preset.id === "resize-image"
                                       ? t.presets.resizeImage.title
@@ -1108,7 +1143,9 @@ export function PresetPage<
                                 ? t.presets.imageToWebp.description
                                 : preset.id === "image-to-jpeg"
                                   ? t.presets.imageToJpeg.explanation.description
-                                  : preset.id === "compress-image"
+                                  : preset.id === "image-to-png"
+                                    ? t.presets.imageToPng.explanation.description
+                                : preset.id === "compress-image"
                                     ? t.presets.compressImage.explanation.description
                                     : preset.id === "resize-image"
                                       ? t.presets.resizeImage.explanation.description
@@ -1190,6 +1227,8 @@ export function PresetPage<
                                     ? t.presets.imageToWebp.explanation.parameters
                                     : preset.id === "image-to-jpeg"
                                       ? t.presets.imageToJpeg.explanation.parameters
+                                      : preset.id === "image-to-png"
+                                        ? t.presets.imageToPng.explanation.parameters
                                       : preset.id === "compress-image"
                                         ? t.presets.compressImage.explanation.parameters
                                         : preset.id === "resize-image"

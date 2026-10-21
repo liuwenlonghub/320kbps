@@ -371,6 +371,32 @@ export const zhCN = {
         ],
       },
     },
+    imageToPng: {
+      title: "图片 → PNG",
+      description: "将图片转换为 PNG，并保留透明度。",
+      inputLabel: "输入文件",
+      outputLabel: "输出文件",
+      outputPlaceholder: "output.png",
+      explanation: {
+        title: "关于此命令",
+        description:
+          "此命令会将输入图片转换为 PNG。PNG 支持透明度；如果输入是动图，则转换其第一帧。",
+        parameters: [
+          {
+            flag: "-i",
+            description: "指定输入图片文件。",
+          },
+          {
+            flag: "-frames:v 1",
+            description: "只输出一帧；对于动画图片，使用第一帧。",
+          },
+          {
+            flag: "-c:v png",
+            description: "使用无损 PNG 编码器编码图片。",
+          },
+        ],
+      },
+    },
     compressImage: {
       title: "压缩图片",
       description: "以 WebP 格式压缩图片，并可调整画质和编码压缩力度。",

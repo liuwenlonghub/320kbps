@@ -372,6 +372,32 @@ export const ja = {
         ],
       },
     },
+    imageToPng: {
+      title: "画像 → PNG",
+      description: "透明度を維持したまま画像を PNG に変換します。",
+      inputLabel: "入力ファイル",
+      outputLabel: "出力ファイル",
+      outputPlaceholder: "output.png",
+      explanation: {
+        title: "このコマンドについて",
+        description:
+          "入力画像を PNG に変換します。PNG は透明度をサポートします。アニメーション画像の場合は最初のフレームを使用します。",
+        parameters: [
+          {
+            flag: "-i",
+            description: "入力画像ファイルを指定します。",
+          },
+          {
+            flag: "-frames:v 1",
+            description: "1 フレームのみ出力し、アニメーション画像では最初のフレームを使用します。",
+          },
+          {
+            flag: "-c:v png",
+            description: "可逆 PNG コーデックで画像をエンコードします。",
+          },
+        ],
+      },
+    },
     compressImage: {
       title: "画像を圧縮",
       description:

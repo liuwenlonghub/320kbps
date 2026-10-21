@@ -29,6 +29,7 @@ const presetTranslationKeys: Record<string, keyof typeof en.presets> = {
   "webm-to-mp4": "webmToMp4",
   "image-to-webp": "imageToWebp",
   "image-to-jpeg": "imageToJpeg",
+  "image-to-png": "imageToPng",
   "compress-image": "compressImage",
   "mp4-to-webm": "mp4ToWebm",
   "trim-video": "trimVideo",
