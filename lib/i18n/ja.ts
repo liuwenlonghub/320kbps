@@ -398,6 +398,36 @@ export const ja = {
         ],
       },
     },
+    imageToImageFormat: {
+      title: "画像形式変換",
+      description: "画像を JPEG、PNG、WebP に変換します。",
+      inputLabel: "入力ファイル",
+      formatLabel: "出力形式",
+      qualityLabel: "画質（PNG では使用しません）",
+      outputLabel: "出力ファイル",
+      outputPlaceholder: "output.webp",
+      explanation: {
+        title: "このコマンドについて",
+        description:
+          "画像を JPEG、PNG、WebP に変換します。アニメーション画像は最初のフレームを使用します。PNG は透明度を保持し、JPEG は保持しません。",
+        parameters: [
+          {
+            flag: "-frames:v 1",
+            description: "1 フレームのみ出力し、アニメーション画像では最初のフレームを使用します。",
+          },
+          {
+            flag: "-c:v",
+            description:
+              "選択した形式に応じて JPEG は mjpeg、PNG は png、WebP は libwebp エンコーダーを使用します。",
+          },
+          {
+            flag: "-q:v",
+            description:
+              "JPEG または WebP の画質を指定します。PNG は可逆形式のため、このオプションを使用しません。",
+          },
+        ],
+      },
+    },
     compressImage: {
       title: "画像を圧縮",
       description:

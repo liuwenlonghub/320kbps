@@ -38,6 +38,7 @@ export async function convertImageInBrowser(
   onProgress?: (progress: number) => void,
   compressionLevel?: number,
   outputFormat: "webp" | "jpeg" | "png" = "webp",
+  firstFrameOnly = false,
 ): Promise<Blob> {
   await ensureFFmpegLoaded();
 
@@ -66,7 +67,11 @@ export async function convertImageInBrowser(
 
     const command = ["-i", inputFilename];
 
-    if (outputFormat === "jpeg" || outputFormat === "png") {
+    if (
+      outputFormat === "jpeg" ||
+      outputFormat === "png" ||
+      firstFrameOnly
+    ) {
       command.push("-frames:v", "1", "-c:v", outputFormat === "jpeg" ? "mjpeg" : "png");
     }
 

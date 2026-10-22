@@ -40,6 +40,11 @@ import { buildImageToJpegOutputFilename } from "./image-to-jpeg";
 import type { ImageToJpegOptions } from "../presets/image-to-jpeg";
 import { buildImageToPngOutputFilename } from "./image-to-png";
 import type { ImageToPngOptions } from "../presets/image-to-png";
+import { buildImageToImageFormatOutputFilename } from "./image-to-image-format";
+import {
+  parseImageOutputFormat,
+  type ImageToImageFormatOptions,
+} from "../presets/image-to-image-format";
 
 type OutputValues = Record<string, string | number>;
 
@@ -199,5 +204,13 @@ export const outputBuilders: Record<
       input: String(values.input),
       output: String(values.output),
     } satisfies ImageToPngOptions),
+
+  "image-to-image-format": (values) =>
+    buildImageToImageFormatOutputFilename({
+      input: String(values.input),
+      format: parseImageOutputFormat(values.format),
+      quality: Number(values.quality),
+      output: String(values.output),
+    } satisfies ImageToImageFormatOptions),
   
 };

@@ -402,6 +402,37 @@ export const en = {
         ],
       },
     },
+    imageToImageFormat: {
+      title: "Image format converter",
+      description: "Convert images to JPEG, PNG, or WebP.",
+      inputLabel: "Input file",
+      formatLabel: "Output format",
+      qualityLabel: "Quality (ignored for PNG)",
+      outputLabel: "Output file",
+      outputPlaceholder: "output.webp",
+      explanation: {
+        title: "About this command",
+        description:
+          "Convert an image to JPEG, PNG, or WebP. Animated inputs are converted using their first frame. PNG preserves transparency; JPEG does not.",
+        parameters: [
+          {
+            flag: "-frames:v 1",
+            description:
+              "Writes one frame, using the first frame for animated images.",
+          },
+          {
+            flag: "-c:v",
+            description:
+              "Selects the encoder for the chosen output format: mjpeg for JPEG, png for PNG, or libwebp for WebP.",
+          },
+          {
+            flag: "-q:v",
+            description:
+              "Controls JPEG or WebP quality. PNG is lossless and does not use this option.",
+          },
+        ],
+      },
+    },
     compressImage: {
       title: "Compress Image",
       description:

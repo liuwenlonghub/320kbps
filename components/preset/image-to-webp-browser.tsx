@@ -11,6 +11,7 @@ type ImageToWebpBrowserProps = {
   quality?: number;
   compressionLevel?: number;
   outputFormat?: "webp" | "jpeg" | "png";
+  firstFrameOnly?: boolean;
   outputFilename: string;
   locale: Locale;
 
@@ -21,6 +22,7 @@ export function ImageToWebpBrowser({
   quality,
   compressionLevel,
   outputFormat = "webp",
+  firstFrameOnly = false,
   outputFilename,
   locale,
 
@@ -66,6 +68,7 @@ export function ImageToWebpBrowser({
         },
         compressionLevel,
         outputFormat,
+        firstFrameOnly,
       );
 
       const url = URL.createObjectURL(blob);

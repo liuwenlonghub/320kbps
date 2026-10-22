@@ -40,6 +40,11 @@ import { buildImageToJpegCommand } from "./image-to-jpeg";
 import type { ImageToJpegOptions } from "@/lib/ffmpeg/presets/image-to-jpeg";
 import { buildImageToPngCommand } from "./image-to-png";
 import type { ImageToPngOptions } from "@/lib/ffmpeg/presets/image-to-png";
+import { buildImageToImageFormatCommand } from "./image-to-image-format";
+import {
+  parseImageOutputFormat,
+  type ImageToImageFormatOptions,
+} from "@/lib/ffmpeg/presets/image-to-image-format";
 
 type CommandValues =
   Record<string, string | number>;
@@ -200,5 +205,13 @@ export const commandBuilders: Record<
       input: String(values.input),
       output: String(values.output),
     } satisfies ImageToPngOptions),
+
+  "image-to-image-format": (values) =>
+    buildImageToImageFormatCommand({
+      input: String(values.input),
+      format: parseImageOutputFormat(values.format),
+      quality: Number(values.quality),
+      output: String(values.output),
+    } satisfies ImageToImageFormatOptions),
     
 };

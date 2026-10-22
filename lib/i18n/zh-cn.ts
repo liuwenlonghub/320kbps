@@ -397,6 +397,36 @@ export const zhCN = {
         ],
       },
     },
+    imageToImageFormat: {
+      title: "图片格式转换器",
+      description: "将图片转换为 JPEG、PNG 或 WebP。",
+      inputLabel: "输入文件",
+      formatLabel: "输出格式",
+      qualityLabel: "画质（PNG 不使用此选项）",
+      outputLabel: "输出文件",
+      outputPlaceholder: "output.webp",
+      explanation: {
+        title: "关于此命令",
+        description:
+          "将图片转换为 JPEG、PNG 或 WebP。动图将使用第一帧转换。PNG 保留透明度，JPEG 不支持透明度。",
+        parameters: [
+          {
+            flag: "-frames:v 1",
+            description: "只输出一帧；对于动图，使用第一帧。",
+          },
+          {
+            flag: "-c:v",
+            description:
+              "根据所选格式使用对应编码器：JPEG 使用 mjpeg，PNG 使用 png，WebP 使用 libwebp。",
+          },
+          {
+            flag: "-q:v",
+            description:
+              "控制 JPEG 或 WebP 的画质。PNG 为无损格式，不使用此选项。",
+          },
+        ],
+      },
+    },
     compressImage: {
       title: "压缩图片",
       description: "以 WebP 格式压缩图片，并可调整画质和编码压缩力度。",
