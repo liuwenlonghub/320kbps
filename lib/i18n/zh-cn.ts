@@ -203,6 +203,34 @@ export const zhCN = {
         ],
       },
     },
+    audioToAudioFormat: {
+      title: "音频格式转换器",
+      description: "将音频转换为 MP3、WAV、FLAC、M4A、AAC、OGG 或 Opus。",
+      inputLabel: "输入音频文件",
+      formatLabel: "输出格式",
+      bitrateLabel: "比特率（WAV 和 FLAC 不使用此选项）",
+      outputLabel: "输出文件名",
+      outputPlaceholder: "output.mp3",
+      explanation: {
+        title: "关于此命令",
+        description:
+          "将音频文件转换为所选格式。WAV 和 FLAC 使用无损编码器，其他格式使用所选比特率。",
+        parameters: [
+          {
+            flag: "-vn",
+            description: "排除嵌入的视频或封面图流。",
+          },
+          {
+            flag: "-c:a",
+            description: "根据输出格式选择相应的音频编码器。",
+          },
+          {
+            flag: "-b:a",
+            description: "设置 MP3、M4A、AAC、OGG 或 Opus 输出的目标比特率。",
+          },
+        ],
+      },
+    },
     resizeVideo: {
       title: "调整视频尺寸",
       description:

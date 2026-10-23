@@ -4,23 +4,26 @@ import type { Locale } from "@/lib/i18n";
 import { getDictionary } from "@/lib/i18n";
 
 import { useEffect, useState } from "react";
-import { audioToMp3InBrowser } from "@/lib/ffmpeg/presets/audio-to-mp3-browser";
+import { audioToAudioFormatInBrowser } from "@/lib/ffmpeg/presets/audio-to-audio-format-browser";
+import type { AudioOutputFormat } from "@/lib/ffmpeg/presets/audio-to-audio-format";
 
-type AudioToMp3BrowserProps = {
+type AudioConverterBrowserProps = {
   file: File | null;
   bitrate: number;
+  format?: AudioOutputFormat;
   outputFilename: string;
   locale: Locale;
 
 };
 
-export function AudioToMp3Browser({
+export function AudioConverterBrowser({
   file,
   bitrate,
+  format = "mp3",
   outputFilename,
   locale,
 
-}: AudioToMp3BrowserProps) {
+}: AudioConverterBrowserProps) {
   const t = getDictionary(locale);
   const [status, setStatus] = useState<
     "idle" | "loading" | "converting" | "done" | "error"
@@ -53,8 +56,9 @@ export function AudioToMp3Browser({
       setStatus("loading");
       setProgress(0);
 
-      const blob = await audioToMp3InBrowser(
+      const blob = await audioToAudioFormatInBrowser(
         file,
+        format,
         bitrate,
         (value) => {
           setStatus("converting");

@@ -25,6 +25,7 @@
 - **WAV 转 MP3**：将无压缩 WAV 文件转换为 MP3。
 - **FLAC 转 MP3**：将无损 FLAC 文件转换为 MP3。
 - **音频转 MP3**：将 WAV、FLAC、M4A、AAC、OGG、Opus、AIFF 或 WMA 音频转换为 MP3，并可调整比特率。
+- **音频格式转换器**：将音频文件转换为 MP3、WAV、FLAC、M4A、AAC、OGG 或 Opus。
 - **裁剪音频**：按开始时间和时长截取 MP3、WAV、FLAC、M4A、AAC、OGG 或 Opus 文件，不重新编码。
 
 ### 视频

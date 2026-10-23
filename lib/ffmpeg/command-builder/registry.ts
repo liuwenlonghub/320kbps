@@ -45,6 +45,11 @@ import {
   parseImageOutputFormat,
   type ImageToImageFormatOptions,
 } from "@/lib/ffmpeg/presets/image-to-image-format";
+import { buildAudioToAudioFormatCommand } from "./audio-to-audio-format";
+import {
+  parseAudioOutputFormat,
+  type AudioToAudioFormatOptions,
+} from "@/lib/ffmpeg/presets/audio-to-audio-format";
 
 type CommandValues =
   Record<string, string | number>;
@@ -63,6 +68,14 @@ export const commandBuilders: Record<
       bitrate: Number(values.bitrate),
       output: String(values.output),
     } satisfies AudioToMp3Options),
+
+  "audio-to-audio-format": (values) =>
+    buildAudioToAudioFormatCommand({
+      input: String(values.input),
+      format: parseAudioOutputFormat(values.format),
+      bitrate: Number(values.bitrate),
+      output: String(values.output),
+    } satisfies AudioToAudioFormatOptions),
 
   "video-to-mp3": (values) =>
     buildVideoToMp3Command({

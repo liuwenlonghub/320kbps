@@ -25,6 +25,7 @@ The project is designed for simple, repeatable tasks: converting between contain
 - **WAV → MP3**: Convert uncompressed WAV files to MP3.
 - **FLAC → MP3**: Convert lossless FLAC files to MP3.
 - **Audio → MP3**: Convert WAV, FLAC, M4A, AAC, OGG, Opus, AIFF, or WMA audio files to MP3 with an adjustable bitrate.
+- **Audio format converter**: Convert audio files to MP3, WAV, FLAC, M4A, AAC, OGG, or Opus.
 - **Trim audio**: Cut an MP3, WAV, FLAC, M4A, AAC, OGG, or Opus file by start time and duration without re-encoding.
 
 ### Video

@@ -96,6 +96,20 @@ describe("getPresetCopy", () => {
     });
   });
 
+  it("returns localized copy for the audio format converter preset", () => {
+    const preset = {
+      id: "audio-to-audio-format",
+      title: "Fallback title",
+      description: "Fallback description",
+    };
+
+    expect(getPresetCopy(preset, "zh-cn")).toEqual({
+      title: getDictionary("zh-cn").presets.audioToAudioFormat.title,
+      description:
+        getDictionary("zh-cn").presets.audioToAudioFormat.description,
+    });
+  });
+
   it("uses preset copy when there is no translation mapping", () => {
     const preset = {
       id: "new-preset",

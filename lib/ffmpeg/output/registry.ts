@@ -45,6 +45,11 @@ import {
   parseImageOutputFormat,
   type ImageToImageFormatOptions,
 } from "../presets/image-to-image-format";
+import { buildAudioToAudioFormatOutputFilename } from "./audio-to-audio-format";
+import {
+  parseAudioOutputFormat,
+  type AudioToAudioFormatOptions,
+} from "../presets/audio-to-audio-format";
 
 type OutputValues = Record<string, string | number>;
 
@@ -62,6 +67,14 @@ export const outputBuilders: Record<
       bitrate: Number(values.bitrate),
       output: String(values.output),
     } satisfies AudioToMp3Options),
+
+  "audio-to-audio-format": (values) =>
+    buildAudioToAudioFormatOutputFilename({
+      input: String(values.input),
+      format: parseAudioOutputFormat(values.format),
+      bitrate: Number(values.bitrate),
+      output: String(values.output),
+    } satisfies AudioToAudioFormatOptions),
 
   "video-to-mp3": (values) =>
     buildVideoToMp3OutputFilename({

@@ -13,6 +13,7 @@ import {
   getImageFormatQuality,
   parseImageOutputFormat,
 } from "@/lib/ffmpeg/presets/image-to-image-format";
+import { parseAudioOutputFormat } from "@/lib/ffmpeg/presets/audio-to-audio-format";
 import { usePresetValues } from "./use-preset-values";
 
 const ResizeVideoBrowser = dynamic(
@@ -81,10 +82,10 @@ const VideoToMp3Browser = dynamic(
   },
 );
 
-const AudioToMp3Browser = dynamic(
+const AudioConverterBrowser = dynamic(
   () =>
     import("./audio-to-mp3-browser").then(
-      (mod) => mod.AudioToMp3Browser,
+      (mod) => mod.AudioConverterBrowser,
     ),
   { ssr: false },
 );
@@ -220,6 +221,8 @@ export function PresetPage<
                 ? t.presets.videoToMp3.title
                 : preset.id === "audio-to-mp3"
                   ? t.presets.audioToMp3.title
+                  : preset.id === "audio-to-audio-format"
+                    ? t.presets.audioToAudioFormat.title
                 : preset.id === "wav-to-mp3"
                   ? t.presets.wavToMp3.title
                   : preset.id === "flac-to-mp3"
@@ -266,6 +269,8 @@ export function PresetPage<
                 ? t.presets.videoToMp3.description
                 : preset.id === "audio-to-mp3"
                   ? t.presets.audioToMp3.description
+                  : preset.id === "audio-to-audio-format"
+                    ? t.presets.audioToAudioFormat.description
                 : preset.id === "wav-to-mp3"
                   ? t.presets.wavToMp3.description
                   : preset.id === "flac-to-mp3"
@@ -371,6 +376,41 @@ export function PresetPage<
                         return {
                           ...field,
                           label: t.presets.videoToMp3.bitrateLabel,
+                        };
+                      }
+
+                      return field;
+                    })
+
+                : preset.id === "audio-to-audio-format"
+                  ? preset.fields.map((field) => {
+                      if (field.id === "input") {
+                        return {
+                          ...field,
+                          label: t.presets.audioToAudioFormat.inputLabel,
+                        };
+                      }
+
+                      if (field.id === "format") {
+                        return {
+                          ...field,
+                          label: t.presets.audioToAudioFormat.formatLabel,
+                        };
+                      }
+
+                      if (field.id === "bitrate") {
+                        return {
+                          ...field,
+                          label: t.presets.audioToAudioFormat.bitrateLabel,
+                        };
+                      }
+
+                      if (field.id === "output") {
+                        return {
+                          ...field,
+                          label: t.presets.audioToAudioFormat.outputLabel,
+                          placeholder:
+                            t.presets.audioToAudioFormat.outputPlaceholder,
                         };
                       }
 
@@ -1032,11 +1072,17 @@ export function PresetPage<
         />
       )}
 
-      {(preset.id === "wav-to-mp3" ||
+      {(preset.id === "audio-to-audio-format" ||
+        preset.id === "wav-to-mp3" ||
         preset.id === "audio-to-mp3") && (
-        <AudioToMp3Browser
+        <AudioConverterBrowser
           file={selectedFile}
           bitrate={Number(values.bitrate)}
+          format={
+            preset.id === "audio-to-audio-format"
+              ? parseAudioOutputFormat(values.format)
+              : "mp3"
+          }
           outputFilename={String(values.output)}
             locale={locale}
         />
@@ -1140,6 +1186,8 @@ export function PresetPage<
             ? t.presets.videoToMp3.title
             : preset.id === "audio-to-mp3"
               ? t.presets.audioToMp3.explanation.title
+              : preset.id === "audio-to-audio-format"
+                ? t.presets.audioToAudioFormat.explanation.title
             : preset.id === "wav-to-mp3"
               ? t.presets.wavToMp3.title
               : preset.id === "flac-to-mp3"
@@ -1183,6 +1231,8 @@ export function PresetPage<
             ? t.presets.videoToMp3.description
             : preset.id === "audio-to-mp3"
               ? t.presets.audioToMp3.explanation.description
+              : preset.id === "audio-to-audio-format"
+                ? t.presets.audioToAudioFormat.explanation.description
             : preset.id === "wav-to-mp3"
               ? t.presets.wavToMp3.description
               : preset.id === "flac-to-mp3"
@@ -1269,6 +1319,8 @@ export function PresetPage<
                 ? t.presets.videoToMp3.explanation.parameters
                 : preset.id === "audio-to-mp3"
                   ? t.presets.audioToMp3.explanation.parameters
+                  : preset.id === "audio-to-audio-format"
+                    ? t.presets.audioToAudioFormat.explanation.parameters
                 : preset.id === "wav-to-mp3"
                   ? t.presets.wavToMp3.explanation.parameters
                   : preset.id === "flac-to-mp3"

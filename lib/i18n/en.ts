@@ -204,6 +204,37 @@ export const en = {
         ],
       },
     },
+    audioToAudioFormat: {
+      title: "Audio format converter",
+      description:
+        "Convert audio to MP3, WAV, FLAC, M4A, AAC, OGG, or Opus.",
+      inputLabel: "Input audio file",
+      formatLabel: "Output format",
+      bitrateLabel: "Bitrate (ignored for WAV and FLAC)",
+      outputLabel: "Output filename",
+      outputPlaceholder: "output.mp3",
+      explanation: {
+        title: "About this command",
+        description:
+          "Convert an audio file to the selected format. WAV and FLAC use lossless encoders; other formats use the selected bitrate.",
+        parameters: [
+          {
+            flag: "-vn",
+            description: "Excludes embedded video or cover-art streams.",
+          },
+          {
+            flag: "-c:a",
+            description:
+              "Selects an audio encoder appropriate for the output format.",
+          },
+          {
+            flag: "-b:a",
+            description:
+              "Sets the target bitrate for MP3, M4A, AAC, OGG, or Opus output.",
+          },
+        ],
+      },
+    },
     resizeVideo: {
       title: "Resize Video",
       description:

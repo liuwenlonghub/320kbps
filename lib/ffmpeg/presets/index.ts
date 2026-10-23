@@ -20,6 +20,7 @@ import { compressImagePreset } from "./compress-image";
 import { imageToJpegPreset } from "./image-to-jpeg";
 import { imageToPngPreset } from "./image-to-png";
 import { imageToImageFormatPreset } from "./image-to-image-format";
+import { audioToAudioFormatPreset } from "./audio-to-audio-format";
 
 export const presets = [
   videoToMp3Preset,
@@ -44,6 +45,7 @@ export const presets = [
   imageToJpegPreset,
   imageToPngPreset,
   imageToImageFormatPreset,
+  audioToAudioFormatPreset,
 ] as const;
 
 export const presetCategories = [
@@ -73,4 +75,5 @@ export {
   imageToJpegPreset,
   imageToPngPreset,
   imageToImageFormatPreset,
+  audioToAudioFormatPreset,
 };

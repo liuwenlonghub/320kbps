@@ -203,6 +203,36 @@ export const ja = {
         ],
       },
     },
+    audioToAudioFormat: {
+      title: "音声形式変換",
+      description:
+        "音声を MP3、WAV、FLAC、M4A、AAC、OGG、Opus に変換します。",
+      inputLabel: "入力音声ファイル",
+      formatLabel: "出力形式",
+      bitrateLabel: "ビットレート（WAV と FLAC では使用しません）",
+      outputLabel: "出力ファイル名",
+      outputPlaceholder: "output.mp3",
+      explanation: {
+        title: "このコマンドについて",
+        description:
+          "音声ファイルを選択した形式に変換します。WAV と FLAC は可逆エンコーダーを使用し、その他の形式では選択したビットレートを使用します。",
+        parameters: [
+          {
+            flag: "-vn",
+            description: "埋め込み動画やカバーアートのストリームを除外します。",
+          },
+          {
+            flag: "-c:a",
+            description: "出力形式に適した音声エンコーダーを選択します。",
+          },
+          {
+            flag: "-b:a",
+            description:
+              "MP3、M4A、AAC、OGG、Opus 出力の目標ビットレートを設定します。",
+          },
+        ],
+      },
+    },
     resizeVideo: {
       title: "動画のサイズ変更",
       description:
