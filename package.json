@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "deploy": "npm run build && wrangler deploy",
     "start": "next start",
     "lint": "eslint",
     "test": "vitest run",
@@ -27,6 +28,7 @@
     "eslint-config-next": "16.3.5",
     "tailwindcss": "^4",
     "typescript": "^5",
-    "vitest": "^5.0.1"
+    "vitest": "^5.0.1",
+    "wrangler": "^4.156.0"
   }
 }

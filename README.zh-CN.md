@@ -146,16 +146,14 @@ Workers 使用静态资源配置发布 `out/`。在项目根目录创建 `wrangl
 }
 ```
 
-将 `name` 改为 Cloudflare 账户中可用的 Worker 名称。Cloudflare 的构建命令设为 `npm run build`，必填的部署命令设为 `npx wrangler deploy`。然后安装 Wrangler、登录并构建部署：
+将 `name` 改为 Cloudflare 账户中可用的 Worker 名称。Cloudflare 的构建命令如为必填项，设为 `npm run build`；必填的部署命令设为 `npm run deploy`。该部署脚本会先构建静态导出产物，再运行 Wrangler。然后登录并部署：
 
 ```bash
-npm install --save-dev wrangler
 npx wrangler login
-npm run build
-npx wrangler deploy
+npm run deploy
 ```
 
-后续更新时重新运行 `npm run build` 和 `npx wrangler deploy`。传统 Pages Git 集成通过控制台的构建输出目录设置发布静态站点；Workers 项目则通过 `wrangler.jsonc` 中的 `assets.directory` 指定静态文件目录。两种方式都部署本项目的静态导出结果，不需要运行 Next.js 服务器。
+后续更新时重新运行 `npm run deploy`。传统 Pages Git 集成通过控制台的构建输出目录设置发布静态站点；Workers 项目则通过 `wrangler.jsonc` 中的 `assets.directory` 指定静态文件目录。两种方式都部署本项目的静态导出结果，不需要运行 Next.js 服务器。
 
 ## 多语言与应用结构
 
