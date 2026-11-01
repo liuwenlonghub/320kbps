@@ -117,7 +117,7 @@ Cloudflare Pages 可以直接托管静态导出产物，无需 Next.js 适配器
 | 构建命令 | `npm run build` |
 | 构建输出目录 | `out` |
 
-如果创建应用的页面显示“配置您的 Worker 项目”，这是 Workers 项目流程，不是传统的 Pages 构建设置页面；该流程可能没有单独的构建输出目录选项。请改用下方 Workers 配置中的 `wrangler.jsonc`，通过 `assets.directory` 指定 `./out`。如果页面要求填写构建命令，使用 `npm run build`。
+如果创建应用的页面显示“配置您的 Worker 项目”，这是 Workers 项目流程，不是传统的 Pages 构建设置页面；该流程可能没有单独的构建输出目录选项。请改用下方 Workers 配置中的 `wrangler.jsonc`，通过 `assets.directory` 指定 `./out`；如果该流程要求填写部署命令，请按下方 Workers 说明配置。
 
 预览构建可按需启用；Cloudflare Access 仅在需要限制访问时启用。高级设置使用仓库根目录，且无需添加环境变量或构建变量。
 
@@ -133,7 +133,7 @@ npx wrangler pages deploy out --project-name=320kbps
 
 ### 部署到 Cloudflare Workers
 
-Workers 使用静态资源配置发布 `out/`。在项目根目录创建 `wrangler.jsonc`：
+Workers 使用静态资源配置发布 `out/`。在项目根目录创建 `wrangler.jsonc`，并在部署前提交该文件：
 
 ```jsonc
 {
@@ -146,7 +146,7 @@ Workers 使用静态资源配置发布 `out/`。在项目根目录创建 `wrangl
 }
 ```
 
-将 `name` 改为 Cloudflare 账户中可用的 Worker 名称，然后安装 Wrangler 并部署：
+将 `name` 改为 Cloudflare 账户中可用的 Worker 名称。Cloudflare 的构建命令设为 `npm run build`，必填的部署命令设为 `npx wrangler deploy`。然后安装 Wrangler、登录并构建部署：
 
 ```bash
 npm install --save-dev wrangler

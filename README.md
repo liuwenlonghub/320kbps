@@ -117,7 +117,7 @@ If you use the Cloudflare Pages Git integration and its setup screen provides a 
 | Build command | `npm run build` |
 | Build output directory | `out` |
 
-If the application setup screen says “Configure your Worker project,” it is the Workers project flow, not the traditional Pages build-settings screen; it may not have a separate build output directory field. Use the `wrangler.jsonc` configuration in the Workers section below to set `assets.directory` to `./out`. If the screen asks for a build command, use `npm run build`.
+If the application setup screen says “Configure your Worker project,” it is the Workers project flow, not the traditional Pages build-settings screen; it may not have a separate build output directory field. Use the `wrangler.jsonc` configuration in the Workers section below to set `assets.directory` to `./out`, and follow the Workers instructions if the setup requires a deploy command.
 
 Enable preview builds if you want previews for branches or pull requests. Use Cloudflare Access only if access should be restricted. Use the repository root for advanced root-directory settings; no environment or build variables are required.
 
@@ -133,7 +133,7 @@ If Wrangler is not installed, `npx` will prompt you to install it. `--project-na
 
 ### Deploy to Cloudflare Workers
 
-Workers can publish `out/` using static asset configuration. Create `wrangler.jsonc` in the project root:
+Workers can publish `out/` using static asset configuration. Create `wrangler.jsonc` in the project root and commit it before deploying:
 
 ```jsonc
 {
@@ -146,7 +146,7 @@ Workers can publish `out/` using static asset configuration. Create `wrangler.js
 }
 ```
 
-Change `name` to a Worker name available in your Cloudflare account, then install Wrangler and deploy:
+Change `name` to a Worker name available in your Cloudflare account. Configure the Cloudflare build command as `npm run build` and the required deploy command as `npx wrangler deploy`. Then install Wrangler, log in, build, and deploy:
 
 ```bash
 npm install --save-dev wrangler
