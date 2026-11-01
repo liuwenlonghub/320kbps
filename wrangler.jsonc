@@ -1,0 +1,8 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "320kbps",
+  "compatibility_date": "2026-11-01",
+  "assets": {
+    "directory": "./out"
+  }
+}

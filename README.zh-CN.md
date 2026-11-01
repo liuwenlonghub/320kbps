@@ -106,6 +106,57 @@ npm run build
 
 如果站点部署在子目录中，需要在构建前在 `next.config.ts` 中设置 `basePath`。
 
+### 部署到 Cloudflare Pages
+
+Cloudflare Pages 可以直接托管静态导出产物，无需 Next.js 适配器。
+
+如果使用 Cloudflare Pages 的 Git 集成流程，并且设置页面提供构建输出目录，填写以下配置：
+
+| 设置 | 值 |
+| --- | --- |
+| 构建命令 | `npm run build` |
+| 构建输出目录 | `out` |
+
+如果创建应用的页面显示“配置您的 Worker 项目”，这是 Workers 项目流程，不是传统的 Pages 构建设置页面；该流程可能没有单独的构建输出目录选项。请改用下方 Workers 配置中的 `wrangler.jsonc`，通过 `assets.directory` 指定 `./out`。如果页面要求填写构建命令，使用 `npm run build`。
+
+预览构建可按需启用；Cloudflare Access 仅在需要限制访问时启用。高级设置使用仓库根目录，且无需添加环境变量或构建变量。
+
+也可以通过 Wrangler 手动部署 Pages。先登录 Cloudflare，然后构建并发布：
+
+```bash
+npx wrangler login
+npm run build
+npx wrangler pages deploy out --project-name=320kbps
+```
+
+首次运行 `npx wrangler` 时，按提示安装 Wrangler。`--project-name` 需要与 Cloudflare Pages 项目名称一致。
+
+### 部署到 Cloudflare Workers
+
+Workers 使用静态资源配置发布 `out/`。在项目根目录创建 `wrangler.jsonc`：
+
+```jsonc
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "320kbps",
+  "compatibility_date": "2026-11-01",
+  "assets": {
+    "directory": "./out"
+  }
+}
+```
+
+将 `name` 改为 Cloudflare 账户中可用的 Worker 名称，然后安装 Wrangler 并部署：
+
+```bash
+npm install --save-dev wrangler
+npx wrangler login
+npm run build
+npx wrangler deploy
+```
+
+后续更新时重新运行 `npm run build` 和 `npx wrangler deploy`。传统 Pages Git 集成通过控制台的构建输出目录设置发布静态站点；Workers 项目则通过 `wrangler.jsonc` 中的 `assets.directory` 指定静态文件目录。两种方式都部署本项目的静态导出结果，不需要运行 Next.js 服务器。
+
 ## 多语言与应用结构
 
 当前网站支持多语言，包括：

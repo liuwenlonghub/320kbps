@@ -106,6 +106,57 @@ The generated output is written to `out/` and can be deployed to any static-host
 
 If the site is deployed under a subdirectory, set `basePath` in `next.config.ts` before building.
 
+### Deploy to Cloudflare Pages
+
+Cloudflare Pages can host the static export directly; no Next.js adapter is required.
+
+If you use the Cloudflare Pages Git integration and its setup screen provides a build output directory, use these settings:
+
+| Setting | Value |
+| --- | --- |
+| Build command | `npm run build` |
+| Build output directory | `out` |
+
+If the application setup screen says “Configure your Worker project,” it is the Workers project flow, not the traditional Pages build-settings screen; it may not have a separate build output directory field. Use the `wrangler.jsonc` configuration in the Workers section below to set `assets.directory` to `./out`. If the screen asks for a build command, use `npm run build`.
+
+Enable preview builds if you want previews for branches or pull requests. Use Cloudflare Access only if access should be restricted. Use the repository root for advanced root-directory settings; no environment or build variables are required.
+
+You can also deploy Pages manually with Wrangler. Log in to Cloudflare, then build and publish:
+
+```bash
+npx wrangler login
+npm run build
+npx wrangler pages deploy out --project-name=320kbps
+```
+
+If Wrangler is not installed, `npx` will prompt you to install it. `--project-name` must match the name of your Cloudflare Pages project.
+
+### Deploy to Cloudflare Workers
+
+Workers can publish `out/` using static asset configuration. Create `wrangler.jsonc` in the project root:
+
+```jsonc
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "320kbps",
+  "compatibility_date": "2026-11-01",
+  "assets": {
+    "directory": "./out"
+  }
+}
+```
+
+Change `name` to a Worker name available in your Cloudflare account, then install Wrangler and deploy:
+
+```bash
+npm install --save-dev wrangler
+npx wrangler login
+npm run build
+npx wrangler deploy
+```
+
+For subsequent updates, run `npm run build` and `npx wrangler deploy` again. Traditional Pages Git integration uses the dashboard's build output directory setting; a Workers project uses `assets.directory` in `wrangler.jsonc` to specify the static files. Both deploy the static export and do not require a running Next.js server.
+
 ## Localization and app structure
 
 The site supports multiple locales, currently:
