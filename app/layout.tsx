@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     template: "%s — 320kbps",
   },
   description:
-    "Simple media tools powered by FFmpeg. Convert files in your browser or build FFmpeg commands without memorizing FFmpeg.",
+    "Simple media tools powered by FFmpeg, Convert files in your browser or build FFmpeg commands without memorizing FFmpeg.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
